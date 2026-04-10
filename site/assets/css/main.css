@@ -1362,6 +1362,224 @@ section {
   color: var(--demo-ink);
 }
 
+/* Demo Classic — referencia Squarespace (solo .demo-page--classic) */
+.demo-page--classic {
+  --demo-paper-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.demo-page--classic main .container {
+  width: min(100% - 2rem, 1180px);
+}
+
+.demo-page--classic .demo-hero.demo-hero--light {
+  min-height: clamp(580px, 82vh, 920px);
+  padding: clamp(4rem, 11vw, 6.5rem) 1rem;
+  background-color: #faf7f0;
+  background-image: var(--demo-paper-noise);
+  background-size: 200px 200px;
+}
+
+.demo-page--classic .demo-hero--light::before,
+.demo-page--classic .demo-hero--light::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(46vw, 540px);
+  z-index: 0;
+  background-image: url("../img/114_floral.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.demo-page--classic .demo-hero--light::before {
+  left: 0;
+  background-position: 8% 50%;
+  opacity: 0.94;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 40%, transparent 82%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 40%, transparent 82%);
+}
+
+.demo-page--classic .demo-hero--light::after {
+  display: block;
+  right: 0;
+  left: auto;
+  background-position: 92% 50%;
+  opacity: 0.94;
+  -webkit-mask-image: linear-gradient(270deg, #000 0%, #000 40%, transparent 82%);
+  mask-image: linear-gradient(270deg, #000 0%, #000 40%, transparent 82%);
+}
+
+.demo-page--classic .demo-hero .inner {
+  max-width: min(92vw, 52rem);
+}
+
+.demo-page--classic .demo-kicker {
+  font-size: clamp(0.82rem, 1.5vw, 1.05rem);
+  letter-spacing: 0.22em;
+  margin-bottom: 1.75rem;
+}
+
+.demo-page--classic .demo-name {
+  font-size: clamp(3.2rem, 13vw, 6.75rem);
+}
+
+.demo-page--classic .demo-name-join {
+  font-size: clamp(1.05rem, 2.6vw, 1.55rem);
+  margin: 0.2rem 0;
+}
+
+.demo-page--classic .demo-date {
+  font-size: clamp(1.05rem, 2vw, 1.42rem);
+  letter-spacing: 0.14em;
+}
+
+.demo-page--classic .demo-section--floral-cap {
+  position: relative;
+  padding-top: clamp(4.5rem, 10vw, 6rem);
+}
+
+.demo-page--classic .demo-section--floral-cap::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: clamp(56px, 9vw, 80px);
+  background: url("../img/114_floral.jpg") center 32% / cover no-repeat;
+  opacity: 0.9;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  pointer-events: none;
+}
+
+.demo-page--classic .demo-text-date strong {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: #c1785c;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 5px;
+}
+
+.demo-page--classic .demo-cols__text {
+  text-align: center;
+}
+
+.demo-page--classic .demo-cols__text h2 {
+  font-size: clamp(1.85rem, 3.8vw, 2.55rem);
+  font-weight: 700;
+  margin-bottom: 1.35rem;
+}
+
+.demo-page--classic .demo-section {
+  padding: clamp(4rem, 9vw, 5.85rem) 0;
+}
+
+.demo-page--classic .demo-section p.large {
+  font-size: clamp(1.05rem, 1.85vw, 1.22rem);
+  line-height: 1.72;
+}
+
+.demo-page--classic .demo-btn-map {
+  margin-top: 1.65rem;
+  padding: 0.82rem 2.15rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+}
+
+.demo-page--classic .demo-heading-story {
+  font-size: clamp(1.78rem, 3.6vw, 2.42rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.demo-page--classic .demo-heading-story::after {
+  content: "";
+  display: block;
+  width: min(260px, 72vw);
+  height: 7px;
+  margin: 0.55rem auto 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(230, 168, 158, 0.82) 18%,
+    rgba(230, 168, 158, 0.82) 82%,
+    transparent
+  );
+  border-radius: 4px;
+}
+
+.demo-page--classic .demo-triptych {
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  margin-top: clamp(2.85rem, 6vw, 3.65rem);
+  max-width: 1000px;
+}
+
+.demo-page--classic .demo-triptych__center img {
+  min-height: clamp(260px, 36vw, 440px);
+}
+
+.demo-page--classic .demo-rsvp {
+  padding: clamp(4rem, 9vw, 5.85rem) 0;
+}
+
+.demo-page--classic .demo-rsvp__box h2 {
+  font-size: clamp(1.32rem, 2.75vw, 1.78rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.demo-page--classic .demo-rsvp__box p {
+  font-size: clamp(1rem, 1.55vw, 1.1rem);
+}
+
+.demo-page--classic .demo-btn-rsvp {
+  padding: 0.88rem 2.35rem;
+  font-size: 0.82rem;
+}
+
+.demo-page--classic .demo-gift__icon {
+  width: 56px;
+  height: 56px;
+}
+
+.demo-page--classic .demo-btn-gift {
+  margin-top: 1.35rem;
+  padding: 0.78rem 1.95rem;
+  font-size: 1rem;
+}
+
+.demo-page--classic .demo-banner {
+  padding: clamp(3.75rem, 10vw, 5.75rem) 1.25rem;
+  background: var(--demo-cream);
+}
+
+.demo-page--classic .demo-banner::before,
+.demo-page--classic .demo-banner::after {
+  width: min(38%, 360px);
+  opacity: 0.78;
+  top: -4%;
+  bottom: -4%;
+}
+
+.demo-page--classic .demo-banner::before {
+  -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 55%, transparent);
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 55%, transparent);
+}
+
+.demo-page--classic .demo-banner::after {
+  -webkit-mask-image: linear-gradient(270deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 55%, transparent);
+  mask-image: linear-gradient(270deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 55%, transparent);
+}
+
+.demo-page--classic .demo-banner h2 {
+  max-width: 24ch;
+  font-size: clamp(1.7rem, 4.2vw, 2.55rem);
+  font-weight: 700;
+  line-height: 1.28;
+}
+
 .demo-footer-note {
   text-align: center;
   font-size: 0.88rem;
