@@ -1,0 +1,7 @@
+*.mov
+.DS_Store
+.cursor/
+.idea/
+*.swp
+*.swo
+*~

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Invitanding — Invitaciones digitales para tu evento</title>
+    <meta
+      name="description"
+      content="Invitaciones digitales únicas para bodas y eventos. Páginas web personalizadas, RSVP, ubicación y más."
+    />
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <!-- Trazos ovalados tipo rotulador (irregulares, para títulos de tarjetas) -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="svg-defs-ovals"
+      aria-hidden="true"
+      focusable="false"
+      width="0"
+      height="0"
+    >
+      <defs>
+        <!-- Transición hero ↔ verde: curva suave (Bézier), no polilínea -->
+        <clipPath id="hero-wave-bottom" clipPathUnits="objectBoundingBox">
+          <path
+            d="M 0,0 L 1,0 L 1,1
+               C 0.82,0.998 0.62,0.93 0.45,0.91
+               C 0.28,0.885 0.12,0.878 0,0.872
+               L 0,0 Z"
+          />
+        </clipPath>
+        <!-- El bloque verde NO se recorta arriba: sube por detrás del hero y rellena la ola -->
+        <!-- Ligera irregularidad en el borde (no elipse “limpia”) -->
+        <filter id="sketch-oval-rough" x="-12%" y="-12%" width="124%" height="124%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="2" result="n" />
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="0.85" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+        <!-- Misma forma para todos los títulos largos; trazo irregular + retoques -->
+        <symbol id="sketch-oval-wide" viewBox="0 0 400 58">
+          <g
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            filter="url(#sketch-oval-rough)"
+          >
+            <path
+              stroke="#9a5f42"
+              stroke-width="2.85"
+              d="M 24 41 C 17 22 21 8 104 3 C 168 0 268 6 332 14 C 378 20 392 32 386 40 C 378 52 298 58 196 56 C 78 53 28 48 24 41z"
+            />
+            <path
+              stroke="#b0785c"
+              stroke-width="1.5"
+              opacity="0.55"
+              d="M 38 34 C 32 19 118 8 212 10 C 292 12 358 22 372 30"
+            />
+            <path
+              stroke="#8b4a32"
+              stroke-width="2.35"
+              opacity="0.9"
+              d="M 22 38 C 20 34 28 30 36 32 C 44 35 46 40 42 44"
+            />
+            <path stroke="#a5674c" stroke-width="1.55" opacity="0.72" d="M 312 36 Q 328 44 344 34" />
+            <path stroke="#9a5f42" stroke-width="1.25" opacity="0.45" d="M 168 2 Q 182 6 176 14" />
+          </g>
+        </symbol>
+        <!-- Misma “familia” de trazo que wide, escalada al texto corto (Paquete / Premium) -->
+        <symbol id="sketch-oval-narrow" viewBox="0 0 220 52">
+          <g
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            filter="url(#sketch-oval-rough)"
+          >
+            <path
+              stroke="#9a5f42"
+              stroke-width="2.8"
+              d="M 14 39 C 9 22 12 10 78 5 C 128 2 182 8 204 16 C 214 22 216 32 208 40 C 196 50 88 54 28 44 C 16 41 14 39 14 39z"
+            />
+            <path
+              stroke="#b0785c"
+              stroke-width="1.45"
+              opacity="0.52"
+              d="M 22 31 C 18 20 88 12 168 16"
+            />
+            <path stroke="#8b4a32" stroke-width="2.2" opacity="0.88" d="M 18 36 C 16 32 24 28 34 30" />
+            <path stroke="#a5674c" stroke-width="1.4" opacity="0.68" d="M 158 34 Q 172 40 182 32" />
+          </g>
+        </symbol>
+      </defs>
+    </svg>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="index.html">
+          <img src="assets/img/logo-blanco.png" alt="Invitanding" width="180" height="48" />
+        </a>
+        <nav class="nav-desktop" aria-label="Principal">
+          <a href="historia.html">Historia</a>
+          <div class="nav-item">
+            <span class="nav-label">Invitaciones</span>
+            <div class="nav-submenu">
+              <a href="demo-classic.html">Invitación Classic</a>
+              <a href="demo-signature.html">Invitación Signature</a>
+              <a href="demo-premium.html">Invitación Premium</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <span class="nav-label">SnapCards</span>
+            <div class="nav-submenu">
+              <a href="snapcard-basica.html">SnapCard Básica</a>
+              <a href="snapcard-interactiva.html">SnapCard Interactiva</a>
+            </div>
+          </div>
+        </nav>
+        <a class="btn btn-primary header-cta" href="contact.html">Contáctanos</a>
+        <div class="nav-toggle">
+          <input type="checkbox" id="nav-check" />
+          <label class="burger" for="nav-check" aria-label="Menú"
+            ><span></span><span></span><span></span
+          ></label>
+          <div class="nav-mobile-panel">
+            <a href="historia.html">Historia</a>
+            <span style="color: #888; font-size: 0.75rem; padding: 0.5rem 0 0">Invitaciones</span>
+            <a class="sub" href="demo-classic.html">Invitación Classic</a>
+            <a class="sub" href="demo-signature.html">Invitación Signature</a>
+            <a class="sub" href="demo-premium.html">Invitación Premium</a>
+            <span style="color: #888; font-size: 0.75rem; padding: 0.5rem 0 0">SnapCards</span>
+            <a class="sub" href="snapcard-basica.html">SnapCard Básica</a>
+            <a class="sub" href="snapcard-interactiva.html">SnapCard Interactiva</a>
+            <a href="contact.html">Contáctanos</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero: foto pareja + titular -->
+      <section class="hero-fullbleed reveal-section">
+        <div class="hero-fullbleed__bg" style="background-image: url('assets/img/hero-couple-festival.jpg')"></div>
+        <div class="hero-fullbleed__overlay" aria-hidden="true"></div>
+        <div class="container hero-fullbleed__inner">
+          <h1 class="reveal-item">Invitaciones digitales únicas para tu evento especial</h1>
+          <a class="btn btn-on-hero reveal-item" href="contact.html">Quiero conocer más</a>
+        </div>
+      </section>
+
+      <!-- Verde: dos bloques en una sola sección (sin costura crema entre medias) -->
+      <section class="section-dark section-dark--slant-top reveal-section">
+        <div class="container split-pair">
+          <div class="circle-media reveal-item">
+            <img src="assets/img/couple-circle.jpg" alt="Pareja" width="800" height="800" loading="lazy" />
+          </div>
+          <div class="reveal-item">
+            <h2 class="section-title">Nuestras invitaciones son digitales, impactantes y ecológicas</h2>
+            <p class="section-lead" style="color: rgba(255, 255, 255, 0.9); max-width: 38ch">
+              Te permiten crear experiencias cautivadoras y memorables para tus invitados. Descubre el poder de la
+              exclusividad y la sostenibilidad en cada celebración con nuestras creaciones personalizadas y marca un
+              nuevo estándar de elegancia y originalidad.
+            </p>
+            <a class="btn btn-primary" href="contact.html">Quiero conocer más</a>
+          </div>
+        </div>
+        <div class="container split-pair section-dark__second">
+          <div class="reveal-item section-dark__copy">
+            <p>
+              En invitanding creamos una página web personalizada y adaptable a todos los dispositivos, para que puedas
+              compartir los detalles de tu boda o evento de manera sencilla y práctica.
+            </p>
+            <p>
+              ¡Olvídate de los métodos convencionales, o compléméntalos con una invitación digital! Puedes enviar las
+              invitaciones por WhatsApp, correo electrónico o cualquier otro medio que desees.
+            </p>
+            <p>
+              <span class="lead-strong"
+                >¡Solo comparte un enlace y tus invitados accederán a toda la información con un solo clic!</span
+              >
+            </p>
+            <a class="btn btn-primary" href="contact.html">Quiero conocer más</a>
+          </div>
+          <div class="mockup-circle-wrap reveal-item">
+            <img
+              src="assets/img/mockup-cel-laptop.jpg"
+              alt="Vista de invitación en dispositivos"
+              width="1200"
+              height="1029"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Características + iconos -->
+      <section class="section-cream section-cream--below-green reveal-section">
+        <div class="container">
+          <h2 class="features-heading reveal-item">
+            Dale un giro moderno a las tradicionales tarjetas de papel con nuestras invitaciones digitales
+          </h2>
+          <div class="feature-grid">
+            <div class="feature-tile reveal-item">
+              <div class="feature-tile__icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="10" y="16" width="36" height="28" rx="2" stroke="currentColor" stroke-width="2" />
+                  <path d="M10 24h36" stroke="currentColor" stroke-width="2" />
+                  <circle cx="46" cy="44" r="10" stroke="currentColor" stroke-width="2" />
+                  <path d="M42 44l2.5 2.5L50 41" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3>Confirmación de asistencia</h3>
+              <p>
+                Simplifica el proceso de confirmación y organización de la lista final de invitados, permitiendo que tus
+                invitados confirmen su asistencia con un clic. Con esta opción nos aseguramos de tener una lista precisa.
+              </p>
+            </div>
+            <div class="feature-tile reveal-item">
+              <div class="feature-tile__icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="34" r="14" stroke="currentColor" stroke-width="2" />
+                  <path d="M32 26v10l7 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M18 18l4-4M46 18l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3>Cuenta regresiva</h3>
+              <p>
+                ¡Genera emoción con una emocionante cuenta regresiva que marca los días, minutos y segundos que faltan
+                para tu matrimonio, agregando anticipación y entusiasmo a tu gran día!
+              </p>
+            </div>
+            <div class="feature-tile reveal-item">
+              <div class="feature-tile__icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 44l10-22 8 14 8-8 10 16H14z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                  <circle cx="44" cy="22" r="5" stroke="currentColor" stroke-width="2" />
+                  <path d="M44 17v10M39 22h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3>Ubicación <strong>precisa</strong></h3>
+              <p>
+                Comparte la ubicación de tu evento con tus invitados de forma sencilla utilizando Google Maps,
+                proporcionando indicaciones precisas y detalladas para que lleguen sin contratiempos a la ceremonia o
+                fiesta.
+              </p>
+            </div>
+            <div class="feature-tile reveal-item">
+              <div class="feature-tile__icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="14" y="22" width="36" height="28" rx="2" stroke="currentColor" stroke-width="2" />
+                  <path d="M22 22v-6a4 4 0 014-4h12a4 4 0 014 4v6" stroke="currentColor" stroke-width="2" />
+                  <path d="M32 30v8M28 38h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3>Regalos</h3>
+              <p>
+                Facilita a tus invitados la elección de regalos al incluir un enlace a tu lista de regalos o proporcionar
+                los detalles de tu cuenta bancaria para que puedan realizar contribuciones de una manera cómoda.
+              </p>
+            </div>
+            <div class="feature-tile reveal-item">
+              <div class="feature-tile__icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 40c4-8 10-12 14-12s10 4 14 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <circle cx="22" cy="24" r="3" fill="currentColor" />
+                  <circle cx="32" cy="18" r="3" fill="currentColor" />
+                  <circle cx="42" cy="24" r="3" fill="currentColor" />
+                </svg>
+              </div>
+              <h3>Sugerencia de canciones</h3>
+              <p>
+                Ofrece a tus invitados una opción divertida para que compartan sus sugerencias de canciones y así
+                contribuyan a crear la playlist perfecta para tu fiesta.
+              </p>
+            </div>
+            <div class="feature-tile reveal-item">
+              <div class="feature-tile__icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M32 20c-8 0-14 6-14 14 0 10 14 22 14 22s14-12 14-22c0-8-6-14-14-14z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <circle cx="32" cy="34" r="6" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" />
+                </svg>
+              </div>
+              <h3>Fotos, historia, detalles…</h3>
+              <p>
+                Agrega un toque personal a tus invitaciones compartiendo imágenes y recuerdos significativos que hayan
+                sido parte de tu historia y que desees compartir con tus invitados.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Paquetes web + SnapCards (mismo fondo verde, sin línea entre bloques) -->
+      <section id="precios" class="section-green-cards section-green-cards--combined reveal-section">
+        <div class="container text-center">
+          <h2 class="section-title section-title--twoline reveal-item">
+            Nuestras Invitaciones Digitales<br />Web
+          </h2>
+        </div>
+        <div class="container pricing-grid" style="margin-top: 2.5rem">
+          <div class="price-card-wrap reveal-item">
+            <div class="price-card">
+              <h3 class="title-sketch">
+                <svg class="title-sketch__ring" viewBox="0 0 400 58" preserveAspectRatio="none" aria-hidden="true">
+                  <use href="#sketch-oval-wide" />
+                </svg>
+                <span class="title-sketch__txt">Paquete Classic</span>
+              </h3>
+              <p class="card-desc">
+                Invitaciones con funcionalidades básicas y esenciales para compartir los detalles de tu evento de manera
+                efectiva.
+              </p>
+              <ul>
+                <li>Información y ubicación GPS de la ceremonia</li>
+                <li>Información y ubicación GPS de la recepción</li>
+                <li>Historia y hasta 3 fotos de la pareja</li>
+                <li>RSVP online</li>
+                <li>Información de lista de regalos, cuenta bancaria, etc.</li>
+              </ul>
+            </div>
+            <a class="btn btn-primary price-card-cta" href="demo-classic.html">Ver demo</a>
+          </div>
+          <div class="price-card-wrap reveal-item">
+            <div class="price-card">
+              <h3 class="title-sketch">
+                <svg class="title-sketch__ring" viewBox="0 0 400 58" preserveAspectRatio="none" aria-hidden="true">
+                  <use href="#sketch-oval-wide" />
+                </svg>
+                <span class="title-sketch__txt">Paquete Signature</span>
+              </h3>
+              <p class="card-desc">
+                Invitaciones con funcionalidades avanzadas y características adicionales para personalizar y mejorar la
+                experiencia de tus invitados.
+              </p>
+              <ul>
+                <li>Información y ubicación GPS de la ceremonia</li>
+                <li>Información y ubicación GPS de la recepción</li>
+                <li>Historia y hasta 5 fotos de la pareja</li>
+                <li>RSVP online</li>
+                <li>Dress Code</li>
+                <li>Playlist: sugerencias de canciones</li>
+                <li>Información de lista de regalos, cuenta bancaria, etc.</li>
+              </ul>
+            </div>
+            <a class="btn btn-primary price-card-cta" href="demo-signature.html">Ver demo</a>
+          </div>
+          <div class="price-card-wrap reveal-item">
+            <div class="price-card">
+              <div class="price-title-premium">
+                <h3 class="title-sketch title-sketch--narrow">
+                  <svg class="title-sketch__ring" viewBox="0 0 220 52" preserveAspectRatio="none" aria-hidden="true">
+                    <use href="#sketch-oval-narrow" />
+                  </svg>
+                  <span class="title-sketch__txt">Paquete</span>
+                </h3>
+                <h3 class="title-sketch title-sketch--narrow title-sketch--overlap">
+                  <svg class="title-sketch__ring" viewBox="0 0 220 52" preserveAspectRatio="none" aria-hidden="true">
+                    <use href="#sketch-oval-narrow" />
+                  </svg>
+                  <span class="title-sketch__txt">Premium</span>
+                </h3>
+              </div>
+              <p class="card-desc">
+                Invitaciones con todas las funcionalidades disponibles, ofreciendo una experiencia completa y excepcional
+                para tus invitados.
+              </p>
+              <ul>
+                <li>Cuenta regresiva</li>
+                <li>Información y ubicación GPS de la ceremonia</li>
+                <li>Información y ubicación GPS de la recepción</li>
+                <li>Historia y hasta 10 fotos de la pareja</li>
+                <li>Canción favorita de la pareja</li>
+                <li>RSVP online</li>
+                <li>Dress Code</li>
+                <li>Playlist: sugerencias de canciones</li>
+                <li>Información de lista de regalos, cuenta bancaria, etc.</li>
+                <li>Información adicional: datos sobre hospedajes, traslados, etc.</li>
+              </ul>
+            </div>
+            <a class="btn btn-primary price-card-cta" href="demo-premium.html">Ver demo</a>
+          </div>
+        </div>
+
+        <div class="container text-center section-green-cards__subhead">
+          <h2 class="section-title reveal-item">Nuestras SnapCards</h2>
+        </div>
+        <div class="container pricing-grid pricing-grid--two">
+          <div class="price-card-wrap reveal-item">
+            <div class="price-card">
+              <h3 class="title-sketch">
+                <svg class="title-sketch__ring" viewBox="0 0 400 58" preserveAspectRatio="none" aria-hidden="true">
+                  <use href="#sketch-oval-wide" />
+                </svg>
+                <span class="title-sketch__txt">SnapCard Básica</span>
+              </h3>
+              <p class="card-desc">
+                Invitaciones personalizadas en formato de tarjeta con diseños únicos y a medida que reflejan tus gustos y
+                estilo.
+              </p>
+              <ul>
+                <li>Imagen estática en formato JPG o PNG</li>
+                <li>PDF para imprimir</li>
+              </ul>
+            </div>
+            <a class="btn btn-primary price-card-cta" href="snapcard-basica.html">Ver ejemplos</a>
+          </div>
+          <div class="price-card-wrap reveal-item">
+            <div class="price-card">
+              <h3 class="title-sketch">
+                <svg class="title-sketch__ring" viewBox="0 0 400 58" preserveAspectRatio="none" aria-hidden="true">
+                  <use href="#sketch-oval-wide" />
+                </svg>
+                <span class="title-sketch__txt">SnapCard Interactiva</span>
+              </h3>
+              <p class="card-desc">
+                Invitaciones personalizadas en formato de tarjeta con diseños únicos y a medida que reflejan tus gustos y
+                estilo.
+              </p>
+              <ul>
+                <li>Imagen estática en formato JPG o PNG</li>
+                <li>RSVP online</li>
+                <li>QR y link directo a RSVP</li>
+                <li>PDF para imprimir</li>
+              </ul>
+            </div>
+            <a class="btn btn-primary price-card-cta" href="snapcard-interactiva.html">Ver ejemplos</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Banda confianza -->
+      <section class="band-trust reveal-section">
+        <h2 class="reveal-item">
+          Con Invitanding puedes confiar en obtener invitaciones digitales de alta calidad y diseñadas a medida para tu
+          boda o el evento que estés planeando.
+        </h2>
+      </section>
+
+      <!-- CTA final -->
+      <section class="cta-photo reveal-section">
+        <div class="cta-photo__bg" style="background-image: url('assets/img/hero-bridesmaids.jpg')"></div>
+        <div class="cta-photo__overlay" aria-hidden="true"></div>
+        <div class="container">
+          <h2 class="reveal-item">Invitaciones digitales que marcan la diferencia.</h2>
+          <a class="btn btn-on-hero reveal-item" href="contact.html">Escríbenos</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer sqs-animate">
+      <p class="site-footer--brand">
+        <a href="historia.html">
+          <span class="footer-acerca">Acerca de</span> <span class="footer-invita">Invitanding</span>
+        </a>
+      </p>
+      <p class="footer-copy">Invitanding 2026 · Todos los derechos reservados</p>
+    </footer>
+    <script src="assets/js/scroll-reveal.js"></script>
+  </body>
+</html>
