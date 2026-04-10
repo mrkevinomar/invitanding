@@ -3,3 +3,30 @@
 
 [build]
   publish = "site"
+
+# Invitaciones por URL directa (export Squarespace; no enlazadas en el menú del sitio estático).
+[[redirects]]
+  from = "/paolaykevin"
+  to = "/paolaykevin.html"
+  status = 200
+
+[[redirects]]
+  from = "/paolaykevin/"
+  to = "/paolaykevin.html"
+  status = 200
+
+[[redirects]]
+  from = "/ana-y-gonzalo"
+  to = "/ana-y-gonzalo.html"
+  status = 200
+
+[[redirects]]
+  from = "/ana-y-gonzalo/"
+  to = "/ana-y-gonzalo.html"
+  status = 200
+
+# Alojamiento (Kevin y Paola): carpeta con index + assets del export Squarespace.
+[[redirects]]
+  from = "/paola-y-kevin-alojamiento"
+  to = "/paola-y-kevin-alojamiento/"
+  status = 301

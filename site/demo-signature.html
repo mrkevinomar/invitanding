@@ -14,7 +14,7 @@
     />
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
-  <body class="demo-page">
+  <body class="demo-page demo-page--signature">
     <header class="site-header">
       <div class="header-inner">
         <a class="logo" href="index.html">
@@ -60,19 +60,25 @@
     </header>
 
     <main>
-      <header class="demo-hero demo-hero--light reveal-section">
-        <div class="inner container">
-          <p class="demo-kicker reveal-item">Invitación Signature · demostración</p>
-          <div class="demo-names reveal-item">
-            <span class="demo-name">Lucía</span>
-            <span class="demo-name-join">y</span>
-            <span class="demo-name">Tomás</span>
-          </div>
-          <p class="demo-date reveal-item">— 18.05.2024 —</p>
+      <header class="demo-hero demo-hero--signature reveal-section">
+        <div class="inner container demo-signature-hero-inner">
+          <img
+            class="demo-signature-monogram reveal-item"
+            src="assets/img/logoAJ.png"
+            alt="Monograma"
+            width="600"
+            height="600"
+            loading="eager"
+            decoding="async"
+          />
+          <p class="demo-signature-date reveal-item">— 10.09.2023 —</p>
+          <p class="demo-signature-tagline reveal-item">
+            Y queremos celebrar junto a ti este momento tan especial para nosotros...
+          </p>
         </div>
       </header>
 
-      <section class="demo-section reveal-section">
+      <section class="demo-section demo-section--floral-cap reveal-section">
         <div class="container demo-cols">
           <div class="reveal-item demo-cols__media">
             <img src="assets/img/ceremonia.jpg" alt="" width="640" height="360" loading="lazy" />
@@ -80,8 +86,10 @@
           <div class="reveal-item demo-cols__text">
             <h2>Ceremonia</h2>
             <p class="large">
-              La ceremonia se realizará el día <strong>18 de mayo de 2024, a las 16:30</strong>, en la Iglesia
-              <a class="demo-link-venue" href="http://www.samconline.org/">San Antonio María Claret</a>.
+              La ceremonia se realizará el día
+              <span class="demo-text-date"><strong>10 de septiembre de 2023, a las 17:00, </strong></span>en la Iglesia
+              <a class="demo-link-venue" href="http://www.samconline.org/"><strong>San Antonio María Claret</strong></a
+              >.
             </p>
             <a class="demo-btn-map" href="https://maps.google.com" target="_blank" rel="noopener noreferrer"
               >Cómo llegar</a
@@ -90,11 +98,11 @@
         </div>
       </section>
 
-      <section class="demo-section alt reveal-section">
+      <section class="demo-section demo-section--floral-cap alt reveal-section">
         <div class="container demo-cols">
           <div class="reveal-item demo-cols__text">
             <h2>Recepción</h2>
-            <p class="large">La celebración continuará en el Bankers Club.</p>
+            <p class="large">Luego la recepción se ofrecerá en el Bankers Club</p>
             <a class="demo-btn-map" href="https://maps.google.com" target="_blank" rel="noopener noreferrer"
               >Cómo llegar</a
             >
@@ -106,26 +114,12 @@
       </section>
 
       <section class="demo-section reveal-section">
-        <div class="container demo-cols demo-cols--text-pair">
-          <div class="reveal-item demo-cols__text">
-            <h2>Dress code</h2>
-            <p class="large">Etiqueta formal. Tonos tierra, verde bosque o neutros.</p>
-          </div>
-          <div class="reveal-item demo-cols__text">
-            <h2>Playlist</h2>
-            <p class="large">
-              En la invitación real tus invitados podrán sugerir canciones para la fiesta. Esta es una vista de demostración.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="demo-section alt reveal-section">
         <div class="container">
-          <h2 class="reveal-item">Nuestra historia</h2>
+          <h2 class="demo-heading-story reveal-item">Nuestra historia</h2>
           <p class="large demo-story-lead reveal-item">
-            Nos conocimos hace años y cada aventura juntos nos acercó un poco más al día de hoy. El paquete Signature
-            incluye más fotos y detalles para contar vuestra historia con calma.
+            Nos conocimos en una fiesta de amigos en común y desde ese momento supimos que había algo especial entre
+            nosotros. A medida que pasábamos tiempo juntos, nuestra conexión se hizo más fuerte y nos enamoramos
+            profundamente.
           </p>
           <div class="demo-triptych reveal-item">
             <div class="demo-triptych__side">
@@ -139,23 +133,32 @@
             </div>
           </div>
           <p class="large demo-story-continued reveal-item">
-            Gracias por acompañarnos en este capítulo. ¡Nos vemos el gran día!
+            Hoy, estamos emocionados de compartir nuestra historia de amor mientras nos preparamos para dar el gran paso
+            hacia el matrimonio. Estamos agradecidos por ese encuentro fortuito que cambió nuestras vidas y estamos
+            listos para crear recuerdos inolvidables mientras caminamos juntos en esta hermosa aventura llamada vida.
           </p>
         </div>
       </section>
 
-      <section class="demo-rsvp reveal-section">
+      <section class="demo-signature-rsvp-dress reveal-section">
         <div class="container">
           <div class="demo-rsvp__box reveal-item">
             <h2>Confirmación de asistencia</h2>
             <p>Esperamos que seas parte de esta gran celebración. ¡Confírmanos tu asistencia!</p>
             <a class="demo-btn-rsvp" href="#">Confirmar asistencia</a>
           </div>
+          <div class="demo-signature-dress reveal-item">
+            <p class="demo-signature-dress__label"><strong>Dress code:</strong></p>
+            <p class="demo-signature-dress__value">Traje de etiqueta</p>
+          </div>
         </div>
       </section>
 
       <section class="demo-section reveal-section">
-        <div class="container demo-gift">
+        <div class="container demo-gift demo-gift--signature">
+          <p class="large reveal-item">
+            ¡Nuestro mejor regalo es celebrar junto a ti! Si deseas realizarnos un regalo…
+          </p>
           <div class="demo-gift__icon reveal-item" aria-hidden="true">
             <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -168,9 +171,6 @@
               <path d="M32 24v24" stroke="currentColor" stroke-width="2" />
             </svg>
           </div>
-          <p class="large reveal-item">
-            ¡Nuestro mejor regalo es celebrar junto a ti! Si deseas realizarnos un regalo…
-          </p>
           <a class="demo-btn-gift reveal-item" href="#">Más información</a>
         </div>
       </section>
@@ -181,7 +181,7 @@
         </div>
       </section>
 
-      <p class="demo-footer-note">Diseñado por <em>Invitanding</em> · demo Signature</p>
+      <p class="demo-footer-note">Diseñado por <em>Invitanding</em></p>
     </main>
 
     <footer class="site-footer sqs-animate">
