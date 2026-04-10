@@ -1,0 +1,6 @@
+# Misma lógica que netlify.toml: rutas limpias para invitaciones estáticas.
+/paolaykevin    /paolaykevin.html    200
+/paolaykevin/   /paolaykevin.html    200
+/ana-y-gonzalo  /ana-y-gonzalo.html  200
+/ana-y-gonzalo/ /ana-y-gonzalo.html  200
+/paola-y-kevin-alojamiento  /paola-y-kevin-alojamiento/  301
