@@ -1,8 +1,12 @@
 # Deploy automático al conectar este repo en Netlify (Git → GitHub).
-# Cada push a la rama configurada vuelve a publicar.
+#
+# IMPORTANTE: "publish" es relativo al "base". Si en el panel pones Base = site
+# y aquí publish = "site", Netlify publica site/site (vacío) y verás 404 en todo.
+# Con base = "site" y publish = "." siempre se publica el contenido de /site.
 
 [build]
-  publish = "site"
+  base = "site"
+  publish = "."
 
 # Invitaciones por URL directa (export Squarespace; no enlazadas en el menú del sitio estático).
 [[redirects]]
