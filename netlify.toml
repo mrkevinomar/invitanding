@@ -1,0 +1,5 @@
+# Deploy automático al conectar este repo en Netlify (Git → GitHub).
+# Cada push a la rama configurada vuelve a publicar.
+
+[build]
+  publish = "site"
