@@ -5,7 +5,8 @@
   --color-surface: #ffffff;
   --color-text: #1a2b23;
   --color-muted: #4a4f4e;
-  --color-header: #1e1e1e;
+  --color-header: #1d3b3b;
+  --color-nav-dropdown: var(--color-header);
   --color-green: #2c3e3a;
   --color-green-deep: #233935;
   --color-copper: #b5835a;
@@ -204,9 +205,9 @@ a:hover {
 .nav-label {
   color: #eee;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 1.08rem;
   font-weight: 500;
-  padding: 0.5rem 0.75rem;
+  padding: 0.55rem 0.85rem;
   border-radius: 6px;
 }
 
@@ -217,7 +218,7 @@ a:hover {
 
 .nav-desktop a:hover {
   color: #fff;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .nav-item {
@@ -243,7 +244,7 @@ a:hover {
   left: 0;
   min-width: 220px;
   padding: 0.5rem 0;
-  background: #2a2a2a;
+  background: var(--color-nav-dropdown);
   border-radius: 8px;
   box-shadow: var(--shadow);
   opacity: 0;
@@ -261,12 +262,13 @@ a:hover {
 
 .nav-submenu a {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.55rem 1rem;
   color: #eee;
+  font-size: 1.02rem;
 }
 
 .nav-submenu a:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .header-cta {
@@ -371,7 +373,7 @@ a:hover {
   right: 0;
   top: 56px;
   z-index: 150;
-  background: #2a2a2a;
+  background: var(--color-nav-dropdown);
   padding: 1rem 1.25rem 1.5rem;
   flex-direction: column;
   gap: 0.25rem;
@@ -387,16 +389,32 @@ a:hover {
 .nav-mobile-panel a {
   color: #eee;
   text-decoration: none;
-  padding: 0.6rem 0;
+  padding: 0.65rem 0;
+  font-size: 1.08rem;
   font-weight: 500;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+}
+
+.nav-mobile-panel a:hover,
+.nav-mobile-panel a:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .nav-mobile-panel .sub {
   padding-left: 1rem;
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-weight: 400;
   color: #ccc;
+}
+
+.nav-mobile-panel .nav-mobile-heading {
+  display: block;
+  color: #888;
+  font-size: 0.98rem;
+  font-weight: 600;
+  padding: 0.5rem 0 0;
+  letter-spacing: 0.02em;
 }
 
 /* —— Sections —— */
