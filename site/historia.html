@@ -4,24 +4,66 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Historia — Invitanding</title>
-    <meta name="description" content="Conoce la propuesta de Invitanding: invitaciones digitales para bodas y eventos." />
+    <meta
+      name="description"
+      content="Conoce cómo comenzó Invitanding: invitaciones digitales para bodas y eventos, con diseño cuidado."
+    />
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
-  <body>
+  <body class="page-historia">
+    <!-- Trazo óvalo (misma familia que la home) para la palabra «historia» -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="svg-defs-ovals"
+      aria-hidden="true"
+      focusable="false"
+      width="0"
+      height="0"
+    >
+      <defs>
+        <filter id="sketch-oval-rough-historia" x="-12%" y="-12%" width="124%" height="124%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="2" result="n" />
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="0.85" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+        <symbol id="sketch-oval-narrow-historia" viewBox="0 0 220 52">
+          <g
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            filter="url(#sketch-oval-rough-historia)"
+          >
+            <path
+              stroke="#9a5f42"
+              stroke-width="2.8"
+              d="M 14 39 C 9 22 12 10 78 5 C 128 2 182 8 204 16 C 214 22 216 32 208 40 C 196 50 88 54 28 44 C 16 41 14 39 14 39z"
+            />
+            <path
+              stroke="#b0785c"
+              stroke-width="1.45"
+              opacity="0.52"
+              d="M 22 31 C 18 20 88 12 168 16"
+            />
+            <path stroke="#8b4a32" stroke-width="2.2" opacity="0.88" d="M 18 36 C 16 32 24 28 34 30" />
+            <path stroke="#a5674c" stroke-width="1.4" opacity="0.68" d="M 158 34 Q 172 40 182 32" />
+          </g>
+        </symbol>
+      </defs>
+    </svg>
+
     <header class="site-header">
       <div class="header-inner">
         <a class="logo" href="index.html">
           <img src="assets/img/logo-blanco.png" alt="Invitanding" width="180" height="48" />
         </a>
         <nav class="nav-desktop" aria-label="Principal">
-          <a href="historia.html">Historia</a>
+          <a href="historia.html" aria-current="page">Historia</a>
           <div class="nav-item">
             <span class="nav-label">Invitaciones</span>
             <div class="nav-submenu">
@@ -60,35 +102,168 @@
     </header>
 
     <main>
-      <section class="hero" style="padding: 3rem 0 2.5rem">
-        <div class="container">
-          <h1 class="section-title" style="color: #fff; max-width: 20ch">Acerca de Invitanding</h1>
+      <section class="historia-hero-split reveal-section">
+        <div class="historia-hero-split__grid">
+          <div class="historia-hero-copy">
+            <h1 class="historia-hero-headline reveal-item">
+              Tómate un minuto para conocer cómo comenzó la
+              <span class="title-sketch title-sketch--narrow title-sketch--historia-hero">
+                <svg
+                  class="title-sketch__ring"
+                  viewBox="0 0 220 52"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <use href="#sketch-oval-narrow-historia"></use>
+                </svg>
+                <span class="title-sketch__txt">historia</span>
+              </span>, de
+              <span class="historia-name-line">
+                <span class="historia-name-text">Invitanding.</span>
+                <svg
+                  class="historia-name-underline"
+                  viewBox="0 0 240 14"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 9 C40 3 80 11 120 8 C160 5 200 12 236 7"
+                    fill="none"
+                    stroke="#9a5f42"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M8 11 C60 14 100 6 150 10"
+                    fill="none"
+                    stroke="#b0785c"
+                    stroke-width="1.2"
+                    opacity="0.55"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+            </h1>
+          </div>
+          <figure class="historia-hero__fig reveal-item">
+            <img
+              src="assets/img/hero-bridesmaids.jpg"
+              alt="Celebración con amigas"
+              width="900"
+              height="1200"
+              loading="eager"
+            />
+          </figure>
         </div>
       </section>
-      <section>
-        <div class="container" style="max-width: 42rem">
-          <p>
-            Invitanding nace para ayudarte a compartir tu gran día con estilo: una sola página con toda la información
-            que tus invitados necesitan, lista para enviar por WhatsApp, correo o redes.
-          </p>
-          <p>
-            Trabajamos invitaciones digitales pensadas para bodas y celebraciones, con diseño cuidado y funciones como
-            RSVP, mapas, cuenta regresiva, música y más, según el paquete que elijas.
-          </p>
-          <p>
-            Si ya viste la <a href="demo-classic.html">demo Classic</a> u otras demos, habrás notado cómo se ve en móvil
-            y escritorio: ese es el tipo de experiencia que podemos crear para ti.
-          </p>
-          <p style="margin-top: 2rem">
-            <a class="btn btn-primary" href="contact.html">Hablemos de tu evento</a>
-          </p>
+
+      <section class="section-cream historia-narrative reveal-section">
+        <div class="container historia-narrative__inner">
+          <article class="historia-card historia-card--intro reveal-item">
+            <div class="historia-card__intro-body">
+              <h2 class="historia-intro__title">¡Hola 👋! Permíteme compartir contigo cómo comenzó todo.</h2>
+              <p class="historia-intro__lead">
+                La idea de crear Invitanding nace de formalizar algo que hago de manera informal desde hace ya algunos
+                años, aproximadamente <strong class="historia-wavy">desde el 2014</strong>. Como la diseñadora de la
+                familia, siempre me he encargado de diseñar las invitaciones de cumpleaños, principalmente para mis
+                sobrinos Y también invitaciones para algunos amigos cercanos.
+              </p>
+
+              <div
+                class="historia-chats"
+                role="group"
+                aria-label="Ejemplos de mensajes reales pidiendo invitaciones por WhatsApp"
+              >
+                <div class="historia-phone">
+                  <div class="historia-phone__top">Anita</div>
+                  <div class="historia-phone__screen">
+                    <p class="historia-msg historia-msg--in">Hola Paola!</p>
+                    <p class="historia-msg historia-msg--out">Holi</p>
+                  </div>
+                </div>
+                <div class="historia-phone historia-phone--featured">
+                  <div class="historia-phone__top">Johana</div>
+                  <div class="historia-phone__screen">
+                    <p class="historia-msg historia-msg--in">
+                      Hola Paolita, se acerca el cumpleaños de mi hija, ¿podrías diseñarme la invitación?
+                    </p>
+                    <p class="historia-msg historia-msg--out">
+                      Hola Johana, buenas tardes! Claro, ¿para cuándo la necesitas?
+                    </p>
+                  </div>
+                </div>
+                <div class="historia-phone">
+                  <div class="historia-phone__top">Vanessa</div>
+                  <div class="historia-phone__screen">
+                    <p class="historia-msg historia-msg--in">
+                      Hola Paola! Estoy organizando una despedida de soltera, quería saber si me puedes ayudar con la
+                      invitación digital…
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <div class="historia-card historia-card--text reveal-item">
+            <p>
+              Al principio, eran diseños para imprimir, pero me di cuenta 🤔 que era mucho más práctico y conveniente
+              ofrecer
+              <strong class="historia-wavy">invitaciones digitales</strong>
+              que se pudieran enviar fácilmente por WhatsApp u otros medios.
+            </p>
+            <p>
+              Y así, a lo largo de estos años he realizado invitaciones para varios eventos como
+              <strong>bodas, despedidas de soltera, bautizos, baby shower</strong>. Para amigos, compañeros del trabajo,
+              y claro, continúo haciendo las invitaciones para los cumpleaños de mis sobrinos.
+            </p>
+            <p>
+              Entonces, como diseñadora web de profesión, decidí dar
+              <strong class="historia-wavy">un paso más allá</strong>
+              y ofrecer invitaciones con funcionalidades avanzadas, que se pudieran compartir en línea y brinden una
+              experiencia interactiva. Fue así como
+              <strong class="historia-wavy">nació Invitanding</strong>, con la motivación y el apoyo de personas
+              importantes en mi vida, estoy emocionada de compartir esta aventura con todos ustedes.
+            </p>
+            <p class="historia-closing">
+              ¡Bienvenidos a Invitanding, donde la creatividad y la celebración se unen! ¡Y también contribuyes a
+              cuidar nuestro planeta.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="historia-cta-band reveal-section" aria-labelledby="historia-cta-heading">
+        <div class="container">
+          <h2 id="historia-cta-heading" class="reveal-item">
+            ¿Te gustaría tener una invitación digital de tu próximo evento?
+          </h2>
+          <a class="btn btn-primary reveal-item" href="contact.html">Contactanos</a>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <p><a href="historia.html">Acerca de Invitanding</a></p>
-      <p>Invitanding 2026 · Todos los derechos reservados</p>
+    <footer class="site-footer site-footer--historia sqs-animate">
+      <p class="site-footer--brand">
+        <a href="historia.html">
+          <span class="footer-acerca">Acerca de</span> <span class="footer-invita">Invitanding</span>
+        </a>
+      </p>
+      <hr class="site-footer__rule" />
+      <p class="footer-copy">Invitanding 2026 · Todos los derechos reservados</p>
     </footer>
+    <script src="assets/js/scroll-reveal.js"></script>
+    <script>
+      (function () {
+        var header = document.querySelector(".site-header");
+        if (!header) return;
+        function updateHeader() {
+          header.classList.toggle("is-header-scrolled", window.scrollY > 0);
+        }
+        updateHeader();
+        window.addEventListener("scroll", updateHeader, { passive: true });
+        window.addEventListener("resize", updateHeader);
+      })();
+    </script>
   </body>
 </html>
