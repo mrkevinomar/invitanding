@@ -66,6 +66,55 @@ XMLHttpRequest.prototype.send=function(b){var url=this.___censusU;if(url!=null&&
     display: none !important;
   }
 </style>
+<!-- Modal RSVP (Confirmar asistencia) + Google Sheets vía Netlify Function -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"/>
+<style>
+  .pk-rsvp-modal[hidden]{display:none!important}
+  /* fixed + hijo de body: si el modal queda dentro de un bloque con transform (Squarespace), el overlay no cubre la pantalla y el contenido de abajo se solapa */
+  .pk-rsvp-modal{
+    position:fixed;inset:0;width:100%;min-height:100%;min-height:100dvh;box-sizing:border-box;
+    z-index:2147483646;display:flex;align-items:flex-start;justify-content:center;
+    padding:max(1rem,env(safe-area-inset-top,0px)) max(1rem,env(safe-area-inset-right,0px)) max(1rem,env(safe-area-inset-bottom,0px)) max(1rem,env(safe-area-inset-left,0px));
+    overflow-y:auto;-webkit-overflow-scrolling:touch;
+    font-family:Montserrat,system-ui,-apple-system,sans-serif;color:#333;
+  }
+  .pk-rsvp-modal__backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);cursor:pointer}
+  .pk-rsvp-modal__panel{
+    position:relative;z-index:1;width:100%;max-width:32rem;flex-shrink:0;
+    max-height:min(90vh,calc(100dvh - 2rem));overflow:auto;box-sizing:border-box;
+    background:#fff;box-shadow:0 12px 40px rgba(0,0,0,.18);
+    padding:2.75rem 1.5rem 2rem;margin:1rem auto 1.5rem;
+  }
+  .pk-rsvp-modal__x{
+    position:absolute;top:max(.65rem,env(safe-area-inset-top,0px));right:max(.65rem,env(safe-area-inset-right,0px));
+    border:0;background:transparent;font-size:1.5rem;line-height:1;
+    cursor:pointer;color:#333;padding:.25rem;line-height:1;z-index:2;
+  }
+  .pk-rsvp-modal__h2{margin:0 0 .15rem;font-size:1.35rem;font-weight:700;padding-right:2rem}
+  .pk-rsvp-modal__sub{margin:0 0 1.25rem;font-size:1.2rem;font-weight:700}
+  .pk-rsvp-section-title{margin:0 0 .65rem;font-size:.95rem;font-weight:600}
+  .pk-rsvp-row{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1rem}
+  .pk-rsvp-field{flex:1;min-width:8rem;display:flex;flex-direction:column;gap:.35rem;font-size:.8rem}
+  .pk-rsvp-field--full{flex-basis:100%;min-width:100%;margin-bottom:1rem}
+  .pk-rsvp-field span{font-weight:500}
+  .pk-rsvp-field input,.pk-rsvp-field textarea{
+    width:100%;box-sizing:border-box;border:1px solid #ccc;padding:.55rem .6rem;font:inherit;color:#333;background:#fff;
+    border-radius:2px;
+  }
+  .pk-rsvp-field textarea{resize:vertical;min-height:5rem}
+  .pk-rsvp-fieldset{border:0;margin:0 0 1rem;padding:0}
+  .pk-rsvp-fieldset legend{padding:0;margin-bottom:.5rem;font-size:.85rem;font-weight:500}
+  .pk-rsvp-radio{display:flex;align-items:center;gap:.45rem;margin:.35rem 0;font-size:.85rem;cursor:pointer}
+  .pk-rsvp-radio input{margin:0}
+  .pk-rsvp-error{color:#b00020;font-size:.85rem;margin:0 0 .75rem}
+  .pk-rsvp-submit{
+    width:100%;margin-top:.5rem;margin-bottom:.25rem;padding:.75rem 1rem;font:inherit;font-weight:700;letter-spacing:.04em;
+    border:0;background:#333;color:#fff;cursor:pointer;border-radius:2px;flex-shrink:0;
+  }
+  .pk-rsvp-submit:disabled{opacity:.6;cursor:not-allowed}
+  .pk-rsvp-submit--ghost{background:transparent;color:#333;border:1px solid #ccc;margin-top:1rem}
+  .pk-rsvp-success p{margin:0 0 .5rem;font-size:.9rem;line-height:1.45}
+</style>
 <script>Static.COOKIE_BANNER_CAPABLE = true;</script>
 <!-- End of Squarespace Headers -->
     <link rel="stylesheet" type="text/css" href="https://static1.squarespace.com/static/vta/5c5a519771c10ba3470d8101/versioned-assets/1775761119479-MQOID49W7RCDTME7SSD0/static.css">
@@ -4588,41 +4637,47 @@ var x = setInterval(function() {
 </div></div></div><div class="fe-block fe-block-3a43d6cb8934474ef0d7"><div class="sqs-block website-component-block sqs-block-website-component sqs-block-form form-block" data-block-css="[&quot;https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.form/5a6be805-b9d0-4c22-8d76-f46dc69da3e8_592/website.components.form.styles.css&quot;]" data-block-scripts="[&quot;https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.form/5a6be805-b9d0-4c22-8d76-f46dc69da3e8_592/website.components.form.visitor.js&quot;]" data-block-type="1337" data-definition-name="website.components.form" data-sqsp-block="form" id="block-3a43d6cb8934474ef0d7"><div class="sqs-block-content">
 
 
-  <div class="sqs-site-style-form" >
-    
-    <script type="application/json" id="form-context-69d7d743092dff4fd4cd1390" class="sqs-form-block-context">
-    {"secureUrl":"https://plane-trumpet-5kam.squarespace.com","collectionId":"69d7d743092dff4fd4cd13cb","formFieldFormats":{"initialNameOrder":"GIVEN_FIRST","initialAddressFormat":{"id":0,"type":"ADDRESS","country":"EC","labelLocale":"es","fields":[{"type":"FIELD","label":"Dirección, línea 1","identifier":"Line1","length":0,"required":true,"metadata":{"autocomplete":"address-line1"}},{"type":"SEPARATOR","label":"\n","identifier":"Newline","length":0,"required":false,"metadata":{}},{"type":"FIELD","label":"Dirección, línea 2","identifier":"Line2","length":0,"required":false,"metadata":{"autocomplete":"address-line2"}},{"type":"SEPARATOR","label":"\n","identifier":"Newline","length":0,"required":false,"metadata":{}},{"type":"FIELD","label":"Código postal","identifier":"Zip","length":0,"required":false,"metadata":{"autocomplete":"postal-code"}},{"type":"SEPARATOR","label":"\n","identifier":"Newline","length":0,"required":false,"metadata":{}},{"type":"FIELD","label":"Ciudad","identifier":"City","length":0,"required":true,"metadata":{"autocomplete":"address-level1"}}]},"countries":[{"name":"Afganistán","code":"AF","phoneCode":"+93"},{"name":"Albania","code":"AL","phoneCode":"+355"},{"name":"Alemania","code":"DE","phoneCode":"+49"},{"name":"Andorra","code":"AD","phoneCode":"+376"},{"name":"Angola","code":"AO","phoneCode":"+244"},{"name":"Anguila","code":"AI","phoneCode":"+1"},{"name":"Antigua y Barbuda","code":"AG","phoneCode":"+1"},{"name":"Arabia Saudita","code":"SA","phoneCode":"+966"},{"name":"Argelia","code":"DZ","phoneCode":"+213"},{"name":"Argentina","code":"AR","phoneCode":"+54"},{"name":"Armenia","code":"AM","phoneCode":"+374"},{"name":"Aruba","code":"AW","phoneCode":"+297"},{"name":"Australia","code":"AU","phoneCode":"+61"},{"name":"Austria","code":"AT","phoneCode":"+43"},{"name":"Azerbaiyán","code":"AZ","phoneCode":"+994"},{"name":"Bahamas","code":"BS","phoneCode":"+1"},{"name":"Bangladés","code":"BD","phoneCode":"+880"},{"name":"Barbados","code":"BB","phoneCode":"+1"},{"name":"Baréin","code":"BH","phoneCode":"+973"},{"name":"Bélgica","code":"BE","phoneCode":"+32"},{"name":"Belice","code":"BZ","phoneCode":"+501"},{"name":"Benín","code":"BJ","phoneCode":"+229"},{"name":"Bermudas","code":"BM","phoneCode":"+1"},{"name":"Bielorrusia","code":"BY","phoneCode":"+375"},{"name":"Bolivia","code":"BO","phoneCode":"+591"},{"name":"Bosnia-Herzegovina","code":"BA","phoneCode":"+387"},{"name":"Botsuana","code":"BW","phoneCode":"+267"},{"name":"Brasil","code":"BR","phoneCode":"+55"},{"name":"Brunéi","code":"BN","phoneCode":"+673"},{"name":"Bulgaria","code":"BG","phoneCode":"+359"},{"name":"Burkina Faso","code":"BF","phoneCode":"+226"},{"name":"Burundi","code":"BI","phoneCode":"+257"},{"name":"Bután","code":"BT","phoneCode":"+975"},{"name":"Cabo Verde","code":"CV","phoneCode":"+238"},{"name":"Camboya","code":"KH","phoneCode":"+855"},{"name":"Camerún","code":"CM","phoneCode":"+237"},{"name":"Canadá","code":"CA","phoneCode":"+1"},{"name":"Caribe neerlandés","code":"BQ","phoneCode":"+599"},{"name":"Catar","code":"QA","phoneCode":"+974"},{"name":"Chad","code":"TD","phoneCode":"+235"},{"name":"Chequia","code":"CZ","phoneCode":"+420"},{"name":"Chile","code":"CL","phoneCode":"+56"},{"name":"China","code":"CN","phoneCode":"+86"},{"name":"Chipre","code":"CY","phoneCode":"+357"},{"name":"Ciudad del Vaticano","code":"VA","phoneCode":"+39"},{"name":"Colombia","code":"CO","phoneCode":"+57"},{"name":"Comoras","code":"KM","phoneCode":"+269"},{"name":"Corea del Norte","code":"KP","phoneCode":"+850"},{"name":"Corea del Sur","code":"KR","phoneCode":"+82"},{"name":"Costa de Marfil","code":"CI","phoneCode":"+225"},{"name":"Costa Rica","code":"CR","phoneCode":"+506"},{"name":"Croacia","code":"HR","phoneCode":"+385"},{"name":"Cuba","code":"CU","phoneCode":"+53"},{"name":"Curazao","code":"CW","phoneCode":"+599"},{"name":"Dinamarca","code":"DK","phoneCode":"+45"},{"name":"Dominica","code":"DM","phoneCode":"+1"},{"name":"Ecuador","code":"EC","phoneCode":"+593"},{"name":"Egipto","code":"EG","phoneCode":"+20"},{"name":"El Salvador","code":"SV","phoneCode":"+503"},{"name":"Emiratos Árabes Unidos","code":"AE","phoneCode":"+971"},{"name":"Eritrea","code":"ER","phoneCode":"+291"},{"name":"Eslovaquia","code":"SK","phoneCode":"+421"},{"name":"Eslovenia","code":"SI","phoneCode":"+386"},{"name":"España","code":"ES","phoneCode":"+34"},{"name":"Estados Unidos","code":"US","phoneCode":"+1"},{"name":"Estonia","code":"EE","phoneCode":"+372"},{"name":"Esuatini","code":"SZ","phoneCode":"+268"},{"name":"Etiopía","code":"ET","phoneCode":"+251"},{"name":"Filipinas","code":"PH","phoneCode":"+63"},{"name":"Finlandia","code":"FI","phoneCode":"+358"},{"name":"Fiyi","code":"FJ","phoneCode":"+679"},{"name":"Francia","code":"FR","phoneCode":"+33"},{"name":"Gabón","code":"GA","phoneCode":"+241"},{"name":"Gambia","code":"GM","phoneCode":"+220"},{"name":"Georgia","code":"GE","phoneCode":"+995"},{"name":"Ghana","code":"GH","phoneCode":"+233"},{"name":"Gibraltar","code":"GI","phoneCode":"+350"},{"name":"Granada","code":"GD","phoneCode":"+1"},{"name":"Grecia","code":"GR","phoneCode":"+30"},{"name":"Groenlandia","code":"GL","phoneCode":"+299"},{"name":"Guadalupe","code":"GP","phoneCode":"+590"},{"name":"Guam","code":"GU","phoneCode":"+1"},{"name":"Guatemala","code":"GT","phoneCode":"+502"},{"name":"Guayana Francesa","code":"GF","phoneCode":"+594"},{"name":"Guernesey","code":"GG","phoneCode":"+44"},{"name":"Guinea","code":"GN","phoneCode":"+224"},{"name":"Guinea-Bisáu","code":"GW","phoneCode":"+245"},{"name":"Guinea Ecuatorial","code":"GQ","phoneCode":"+240"},{"name":"Guyana","code":"GY","phoneCode":"+592"},{"name":"Haití","code":"HT","phoneCode":"+509"},{"name":"Honduras","code":"HN","phoneCode":"+504"},{"name":"Hungría","code":"HU","phoneCode":"+36"},{"name":"India","code":"IN","phoneCode":"+91"},{"name":"Indonesia","code":"ID","phoneCode":"+62"},{"name":"Irak","code":"IQ","phoneCode":"+964"},{"name":"Irán","code":"IR","phoneCode":"+98"},{"name":"Irlanda","code":"IE","phoneCode":"+353"},{"name":"Isla Ascensión","code":"AC","phoneCode":"+247"},{"name":"Isla de Man","code":"IM","phoneCode":"+44"},{"name":"Isla de Navidad","code":"CX","phoneCode":"+61"},{"name":"Islandia","code":"IS","phoneCode":"+354"},{"name":"Isla Norfolk","code":"NF","phoneCode":"+672"},{"name":"Islas Åland","code":"AX","phoneCode":"+358"},{"name":"Islas Caimán","code":"KY","phoneCode":"+1"},{"name":"Islas Cocos","code":"CC","phoneCode":"+61"},{"name":"Islas Cook","code":"CK","phoneCode":"+682"},{"name":"Islas Feroe","code":"FO","phoneCode":"+298"},{"name":"Islas Malvinas","code":"FK","phoneCode":"+500"},{"name":"Islas Marianas del Norte","code":"MP","phoneCode":"+1"},{"name":"Islas Marshall","code":"MH","phoneCode":"+692"},{"name":"Islas Salomón","code":"SB","phoneCode":"+677"},{"name":"Islas Turcas y Caicos","code":"TC","phoneCode":"+1"},{"name":"Islas Vírgenes Británicas","code":"VG","phoneCode":"+1"},{"name":"Islas Vírgenes de EE. UU.","code":"VI","phoneCode":"+1"},{"name":"Israel","code":"IL","phoneCode":"+972"},{"name":"Italia","code":"IT","phoneCode":"+39"},{"name":"Jamaica","code":"JM","phoneCode":"+1"},{"name":"Japón","code":"JP","phoneCode":"+81"},{"name":"Jersey","code":"JE","phoneCode":"+44"},{"name":"Jordania","code":"JO","phoneCode":"+962"},{"name":"Kazajistán","code":"KZ","phoneCode":"+7"},{"name":"Kenia","code":"KE","phoneCode":"+254"},{"name":"Kirguistán","code":"KG","phoneCode":"+996"},{"name":"Kiribati","code":"KI","phoneCode":"+686"},{"name":"Kosovo","code":"XK","phoneCode":"+383"},{"name":"Kuwait","code":"KW","phoneCode":"+965"},{"name":"Laos","code":"LA","phoneCode":"+856"},{"name":"Lesoto","code":"LS","phoneCode":"+266"},{"name":"Letonia","code":"LV","phoneCode":"+371"},{"name":"Líbano","code":"LB","phoneCode":"+961"},{"name":"Liberia","code":"LR","phoneCode":"+231"},{"name":"Libia","code":"LY","phoneCode":"+218"},{"name":"Liechtenstein","code":"LI","phoneCode":"+423"},{"name":"Lituania","code":"LT","phoneCode":"+370"},{"name":"Luxemburgo","code":"LU","phoneCode":"+352"},{"name":"Macedonia del Norte","code":"MK","phoneCode":"+389"},{"name":"Madagascar","code":"MG","phoneCode":"+261"},{"name":"Malasia","code":"MY","phoneCode":"+60"},{"name":"Malaui","code":"MW","phoneCode":"+265"},{"name":"Maldivas","code":"MV","phoneCode":"+960"},{"name":"Mali","code":"ML","phoneCode":"+223"},{"name":"Malta","code":"MT","phoneCode":"+356"},{"name":"Marruecos","code":"MA","phoneCode":"+212"},{"name":"Martinica","code":"MQ","phoneCode":"+596"},{"name":"Mauricio","code":"MU","phoneCode":"+230"},{"name":"Mauritania","code":"MR","phoneCode":"+222"},{"name":"Mayotte","code":"YT","phoneCode":"+262"},{"name":"México","code":"MX","phoneCode":"+52"},{"name":"Micronesia","code":"FM","phoneCode":"+691"},{"name":"Moldavia","code":"MD","phoneCode":"+373"},{"name":"Mónaco","code":"MC","phoneCode":"+377"},{"name":"Mongolia","code":"MN","phoneCode":"+976"},{"name":"Montenegro","code":"ME","phoneCode":"+382"},{"name":"Montserrat","code":"MS","phoneCode":"+1"},{"name":"Mozambique","code":"MZ","phoneCode":"+258"},{"name":"Myanmar (Birmania)","code":"MM","phoneCode":"+95"},{"name":"Namibia","code":"NA","phoneCode":"+264"},{"name":"Nauru","code":"NR","phoneCode":"+674"},{"name":"Nepal","code":"NP","phoneCode":"+977"},{"name":"Nicaragua","code":"NI","phoneCode":"+505"},{"name":"Níger","code":"NE","phoneCode":"+227"},{"name":"Nigeria","code":"NG","phoneCode":"+234"},{"name":"Niue","code":"NU","phoneCode":"+683"},{"name":"Noruega","code":"NO","phoneCode":"+47"},{"name":"Nueva Caledonia","code":"NC","phoneCode":"+687"},{"name":"Nueva Zelanda","code":"NZ","phoneCode":"+64"},{"name":"Omán","code":"OM","phoneCode":"+968"},{"name":"Países Bajos","code":"NL","phoneCode":"+31"},{"name":"Pakistán","code":"PK","phoneCode":"+92"},{"name":"Palaos","code":"PW","phoneCode":"+680"},{"name":"Panamá","code":"PA","phoneCode":"+507"},{"name":"Papúa Nueva Guinea","code":"PG","phoneCode":"+675"},{"name":"Paraguay","code":"PY","phoneCode":"+595"},{"name":"Perú","code":"PE","phoneCode":"+51"},{"name":"Polinesia Francesa","code":"PF","phoneCode":"+689"},{"name":"Polonia","code":"PL","phoneCode":"+48"},{"name":"Portugal","code":"PT","phoneCode":"+351"},{"name":"Puerto Rico","code":"PR","phoneCode":"+1"},{"name":"RAE de Hong Kong (China)","code":"HK","phoneCode":"+852"},{"name":"RAE de Macao (China)","code":"MO","phoneCode":"+853"},{"name":"Reino Unido","code":"GB","phoneCode":"+44"},{"name":"República Centroafricana","code":"CF","phoneCode":"+236"},{"name":"República del Congo","code":"CG","phoneCode":"+242"},{"name":"República Democrática del Congo","code":"CD","phoneCode":"+243"},{"name":"República Dominicana","code":"DO","phoneCode":"+1"},{"name":"Reunión","code":"RE","phoneCode":"+262"},{"name":"Ruanda","code":"RW","phoneCode":"+250"},{"name":"Rumania","code":"RO","phoneCode":"+40"},{"name":"Rusia","code":"RU","phoneCode":"+7"},{"name":"Sáhara Occidental","code":"EH","phoneCode":"+212"},{"name":"Samoa","code":"WS","phoneCode":"+685"},{"name":"Samoa Americana","code":"AS","phoneCode":"+1"},{"name":"San Bartolomé","code":"BL","phoneCode":"+590"},{"name":"San Cristóbal y Nieves","code":"KN","phoneCode":"+1"},{"name":"San Marino","code":"SM","phoneCode":"+378"},{"name":"San Martín","code":"MF","phoneCode":"+590"},{"name":"San Pedro y Miquelón","code":"PM","phoneCode":"+508"},{"name":"Santa Elena","code":"SH","phoneCode":"+290"},{"name":"Santa Lucía","code":"LC","phoneCode":"+1"},{"name":"Santo Tomé y Príncipe","code":"ST","phoneCode":"+239"},{"name":"San Vicente y las Granadinas","code":"VC","phoneCode":"+1"},{"name":"Senegal","code":"SN","phoneCode":"+221"},{"name":"Serbia","code":"RS","phoneCode":"+381"},{"name":"Seychelles","code":"SC","phoneCode":"+248"},{"name":"Sierra Leona","code":"SL","phoneCode":"+232"},{"name":"Singapur","code":"SG","phoneCode":"+65"},{"name":"Sint Maarten","code":"SX","phoneCode":"+1"},{"name":"Siria","code":"SY","phoneCode":"+963"},{"name":"Somalia","code":"SO","phoneCode":"+252"},{"name":"Sri Lanka","code":"LK","phoneCode":"+94"},{"name":"Sudáfrica","code":"ZA","phoneCode":"+27"},{"name":"Sudán","code":"SD","phoneCode":"+249"},{"name":"Sudán del Sur","code":"SS","phoneCode":"+211"},{"name":"Suecia","code":"SE","phoneCode":"+46"},{"name":"Suiza","code":"CH","phoneCode":"+41"},{"name":"Surinam","code":"SR","phoneCode":"+597"},{"name":"Svalbard y Jan Mayen","code":"SJ","phoneCode":"+47"},{"name":"Tailandia","code":"TH","phoneCode":"+66"},{"name":"Taiwán","code":"TW","phoneCode":"+886"},{"name":"Tanzania","code":"TZ","phoneCode":"+255"},{"name":"Tayikistán","code":"TJ","phoneCode":"+992"},{"name":"Territorio Británico del Océano Índico","code":"IO","phoneCode":"+246"},{"name":"Territorios Palestinos","code":"PS","phoneCode":"+970"},{"name":"Timor Oriental","code":"TL","phoneCode":"+670"},{"name":"Togo","code":"TG","phoneCode":"+228"},{"name":"Tokelau","code":"TK","phoneCode":"+690"},{"name":"Tonga","code":"TO","phoneCode":"+676"},{"name":"Trinidad y Tobago","code":"TT","phoneCode":"+1"},{"name":"Tristán de Acuña","code":"TA","phoneCode":"+290"},{"name":"Túnez","code":"TN","phoneCode":"+216"},{"name":"Turkmenistán","code":"TM","phoneCode":"+993"},{"name":"Turquía","code":"TR","phoneCode":"+90"},{"name":"Tuvalu","code":"TV","phoneCode":"+688"},{"name":"Ucrania","code":"UA","phoneCode":"+380"},{"name":"Uganda","code":"UG","phoneCode":"+256"},{"name":"Uruguay","code":"UY","phoneCode":"+598"},{"name":"Uzbekistán","code":"UZ","phoneCode":"+998"},{"name":"Vanuatu","code":"VU","phoneCode":"+678"},{"name":"Venezuela","code":"VE","phoneCode":"+58"},{"name":"Vietnam","code":"VN","phoneCode":"+84"},{"name":"Wallis y Futuna","code":"WF","phoneCode":"+681"},{"name":"Yemen","code":"YE","phoneCode":"+967"},{"name":"Yibuti","code":"DJ","phoneCode":"+253"},{"name":"Zambia","code":"ZM","phoneCode":"+260"},{"name":"Zimbabue","code":"ZW","phoneCode":"+263"}],"initialPhoneFormat":{"id":0,"type":"PHONE_NUMBER","country":"EC","labelLocale":"es-419","fields":[{"type":"FIELD","label":"1","identifier":"1","length":2,"required":false,"metadata":{}},{"type":"SEPARATOR","label":" ","identifier":"Space","length":0,"required":false,"metadata":{}},{"type":"FIELD","label":"2","identifier":"2","length":3,"required":false,"metadata":{}},{"type":"SEPARATOR","label":" ","identifier":"Space","length":0,"required":false,"metadata":{}},{"type":"FIELD","label":"3","identifier":"3","length":15,"required":false,"metadata":{}}]}},"useFormsJs":true,"formId":"69d7d743092dff4fd4cd1390","formName":"Confirmación de asistencia Boda Palacios Ortiz","formFields":[{"type":"name","id":"name-yui_3_17_2_1_1687320795780_4377","locked":false,"title":"Datos Personales","description":"","required":true,"name":true},{"required":true,"locked":false,"description":"","id":"radio-ddcb303a-df71-4659-acdb-3850bb5811bf","radio":true,"type":"radio","canHaveFollowUpQuestions":true,"followUpQuestions":[],"options":["Sí, ¡allí estaré!","No podré asistir"],"title":"¿Asistirá a la boda?"},{"required":false,"locked":false,"description":"","id":"text-672fc861-4575-4f8c-8ce9-f06b669d933a","text":true,"type":"text","placeholder":"","title":"Indica el nombre y apellido de tu acompañante o acompañantes (según el número de admisiones que recibiste en tu invitación)"},{"required":false,"locked":false,"description":"","id":"textarea-3d54ac1c-371c-4d16-b624-3beb1bcacf03","textarea":true,"type":"textarea","placeholder":"","title":"¿Quieres dejar un mensaje a los novios? Escribe tu mensaje 💌"}],"formSubmitButtonText":"ENVIAR","formSubmissionMessage":{"html":"<p class=\"\" data-rte-preserve-empty=\"true\" style=\"white-space:pre-wrap;\"><strong>¡Gracias por tu respuesta!<\/strong><br>Ya hemos recibido tu confirmación.<br>Nos alegra saber que formas parte de este momento especial, ya sea acompañándonos ese día o desde la distancia.<\/p><p class=\"\" data-rte-preserve-empty=\"true\" style=\"white-space:pre-wrap;\"><br>❤️ Con cariño,<\/p><p class=\"\" data-rte-preserve-empty=\"true\" style=\"white-space:pre-wrap;\">Kevin y Paola<\/p>"},"successRedirect":"","disclaimerMessage":{"html":""},"captchaEnabled":false,"captchaTheme":1,"captchaAlignment":1,"isFirstLastNameShowEnabled":true}
-    </script>
-    
-    <script type="application/json" id="form-block-design-fields-69d7d743092dff4fd4cd1390" class="sqs-form-block-design-fields">
-    {"buttonAlignment":"center","buttonVariant":null,"firstFieldHighlightType":null,"submissionTextAlignment":null,"submissionVerticalAlignment":null,"submissionAnimation":null}
-    </script>
-    <script type="application/json" id="form-context-localized-strings-69d7d743092dff4fd4cd1390" class="sqs-form-block-localized-strings">
-    {"address":{"address1":"Dirección 1","address2":"Dirección 2","city":"Ciudad","country":"País","stateProvince":"Estado/Provincia","zipPostalCode":"Código postal"},"cannotSubmitDemoForm":"Este formulario es de demostración y no se puede enviar.","date":{"day":"Día","dd":"DD","mm":"MM","month":"Mes","year":"Año","yyyy":"AAAA"},"email":{"required":"(obligatorio)","signUp":"Regístrate para recibir noticias y actualizaciones"},"formBlock":{"learnMore":"Descubrir más","title":"Bloque de Formulario"},"invalidData":"Los datos del formulario no son válidos.","lightbox":{"openForm":"Abrir formulario"},"likert":{"agree":"De acuerdo","disagree":"En desacuerdo","neutral":"Neutro","stronglyAgree":"Totalmente de acuerdo","stronglyDisagree":"Totalmente en desacuerdo"},"name":{"firstName":"Nombre","lastName":"Apellido"},"noStorageConnectedMessage":"Este formulario necesita una opción de almacenamiento. Haz doble clic aquí para editar este formulario e indicar dónde deseas guardar los envíos del formulario en la pestaña de <strong>Almacenamiento<\/strong> .","notFound":"No se encontró el formulario.","phone":{"areaCode":"Código de área","country":"País","line":"Línea","number":"Número","prefix":"Prefijo"},"required":"(obligatorio)","submit":"Enviar","submitError":"No se puede enviar el formulario. Intenta nuevamente más tarde.","time":{"am":"AM","amPm":"AM/PM","hour":"Hora","minute":"Minuto","pm":"PM","second":"Segundo"},"validation":{"allEmpty":"Complete al menos un campo del formulario.","captchaFailure":"Falló la validación del captcha. Vuelve a intentarlo.","containsInvalidKey":"{0} contiene una clave inválida.","containsInvalidValue":"{0} contiene un valor inválido.","formErrors":"Error en el formulario","formSubmissionFailed":"Falló el envío del formulario. Revisa la siguiente información: {0}.","invalid":"{0} no es válido.","invalidCountryCode":"El código del país debe tener el símbolo + más 4 dígitos como máximo.","invalidCurrency":"El formato del valor de la moneda debe ser 1234 o 123.99.","invalidDate":"Esta fecha no existe.","invalidEmail":"Las direcciones de correo electrónico deben seguir el formato usuario@dominio.com.","invalidListLength":"El valor deben tener {0} de longitud.","invalidMapSize":"Los valores deben contener exactamente {0} elementos.","invalidName":"Los nombres válidos contienen letras, números, espacios, ', u otros caracteres.","invalidPassword":"Las contraseñas no deben contener espacios en blanco.","invalidQuestion":"Contenía una pregunta inválida.","invalidStringLength":"Los valores deben tener {0} caracteres de longitud.","invalidTwitterUsername":"Debe ser un nombre de usuario de X válido.","invalidUnsignedNumber":"Los números solo pueden tener dígitos, sin ningún otro carácter.","invalidUrl":"La URL debe ser válida.","missingRequiredQuestion":"Falta una pregunta obligatoria.","missingRequiredSubfields":"El campo {0} contiene subcampos obligatorios: {1}","noValidSelection":"La selección debe ser válida.","required":"El campo {0} es obligatorio.","stringTooLong":"El valor deben tener una longitud no mayor que {0}.","stringTooShort":"Los valores deben tener un longitud de, al menos, {0}.","subfieldsRequired":"Todos los campos en {0} son obligatorios.","valueOutsideRange":"El valor debe estar entre {0} y {1}."}}
-    </script>
-
-    <div id="form-submission-html-69d7d743092dff4fd4cd1390" class="sqs-form-block-submission-html" data-submission-html=""></div><style></style>
-      <div data-animation-role="button" class="lightbox-handle-wrapper lightbox-handle-wrapper--align-center">
-        <button class="lightbox-handle sqs-system-button sqs-editable-button sqs-button-element--primary">
-          
-            Confirmar asistencia →
-          
-        </button>
-      </div>
-    
-
-    <div class="form-wrapper hidden"
-      
-    >
-      
+  <div class="sqs-site-style-form pk-rsvp-host">
+    <div data-animation-role="button" class="lightbox-handle-wrapper lightbox-handle-wrapper--align-center">
+      <button type="button" id="pk-rsvp-open" class="lightbox-handle sqs-system-button sqs-editable-button sqs-button-element--primary">
+        Confirmar asistencia →
+      </button>
     </div>
-    
-    
-
-  
-
-
   </div>
+
+  <div id="pk-rsvp-modal" class="pk-rsvp-modal" hidden>
+    <div class="pk-rsvp-modal__backdrop" tabindex="-1" data-rsvp-close></div>
+    <div class="pk-rsvp-modal__panel" role="dialog" aria-modal="true" aria-labelledby="pk-rsvp-heading">
+      <button type="button" class="pk-rsvp-modal__x" data-rsvp-close aria-label="Cerrar">&times;</button>
+      <div id="pk-rsvp-form-view">
+        <h2 id="pk-rsvp-heading" class="pk-rsvp-modal__h2">Confirmación de asistencia</h2>
+        <p class="pk-rsvp-modal__sub">Boda Palacios Ortiz</p>
+        <form id="pk-rsvp-form" novalidate>
+          <p class="pk-rsvp-section-title">Datos Personales</p>
+          <div class="pk-rsvp-row">
+            <label class="pk-rsvp-field"><span>Nombre (obligatorio)</span><input name="nombre" type="text" required maxlength="200" autocomplete="given-name"/></label>
+            <label class="pk-rsvp-field"><span>Apellido (obligatorio)</span><input name="apellido" type="text" required maxlength="200" autocomplete="family-name"/></label>
+          </div>
+          <fieldset class="pk-rsvp-fieldset">
+            <legend>¿Asistirá a la boda? (obligatorio)</legend>
+            <label class="pk-rsvp-radio"><input type="radio" name="asistencia" value="Sí, ¡allí estaré!" required/> Sí, ¡allí estaré!</label>
+            <label class="pk-rsvp-radio"><input type="radio" name="asistencia" value="No podré asistir"/> No podré asistir</label>
+          </fieldset>
+          <label class="pk-rsvp-field pk-rsvp-field--full"><span>Indica el nombre y apellido de tu acompañante o acompañantes (según el número de admisiones que recibiste en tu invitación)</span><input name="acompanantes" type="text" maxlength="500"/></label>
+          <label class="pk-rsvp-field pk-rsvp-field--full"><span>¿Quieres dejar un mensaje a los novios? Escribe tu mensaje 💌</span><textarea name="mensaje" rows="5" maxlength="2000"></textarea></label>
+          <p id="pk-rsvp-err" class="pk-rsvp-error" hidden></p>
+          <button type="submit" class="pk-rsvp-submit" id="pk-rsvp-submit">ENVIAR</button>
+        </form>
+      </div>
+      <div id="pk-rsvp-success" class="pk-rsvp-success" hidden>
+        <p><strong>¡Gracias por tu respuesta!</strong><br>Ya hemos recibido tu confirmación.<br>Nos alegra saber que formas parte de este momento especial, ya sea acompañándonos ese día o desde la distancia.</p>
+        <p><br>❤️ Con cariño,</p>
+        <p>Kevin y Paola</p>
+        <button type="button" class="pk-rsvp-submit pk-rsvp-submit--ghost" data-rsvp-close>Cerrar</button>
+      </div>
+    </div>
+  </div>
+
 
 </div></div></div><div class="fe-block fe-block-244666fdf8620dc6b9cd"><div class="sqs-block website-component-block sqs-block-website-component sqs-block-html html-block" data-block-css="[&quot;https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.html/9330f36a-b278-41f5-87d4-cfc393327b28_420/website.components.html.styles.css&quot;]" data-block-scripts="[&quot;https://definitions.sqspcdn.com/website-component-definition/static-assets/website.components.html/9330f36a-b278-41f5-87d4-cfc393327b28_420/website.components.html.visitor.js&quot;]" data-block-type="1337" data-definition-name="website.components.html" data-sqsp-block="text" id="block-244666fdf8620dc6b9cd"><div class="sqs-block-content"><div class="sqs-text-block-container">
   
@@ -9368,6 +9423,78 @@ var x = setInterval(function() {
       if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);
       else go();
       window.addEventListener("load",function(){hydrateCarouselImages();bindStaticCarousel();});
+    })();
+    </script>
+    <script>
+    (function(){
+      var modal=document.getElementById("pk-rsvp-modal");
+      var openBtn=document.getElementById("pk-rsvp-open");
+      var form=document.getElementById("pk-rsvp-form");
+      var errEl=document.getElementById("pk-rsvp-err");
+      var formView=document.getElementById("pk-rsvp-form-view");
+      var successView=document.getElementById("pk-rsvp-success");
+      var submitBtn=document.getElementById("pk-rsvp-submit");
+      if(!modal||!openBtn||!form)return;
+      if(modal.parentNode!==document.body)document.body.appendChild(modal);
+      function openModal(){
+        modal.removeAttribute("hidden");
+        document.body.style.overflow="hidden";
+        var first=form.querySelector("input,textarea,button");
+        if(first)first.focus();
+      }
+      function closeModal(){
+        modal.setAttribute("hidden","");
+        document.body.style.overflow="";
+        formView.removeAttribute("hidden");
+        successView.setAttribute("hidden","");
+        errEl.setAttribute("hidden","");
+      }
+      openBtn.addEventListener("click",function(e){e.preventDefault();openModal();});
+      modal.querySelectorAll("[data-rsvp-close]").forEach(function(el){
+        el.addEventListener("click",function(){closeModal();});
+      });
+      document.addEventListener("keydown",function(ev){
+        if(ev.key==="Escape"&&!modal.hasAttribute("hidden"))closeModal();
+      });
+      form.addEventListener("submit",function(ev){
+        ev.preventDefault();
+        errEl.setAttribute("hidden","");
+        var fd=new FormData(form);
+        var body={
+          nombre:String(fd.get("nombre")||"").trim(),
+          apellido:String(fd.get("apellido")||"").trim(),
+          asistencia:String(fd.get("asistencia")||""),
+          acompanantes:String(fd.get("acompanantes")||"").trim(),
+          mensaje:String(fd.get("mensaje")||"").trim()
+        };
+        if(!body.nombre||!body.apellido||!body.asistencia){
+          errEl.textContent="Completa los campos obligatorios.";
+          errEl.removeAttribute("hidden");
+          return;
+        }
+        submitBtn.disabled=true;
+        fetch("/.netlify/functions/rsvp-submit",{
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify(body)
+        }).then(function(r){
+          return r.json().catch(function(){return{}}).then(function(j){return{ok:r.ok,j:j};});
+        }).then(function(x){
+          submitBtn.disabled=false;
+          if(x.ok&&x.j&&x.j.ok){
+            formView.setAttribute("hidden","");
+            successView.removeAttribute("hidden");
+            form.reset();
+            return;
+          }
+          errEl.textContent=(x.j&&x.j.error)?x.j.error:"No se pudo enviar. Inténtalo más tarde.";
+          errEl.removeAttribute("hidden");
+        }).catch(function(){
+          submitBtn.disabled=false;
+          errEl.textContent="Error de red. Inténtalo más tarde.";
+          errEl.removeAttribute("hidden");
+        });
+      });
     })();
     </script>
     <!-- site-bundle de Squarespace omitido: en Netlify provocaba redirección y 404 al no coincidir el dominio con el export -->

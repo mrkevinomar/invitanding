@@ -8,6 +8,10 @@
   base = "site"
   publish = "."
 
+# Funciones fuera de /site (no se publican como estáticos). Ruta relativa al base directory.
+[functions]
+  directory = "../netlify/functions"
+
 # Invitaciones por URL directa (export Squarespace; no enlazadas en el menú del sitio estático).
 [[redirects]]
   from = "/paolaykevin"

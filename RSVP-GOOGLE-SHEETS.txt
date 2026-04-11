@@ -1,0 +1,67 @@
+RSVP → Google Sheets (Netlify + Apps Script)
+===========================================
+
+¿Qué es cada cosa? (sin tecnicismos)
+------------------------------------
+- La HOJA DE CÁLCULO (Google Sheets) es tu "Excel" en la nube: ahí quedarán las filas con cada confirmación.
+- El "SCRIPT" (Google Apps Script) es un mini-programa que vive EN LA MISMA hoja. No va en tu web ni en Netlify.
+  Cuando alguien envía el formulario, tu sitio llama a Netlify, Netlify llama a la URL del script, y el script
+  escribe una fila nueva en la pestaña RSVP. Sin ese script, Google no sabe cómo recibir datos desde internet
+  y guardarlos en la tabla.
+
+1) Hoja de cálculo
+   - Crea una pestaña llamada exactamente: RSVP
+   - En la fila 1 pon cabeceras, por ejemplo:
+     Fecha | Nombre | Apellido | Asistencia | Acompañantes | Mensaje
+
+2) Apps Script
+   - En la hoja: Extensiones → Apps Script
+   - Pega el código de abajo, guarda, y despliega:
+     Implementar → Nueva implementación → Tipo: Aplicación web
+     - Ejecutar como: Yo
+     - Quién tiene acceso: Cualquier usuario
+   - Copia la URL de la aplicación web (termina en /exec)
+
+3) Netlify
+   - Sitio → Environment variables
+   - Añade: GAS_WEBAPP_URL = (pega la URL /exec del paso 2)
+   - Vuelve a desplegar el sitio para que la variable llegue a la función
+
+4) Prueba
+   - Abre la invitación, pulsa "Confirmar asistencia", envía el formulario.
+   - Debe aparecer una fila nueva en la pestaña RSVP.
+
+--- Código para Apps Script (editor.gs) ---
+
+function doPost(e) {
+  var lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName('RSVP');
+    if (!sheet) {
+      return jsonOut({ ok: false, error: 'No existe la pestaña RSVP' });
+    }
+    var data = JSON.parse(e.postData.contents);
+    var row = [
+      new Date(),
+      String(data.nombre || ''),
+      String(data.apellido || ''),
+      String(data.asistencia || ''),
+      String(data.acompanantes || ''),
+      String(data.mensaje || '')
+    ];
+    sheet.appendRow(row);
+    return jsonOut({ ok: true });
+  } catch (err) {
+    return jsonOut({ ok: false, error: String(err) });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function jsonOut(obj) {
+  return ContentService
+    .createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
