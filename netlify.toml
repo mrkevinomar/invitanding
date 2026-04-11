@@ -33,6 +33,16 @@
   to = "/ana-y-gonzalo.html"
   status = 200
 
+[[redirects]]
+  from = "/historia"
+  to = "/historia.html"
+  status = 200
+
+[[redirects]]
+  from = "/historia/"
+  to = "/historia.html"
+  status = 200
+
 # Alojamiento: servir index.html con 200 (evita 404 si el índice de carpeta falla en CDN).
 [[redirects]]
   from = "/paola-y-kevin-alojamiento"
