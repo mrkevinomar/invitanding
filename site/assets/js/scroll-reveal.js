@@ -50,3 +50,36 @@
     io.observe(el);
   });
 })();
+
+(function () {
+  var header = document.querySelector(".site-header--over-hero");
+  if (!header) return;
+
+  var hero = document.querySelector(".hero-fullbleed");
+
+  function updateHeaderOverHero() {
+    var solid = !hero;
+    if (hero) {
+      var br = hero.getBoundingClientRect();
+      var zone = Math.max(header.offsetHeight, 72);
+      // Mientras el hero no tiene altura de layout fiable (primer frame / fuentes), no forzar barra sólida
+      if (br.height < 120) {
+        solid = false;
+      } else {
+        solid = br.bottom < zone;
+      }
+    }
+    header.classList.toggle("site-header--solid", solid);
+  }
+
+  function kick() {
+    requestAnimationFrame(function () {
+      requestAnimationFrame(updateHeaderOverHero);
+    });
+  }
+
+  window.addEventListener("scroll", updateHeaderOverHero, { passive: true });
+  window.addEventListener("resize", updateHeaderOverHero);
+  window.addEventListener("load", kick);
+  kick();
+})();
