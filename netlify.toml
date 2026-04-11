@@ -53,3 +53,13 @@
   from = "/paola-y-kevin-alojamiento/"
   to = "/paola-y-kevin-alojamiento/index.html"
   status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact/"
+  to = "/contact.html"
+  status = 200
