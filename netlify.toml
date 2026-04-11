@@ -33,8 +33,13 @@
   to = "/ana-y-gonzalo.html"
   status = 200
 
-# Alojamiento (Kevin y Paola): carpeta con index + assets del export Squarespace.
+# Alojamiento: servir index.html con 200 (evita 404 si el índice de carpeta falla en CDN).
 [[redirects]]
   from = "/paola-y-kevin-alojamiento"
-  to = "/paola-y-kevin-alojamiento/"
-  status = 301
+  to = "/paola-y-kevin-alojamiento/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/paola-y-kevin-alojamiento/"
+  to = "/paola-y-kevin-alojamiento/index.html"
+  status = 200
