@@ -6848,6 +6848,55 @@ var x = setInterval(function() {
       --button-font-size-value: 0.8;
     }
   }
+
+  /*
+   * Netlify / export estático: UserItemsListCarousel no llega a inicializar.
+   * En site.css Squarespace deja .__slides en opacity:0 y .__slide en translatex(-9999px).
+   * Sin esto las imágenes pueden tener src pero el carrusel sigue “vacío”.
+   */
+  .user-items-list-item-container[data-section-id="69d7d743092dff4fd4cd13e7"] .user-items-list-carousel__slides {
+    opacity: 1 !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    grid-template-columns: unset !important;
+    grid-template-rows: unset !important;
+    -ms-grid-columns: unset !important;
+    -ms-grid-rows: unset !important;
+    scrollbar-width: thin;
+  }
+  .user-items-list-item-container[data-section-id="69d7d743092dff4fd4cd13e7"] .user-items-list-carousel__slide {
+    transform: none !important;
+    pointer-events: auto !important;
+    flex: 0 0 min(32vw, 340px) !important;
+    width: min(32vw, 340px) !important;
+    max-width: 88vw !important;
+    grid-row: auto !important;
+    grid-column: auto !important;
+    -ms-grid-row: auto !important;
+    -ms-grid-column: auto !important;
+    scroll-snap-align: center;
+  }
+  .user-items-list-item-container[data-section-id="69d7d743092dff4fd4cd13e7"] .user-items-list-carousel__arrow-button {
+    cursor: pointer;
+    position: relative;
+    z-index: 6;
+  }
+  .user-items-list-item-container[data-section-id="69d7d743092dff4fd4cd13e7"] .user-items-list-carousel__media-inner {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+  .user-items-list-item-container[data-section-id="69d7d743092dff4fd4cd13e7"] .user-items-list-carousel__media {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    display: block;
+  }
 </style>
 
 
@@ -9250,17 +9299,61 @@ var x = setInterval(function() {
 
     <script>
     (function(){
+      var rootSel='[data-section-id="69d7d743092dff4fd4cd13e7"]';
+      var imgSel=rootSel+' img[data-image],'+rootSel+' img[data-src]';
       function hydrateCarouselImages(){
-        document.querySelectorAll(".user-items-list-carousel img[data-image], .user-items-list-carousel img[data-src]").forEach(function(img){
+        document.querySelectorAll(imgSel).forEach(function(img){
           var u=img.getAttribute("data-image")||img.getAttribute("data-src");
-          if(u&&!img.getAttribute("src")){
+          if(u&&(!img.getAttribute("src")||img.getAttribute("src")==="")){
             img.setAttribute("src",u);
             img.setAttribute("loading","lazy");
+            img.removeAttribute("data-load");
           }
         });
       }
-      if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",hydrateCarouselImages);
-      else hydrateCarouselImages();
+      function stepSize(track){
+        var slide=track.querySelector(".user-items-list-carousel__slide");
+        var gap=20;
+        if(!slide)return Math.max(120,Math.floor(track.clientWidth/3));
+        return slide.getBoundingClientRect().width+gap;
+      }
+      var carouselNavBound=false;
+      function bindStaticCarousel(){
+        if(carouselNavBound)return;
+        var root=document.querySelector(rootSel+".user-items-list-carousel");
+        if(!root)return;
+        var track=root.querySelector(".user-items-list-carousel__slides");
+        var btnL=root.querySelector(".user-items-list-carousel__arrow-button--left");
+        var btnR=root.querySelector(".user-items-list-carousel__arrow-button--right");
+        if(!track||(!btnL&&!btnR))return;
+        carouselNavBound=true;
+        function scrollByDir(dir){
+          var max=Math.max(0,track.scrollWidth-track.clientWidth);
+          var eps=8;
+          var step=stepSize(track);
+          if(dir>0){
+            if(track.scrollLeft>=max-eps)track.scrollTo({left:0,behavior:"smooth"});
+            else track.scrollBy({left:step,behavior:"smooth"});
+          }else{
+            if(track.scrollLeft<=eps)track.scrollTo({left:max,behavior:"smooth"});
+            else track.scrollBy({left:-step,behavior:"smooth"});
+          }
+        }
+        function onNav(ev,dir){
+          ev.preventDefault();
+          ev.stopPropagation();
+          scrollByDir(dir);
+        }
+        if(btnL)btnL.addEventListener("click",function(e){onNav(e,-1);},{capture:true});
+        if(btnR)btnR.addEventListener("click",function(e){onNav(e,1);},{capture:true});
+      }
+      function go(){
+        hydrateCarouselImages();
+        bindStaticCarousel();
+      }
+      if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);
+      else go();
+      window.addEventListener("load",function(){hydrateCarouselImages();bindStaticCarousel();});
     })();
     </script>
     <!-- site-bundle de Squarespace omitido: en Netlify provocaba redirección y 404 al no coincidir el dominio con el export -->
