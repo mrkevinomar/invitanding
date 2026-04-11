@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
   <body class="page-historia">
-    <!-- Trazo óvalo (misma familia que la home) para la palabra «historia» -->
+    <!-- Óvalo alrededor de «historia»: un solo trazo suave, sin filtro ni trazos extra -->
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="svg-defs-ovals"
@@ -28,31 +28,15 @@
       height="0"
     >
       <defs>
-        <filter id="sketch-oval-rough-historia" x="-12%" y="-12%" width="124%" height="124%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="2" result="n" />
-          <feDisplacementMap in="SourceGraphic" in2="n" scale="0.85" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
         <symbol id="sketch-oval-narrow-historia" viewBox="0 0 220 52">
-          <g
+          <path
             fill="none"
+            stroke="#9a5f42"
+            stroke-width="2.25"
             stroke-linecap="round"
             stroke-linejoin="round"
-            filter="url(#sketch-oval-rough-historia)"
-          >
-            <path
-              stroke="#9a5f42"
-              stroke-width="2.8"
-              d="M 14 39 C 9 22 12 10 78 5 C 128 2 182 8 204 16 C 214 22 216 32 208 40 C 196 50 88 54 28 44 C 16 41 14 39 14 39z"
-            />
-            <path
-              stroke="#b0785c"
-              stroke-width="1.45"
-              opacity="0.52"
-              d="M 22 31 C 18 20 88 12 168 16"
-            />
-            <path stroke="#8b4a32" stroke-width="2.2" opacity="0.88" d="M 18 36 C 16 32 24 28 34 30" />
-            <path stroke="#a5674c" stroke-width="1.4" opacity="0.68" d="M 158 34 Q 172 40 182 32" />
-          </g>
+            d="M 18 27 C 17 12 52 7 110 7 C 168 7 203 12 202 27 C 201 41 166 46 110 46 C 54 46 19 41 18 27 Z"
+          />
         </symbol>
       </defs>
     </svg>
@@ -127,19 +111,12 @@
                   aria-hidden="true"
                 >
                   <path
-                    d="M4 9 C40 3 80 11 120 8 C160 5 200 12 236 7"
+                    d="M 5 9 C 48 5 92 11 120 8.5 C 148 6 192 10 235 7.5"
                     fill="none"
                     stroke="#9a5f42"
-                    stroke-width="2.4"
+                    stroke-width="2.1"
                     stroke-linecap="round"
-                  />
-                  <path
-                    d="M8 11 C60 14 100 6 150 10"
-                    fill="none"
-                    stroke="#b0785c"
-                    stroke-width="1.2"
-                    opacity="0.55"
-                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   />
                 </svg>
               </span>
