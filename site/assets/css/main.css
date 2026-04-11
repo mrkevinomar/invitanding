@@ -67,7 +67,57 @@ a:hover {
   top: 0;
   z-index: 100;
   background: var(--color-header);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* Inicio: barra sobre el hero, sin fondo y separada del borde superior (como el sitio original) */
+.page-home {
+  --hero-header-gap: clamp(0.65rem, 1.85vw, 1.2rem);
+}
+
+.site-header--over-hero {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--hero-header-gap);
+  background: transparent;
+  box-shadow: none;
+  /* Sin transición: evita parpadeo al corregir estado tras el primer layout */
+  transition: none;
+}
+
+.site-header--over-hero.site-header--solid {
+  top: 0;
+  background: var(--color-header);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.site-header--over-hero:not(.site-header--solid) .nav-mobile-panel {
+  top: calc(var(--hero-header-gap) + 3.65rem);
+}
+
+.page-home .hero-fullbleed {
+  padding-top: calc(clamp(4rem, 12vw, 7rem) + var(--hero-header-gap) + 2.75rem);
+  /* Cierra huecos de subpíxel entre clip del hero y la sección verde */
+  margin-bottom: -6px;
+}
+
+.page-home .btn-primary,
+.page-home .btn-on-hero {
+  background: #c17955;
+  border-color: #c17955;
+  color: #fff;
+}
+
+.page-home .btn-primary:hover {
+  background: #a86a47;
+  border-color: #a86a47;
+  color: #fff;
+}
+
+.page-home .btn-on-hero:hover {
+  filter: brightness(0.94);
+  color: #fff;
 }
 
 .header-inner {
@@ -364,22 +414,51 @@ section {
 .hero-fullbleed__inner {
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
+  flex: 0 1 auto;
+  width: min(100%, 36rem);
+  max-width: 100%;
+  margin-inline: auto;
+  padding-inline: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  max-width: 36rem;
 }
 
-.hero-fullbleed h1 {
+.hero-fullbleed h1,
+.hero-fullbleed__title {
   font-size: clamp(1.85rem, 4.8vw, 2.85rem);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.25;
   margin: 0 0 1.75rem;
+  padding: 0;
   color: #fff;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Sin animación de entrada en el hero: evita parpadeo o salto al aplicar is-revealed */
+.hero-fullbleed.reveal-section .reveal-item {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  will-change: auto;
+}
+
+@media (max-width: 419px) {
+  .hero-fullbleed__title {
+    font-size: clamp(1.5rem, 5.4vw, 2.85rem);
+  }
 }
 
 /* Bloques verde bosque */
 .section-dark {
-  background: var(--color-green);
+  background: #1d3b3b;
   color: #fff;
   position: relative;
 }
@@ -390,9 +469,21 @@ section {
  */
 .section-dark--slant-top {
   z-index: 1;
-  margin-top: -92px;
-  padding-top: calc(92px + clamp(4rem, 10vw, 6rem));
+  margin-top: -100px;
+  padding-top: calc(100px + clamp(4rem, 10vw, 6rem));
   transform: translateZ(0);
+}
+
+/* Franja del mismo verde por encima del bloque: tapa el fondo crema entre ola SVG y sección */
+.section-dark--slant-top::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -18px;
+  height: 22px;
+  background: #1d3b3b;
+  pointer-events: none;
 }
 
 .section-dark__second {
@@ -480,8 +571,17 @@ section {
   }
 
   .section-dark--slant-top {
-    margin-top: -56px;
-    padding-top: calc(56px + 3.5rem);
+    margin-top: -64px;
+    padding-top: calc(64px + 3.5rem);
+  }
+
+  .section-dark--slant-top::before {
+    top: -14px;
+    height: 18px;
+  }
+
+  .page-home .hero-fullbleed {
+    margin-bottom: -5px;
   }
 
   .section-green-cards {
@@ -576,11 +676,7 @@ section {
   margin-top: -1px;
   padding-top: calc(48px + clamp(2.75rem, 7vw, 5rem));
   padding-bottom: clamp(2.75rem, 7vw, 5rem);
-  background-color: var(--color-green-deep);
-  background-image:
-    radial-gradient(ellipse 900px 500px at 15% 20%, rgba(255, 255, 255, 0.07) 0%, transparent 55%),
-    radial-gradient(ellipse 700px 450px at 88% 65%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 40%);
+  background: #1d3b3b;
   color: #fff;
   clip-path: polygon(0% 48px, 50% 26px, 100% 0%, 100% 100%, 0% 100%);
 }
