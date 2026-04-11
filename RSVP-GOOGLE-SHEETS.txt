@@ -31,6 +31,19 @@ RSVP → Google Sheets (Netlify + Apps Script)
    - Abre la invitación, pulsa "Confirmar asistencia", envía el formulario.
    - Debe aparecer una fila nueva en la pestaña RSVP.
 
+Si al enviar ves un error (p. ej. HTTP 403 o "no se pudo guardar")
+-------------------------------------------------------------------
+- La variable GAS_WEBAPP_URL en Netlify debe ser SOLO la URL, sin comillas ni espacios.
+  Debe terminar en /exec (cópiala de Implementar → Aplicación web, no uses la URL del editor).
+- En el despliegue del script: "Quién tiene acceso" = Cualquier usuario (a veces aparece como
+  "Anyone, even anonymous"). Si pones "Solo yo", Netlify no podrá escribir en la hoja.
+- Tras cambiar el código del script, crea una NUEVA implementación o actualiza la existente;
+  si la URL cambió, actualiza GAS_WEBAPP_URL y vuelve a desplegar el sitio en Netlify.
+- El proyecto de Apps Script debe estar ligado a ESA hoja (abierto desde Extensiones → Apps Script
+  en la misma hoja). Si el script es suelto, getActiveSpreadsheet() falla.
+- Pestaña exactamente llamada: RSVP (mayúsculas como en el código).
+- En Netlify: Site → Functions → rsvp-submit → abre los logs del último envío para ver el detalle.
+
 --- Código para Apps Script (editor.gs) ---
 
 function doPost(e) {
