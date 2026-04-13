@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -60,17 +60,39 @@
     </header>
 
     <main>
-      <header class="demo-hero demo-hero--signature reveal-section">
+      <header class="demo-hero demo-hero--light demo-hero--signature reveal-section">
         <div class="inner container demo-signature-hero-inner">
-          <img
-            class="demo-signature-monogram reveal-item"
-            src="assets/img/logoAJ.png"
-            alt="Monograma"
-            width="600"
-            height="600"
-            loading="eager"
-            decoding="async"
-          />
+          <p class="visually-hidden">
+            ¡NOS CASAMOS! Valentina y Carlos. Fecha: 10 de septiembre de 2023.
+          </p>
+          <div class="demo-signature-arch reveal-item" aria-hidden="true">
+            <svg
+              class="demo-signature-arch__svg"
+              viewBox="0 0 420 88"
+              width="420"
+              height="88"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <defs>
+                <path
+                  id="signature-arch-path"
+                  d="M 24 72 Q 210 -2 396 72"
+                  fill="none"
+                />
+              </defs>
+              <text class="demo-signature-arch__text" fill="currentColor">
+                <textPath xlink:href="#signature-arch-path" href="#signature-arch-path" startOffset="50%" text-anchor="middle">
+                  ¡NOS CASAMOS!
+                </textPath>
+              </text>
+            </svg>
+          </div>
+          <div class="demo-signature-names reveal-item" role="presentation">
+            <span class="demo-signature-name">Valentina</span>
+            <span class="demo-signature-name-join">y</span>
+            <span class="demo-signature-name">Carlos</span>
+          </div>
           <p class="demo-signature-date reveal-item">— 10.09.2023 —</p>
           <p class="demo-signature-tagline reveal-item">
             Y queremos celebrar junto a ti este momento tan especial para nosotros...
@@ -78,12 +100,29 @@
         </div>
       </header>
 
-      <section class="demo-section demo-section--floral-cap reveal-section">
+      <section>
         <div class="container demo-cols">
           <div class="reveal-item demo-cols__media">
             <img src="assets/img/ceremonia.jpg" alt="" width="640" height="360" loading="lazy" />
           </div>
           <div class="reveal-item demo-cols__text">
+            <div class="demo-signature-section-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M32 12 18 24v28h28V24L32 12Z"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linejoin="round"
+                />
+                <path d="M24 52V34h16v18" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" />
+                <path
+                  d="M32 12V8M28 8h8"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
             <h2>Ceremonia</h2>
             <p class="large">
               La ceremonia se realizará el día
@@ -98,9 +137,27 @@
         </div>
       </section>
 
-      <section class="demo-section demo-section--floral-cap alt reveal-section">
+      <section>
         <div class="container demo-cols">
           <div class="reveal-item demo-cols__text">
+            <div class="demo-signature-section-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M15 46 22 24h8l-5 22H15Z"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M49 46 42 24h-8l5 22h10Z"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linejoin="round"
+                />
+                <path d="M20 24h10M34 24h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                <path d="M22 50h20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+              </svg>
+            </div>
             <h2>Recepción</h2>
             <p class="large">Luego la recepción se ofrecerá en el Bankers Club</p>
             <a class="demo-btn-map" href="https://maps.google.com" target="_blank" rel="noopener noreferrer"
@@ -115,7 +172,19 @@
 
       <section class="demo-section reveal-section">
         <div class="container">
-          <h2 class="demo-heading-story reveal-item">Nuestra historia</h2>
+          <div class="demo-signature-story-heading reveal-item">
+            <div class="demo-signature-section-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M32 52S10 35.5 10 24a9.5 9.5 0 0 1 17.2-5.5L32 22l4.8-3.5A9.5 9.5 0 0 1 54 24c0 11.5-22 28-22 28Z"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h2 class="demo-heading-story">Nuestra historia</h2>
+          </div>
           <p class="large demo-story-lead reveal-item">
             Nos conocimos en una fiesta de amigos en común y desde ese momento supimos que había algo especial entre
             nosotros. A medida que pasábamos tiempo juntos, nuestra conexión se hizo más fuerte y nos enamoramos
@@ -147,7 +216,35 @@
             <p>Esperamos que seas parte de esta gran celebración. ¡Confírmanos tu asistencia!</p>
             <a class="demo-btn-rsvp" href="#">Confirmar asistencia</a>
           </div>
+        </div>
+      </section>
+
+      <section class="demo-signature-dress-section reveal-section">
+        <div class="container">
+          <h2 class="visually-hidden">Dress code</h2>
           <div class="demo-signature-dress reveal-item">
+            <div class="demo-signature-dress__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M32 10v8M26 12a6.5 6.5 0 0 1 12 0"
+                  stroke="currentColor"
+                  stroke-width="2.25"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M15 40h34l-8.5-15a11 11 0 0 0-17 0L15 40Z"
+                  stroke="currentColor"
+                  stroke-width="2.25"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15 40v12h34V40"
+                  stroke="currentColor"
+                  stroke-width="2.25"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
             <p class="demo-signature-dress__label"><strong>Dress code:</strong></p>
             <p class="demo-signature-dress__value">Traje de etiqueta</p>
           </div>
@@ -181,7 +278,6 @@
         </div>
       </section>
 
-      <p class="demo-footer-note">Diseñado por <em>Invitanding</em></p>
     </main>
 
     <footer class="site-footer sqs-animate">

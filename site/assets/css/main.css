@@ -506,14 +506,6 @@ section {
   text-wrap: balance;
 }
 
-/* Sin animación de entrada en el hero: evita parpadeo o salto al aplicar is-revealed */
-.hero-fullbleed.reveal-section .reveal-item {
-  opacity: 1;
-  transform: none;
-  transition: none;
-  will-change: auto;
-}
-
 @media (max-width: 419px) {
   .hero-fullbleed__title {
     font-size: clamp(1.5rem, 5.4vw, 2.85rem);
@@ -1621,6 +1613,10 @@ body.page-historia {
   background: var(--color-bg);
 }
 
+.demo-page.demo-page--classic {
+  background: #f9f9f7;
+}
+
 .demo-hero {
   position: relative;
   min-height: min(52vh, 560px);
@@ -2076,6 +2072,10 @@ body.page-historia {
 /* Demo Classic / Signature / Premium — comparten escala de secciones (Squarespace) */
 .demo-page--classic {
   --demo-paper-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  /* Grano papel un poco más visible (réplica captura referencia) */
+  --classic-paper-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.072'/%3E%3C/svg%3E");
+  --classic-bg: #f9f9f7;
+  --classic-text: #4a4a4a;
 }
 
 .demo-page--classic main .container,
@@ -2084,84 +2084,245 @@ body.page-historia {
   width: min(100% - 2rem, 1180px);
 }
 
-.demo-page--classic .demo-hero.demo-hero--light {
-  min-height: clamp(580px, 82vh, 920px);
-  padding: clamp(4rem, 11vw, 6.5rem) 1rem;
-  background-color: #faf7f0;
-  background-image: var(--demo-paper-noise);
-  background-size: 200px 200px;
+/* Demo Signature — tema global (acuarela menta + verde bosque; solo esta página vía .demo-page--signature) */
+.demo-page.demo-page--signature {
+  --sig-surface-a: #f2f8f6;
+  --sig-surface-b: #e6f0ec;
+  --sig-surface-deep: #dbe8e2;
+  --sig-ink: #1d3b3b;
+  --sig-body: #2a413c;
+  --sig-muted: #4d6862;
+  --sig-link: #1a5c52;
+  --sig-accent: #b8553a;
+  --sig-accent-hover: #9c452e;
+  --sig-ink-hover: #152b2b;
+  --sig-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  background-color: var(--sig-surface-a);
 }
 
-.demo-page--classic .demo-hero--light::before,
-.demo-page--classic .demo-hero--light::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: min(46vw, 540px);
-  z-index: 0;
-  background-image: url("../img/114_floral.jpg");
+/* Classic — banner inicial: arte floreado full-bleed (classic-hero-floral-banner.png) + texto centrado */
+.demo-page--classic .demo-hero.demo-hero--classic-banner {
+  min-height: min(100svh, 920px);
+  padding: clamp(5rem, 14vw, 8rem) clamp(1.25rem, 5vw, 2.5rem);
+  overflow: hidden;
+  background-color: var(--classic-bg);
+  background-image: url("../img/classic-hero-floral-banner.png");
+  background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
-  pointer-events: none;
 }
 
-.demo-page--classic .demo-hero--light::before {
-  left: 0;
-  background-position: 8% 50%;
-  opacity: 0.94;
-  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 40%, transparent 82%);
-  mask-image: linear-gradient(90deg, #000 0%, #000 40%, transparent 82%);
+@media (max-width: 640px) {
+  .demo-page--classic .demo-hero.demo-hero--classic-banner {
+    min-height: min(92svh, 820px);
+    padding-top: clamp(4.25rem, 12vw, 6rem);
+    background-size: cover;
+    background-position: center center;
+  }
 }
 
-.demo-page--classic .demo-hero--light::after {
+.demo-page--classic .demo-hero.demo-hero--classic-banner .inner {
+  max-width: min(88vw, 42rem);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-page--classic .demo-hero.demo-hero--classic-banner .demo-kicker {
+  font-family: "Montserrat", var(--font);
+  font-size: clamp(0.78rem, 1.45vw, 0.98rem);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin: 0 0 clamp(1.85rem, 4.5vw, 2.65rem);
+  color: var(--classic-text);
+}
+
+.demo-page--classic .demo-hero.demo-hero--classic-banner .demo-names {
+  font-family: "Playfair Display", "Times New Roman", Georgia, serif;
+  gap: 0.28rem;
+  margin: 0 0 clamp(1.75rem, 4.2vw, 2.55rem);
+}
+
+.demo-page--classic .demo-hero.demo-hero--classic-banner .demo-name {
+  font-family: inherit;
+  font-size: clamp(3.45rem, 14vw, 7.25rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: 0.01em;
+  color: var(--classic-text);
+}
+
+.demo-page--classic .demo-hero.demo-hero--classic-banner .demo-name-join {
+  font-family: "Montserrat", var(--font);
+  font-size: clamp(1rem, 2.45vw, 1.3rem);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  margin: 0.48rem 0;
+  color: #5c5c5c;
+}
+
+.demo-page--classic .demo-hero.demo-hero--classic-banner .demo-date {
+  font-family: "Montserrat", var(--font);
+  font-size: clamp(0.82rem, 1.4vw, 0.98rem);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  color: var(--classic-text);
+  margin: 0;
+}
+
+/* Classic — Ceremonia / Recepción: crema uniforme, dos columnas, sin franja superior floral */
+.demo-page--classic .demo-section--classic-locations {
+  position: relative;
+  padding: clamp(3.5rem, 8vw, 5.75rem) 0;
+  background: var(--classic-bg);
+}
+
+.demo-page--classic .demo-section--classic-locations.alt {
+  background: var(--classic-bg);
+}
+
+.demo-page--classic .demo-section:not(.demo-section--classic-locations):not(.demo-section--classic-gallery) {
+  background: var(--classic-bg);
+}
+
+/* Classic — galería (solo imágenes, sin textos) */
+.demo-page--classic .demo-section--classic-gallery {
+  padding: clamp(2.25rem, 5vw, 3.5rem) 0;
+  background: var(--classic-bg);
+}
+
+.demo-page--classic .demo-gallery__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 520px) {
+  .demo-page--classic .demo-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .demo-page--classic .demo-gallery__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.85rem;
+  }
+}
+
+.demo-page--classic .demo-gallery__cell {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 3px;
+  aspect-ratio: 1;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.07);
+}
+
+.demo-page--classic .demo-gallery__cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  right: 0;
-  left: auto;
-  background-position: 92% 50%;
-  opacity: 0.94;
-  -webkit-mask-image: linear-gradient(270deg, #000 0%, #000 40%, transparent 82%);
-  mask-image: linear-gradient(270deg, #000 0%, #000 40%, transparent 82%);
+  transition: transform 0.45s ease;
 }
 
-.demo-page--classic .demo-hero .inner {
-  max-width: min(92vw, 52rem);
+@media (hover: hover) {
+  .demo-page--classic .demo-gallery__cell:hover img {
+    transform: scale(1.04);
+  }
 }
 
-.demo-page--classic .demo-kicker {
-  font-size: clamp(0.82rem, 1.5vw, 1.05rem);
-  letter-spacing: 0.22em;
-  margin-bottom: 1.75rem;
+.demo-page--classic .demo-section--classic-locations .demo-cols {
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
 }
 
-.demo-page--classic .demo-name {
-  font-size: clamp(3.2rem, 13vw, 6.75rem);
+.demo-page--classic .demo-section--classic-locations .demo-cols__media img {
+  border-radius: 2px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
 }
 
-.demo-page--classic .demo-name-join {
-  font-size: clamp(1.05rem, 2.6vw, 1.55rem);
-  margin: 0.2rem 0;
+.demo-page--classic .demo-section--classic-locations .demo-cols__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.demo-page--classic .demo-date {
-  font-size: clamp(1.05rem, 2vw, 1.42rem);
+.demo-page--classic .demo-section--classic-locations .demo-cols__text h2 {
+  font-family: var(--font);
+  font-size: clamp(1.65rem, 3.2vw, 2.15rem);
+  font-weight: 700;
+  color: #141414;
+  margin: 0 0 1.1rem;
+}
+
+.demo-page--classic .demo-section--classic-locations .demo-cols__text p.large {
+  margin: 0;
+  max-width: 38ch;
+  margin-inline: auto;
+  color: #2a2a2a;
+  font-size: clamp(1.02rem, 1.75vw, 1.12rem);
+  line-height: 1.7;
+}
+
+.demo-page--classic .demo-section--classic-locations .demo-text-date strong {
+  font-weight: 700;
+  color: #141414;
+  text-decoration: underline;
+  text-decoration-color: rgba(20, 20, 20, 0.75);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.demo-page--classic .demo-section--classic-locations .demo-link-venue {
+  color: #5a6b52;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.demo-page--classic .demo-section--classic-locations .demo-link-venue:hover {
+  color: #3d4a38;
+}
+
+.demo-page--classic .demo-section--classic-locations .demo-btn-map {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.85rem;
+  font-size: 0.72rem;
+  font-weight: 600;
   letter-spacing: 0.14em;
+  background: #c17955;
+  border-color: #c17955;
 }
 
-/* Signature — hero con foto + monograma (export Squarespace) */
+.demo-page--classic .demo-section--classic-locations .demo-btn-map:hover {
+  background: #a86a47;
+  border-color: #a86a47;
+  color: #fff;
+}
+
+/* Signature — banner inicial: acuarela menta, arco ¡NOS CASAMOS!, nombres script */
 .demo-page--signature .demo-hero--signature {
-  min-height: clamp(520px, 85vh, 900px);
-  padding: clamp(4rem, 12vw, 7rem) 1.25rem;
-  background-color: #3d3834;
-  background-image: linear-gradient(
-      180deg,
-      rgba(253, 248, 238, 0.9) 0%,
-      rgba(252, 246, 236, 0.88) 38%,
-      rgba(250, 244, 232, 0.9) 100%
-    ),
-    url("../img/signature-hero.jpg");
-  background-size: cover;
-  background-position: center;
+  min-height: clamp(620px, 90vh, 980px);
+  padding: clamp(4.5rem, 12vw, 7.25rem) 1.25rem;
+  overflow: hidden;
+  background-color: #f2f8f6;
+  background-image: radial-gradient(ellipse 92% 72% at 14% 22%, rgba(158, 208, 192, 0.42) 0%, transparent 58%),
+    radial-gradient(ellipse 78% 62% at 90% 32%, rgba(176, 224, 210, 0.34) 0%, transparent 54%),
+    radial-gradient(ellipse 68% 78% at 48% 90%, rgba(198, 232, 222, 0.26) 0%, transparent 50%),
+    linear-gradient(168deg, rgba(255, 255, 255, 0.55) 0%, transparent 42%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 200px 200px;
+  background-repeat: no-repeat;
 }
 
 .demo-page--signature .demo-hero--signature::after {
@@ -2175,64 +2336,143 @@ body.page-historia {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: min(92vw, 40rem);
+  max-width: min(94vw, 50rem);
   margin-inline: auto;
+  color: #1d3b3b;
 }
 
-.demo-page--signature .demo-signature-monogram {
-  width: min(78vw, 300px);
+.demo-page--signature .demo-signature-arch {
+  width: min(92vw, 28rem);
+  margin: 0 auto clamp(1.35rem, 3.2vw, 2.1rem);
+  color: #1d3b3b;
+}
+
+.demo-page--signature .demo-signature-arch__svg {
+  display: block;
+  width: 100%;
   height: auto;
-  margin: 0 auto clamp(1.25rem, 3vw, 2rem);
-  object-fit: contain;
+}
+
+.demo-page--signature .demo-signature-arch__text {
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 480px) {
+  .demo-page--signature .demo-signature-arch__text {
+    font-size: 19px;
+  }
+}
+
+.demo-page--signature .demo-signature-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.12rem;
+  margin: 0 0 clamp(1.25rem, 3vw, 1.85rem);
+}
+
+.demo-page--signature .demo-signature-name {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(3.65rem, 13.5vw, 6.85rem);
+  font-weight: 400;
+  line-height: 1.02;
+  color: #1d3b3b;
+}
+
+.demo-page--signature .demo-signature-name-join {
+  font-family: var(--font);
+  font-size: clamp(1.05rem, 2.65vw, 1.45rem);
+  font-weight: 500;
+  color: #1d3b3b;
+  margin: 0.25rem 0;
+  letter-spacing: 0.1em;
 }
 
 .demo-page--signature .demo-signature-date {
   font-family: var(--font);
-  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: #141414;
-  margin: 0 0 clamp(1rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.08rem, 2.25vw, 1.38rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: #0d0d0d;
+  margin: 0 0 clamp(1.1rem, 2.5vw, 1.65rem);
 }
 
 .demo-page--signature .demo-signature-tagline {
   font-family: var(--font);
-  font-size: clamp(0.98rem, 2vw, 1.18rem);
+  font-size: clamp(1.02rem, 2.1vw, 1.2rem);
   font-weight: 400;
-  line-height: 1.6;
-  color: #2a2a2a;
+  line-height: 1.65;
+  color: #141414;
   margin: 0;
-  max-width: 36ch;
+  max-width: 38ch;
 }
 
 .demo-page--signature .demo-signature-rsvp-dress {
-  padding: clamp(4rem, 9vw, 5.85rem) 0;
-  background: var(--demo-cream);
+  padding: clamp(4.25rem, 10vw, 6rem) 0;
+  background-color: var(--sig-surface-deep);
+  background-image: radial-gradient(ellipse 88% 75% at 50% 20%, rgba(140, 198, 180, 0.22) 0%, transparent 55%),
+    var(--sig-noise);
+  background-size: 100% 100%, 200px 200px;
 }
 
-.demo-page--signature .demo-signature-dress {
-  margin-top: clamp(2.25rem, 5vw, 3rem);
+.demo-page--signature .demo-rsvp__box {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: clamp(2.15rem, 5vw, 2.85rem) clamp(1.5rem, 4vw, 2.25rem);
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 16px 48px rgba(29, 59, 59, 0.1);
+  border: 1px solid rgba(29, 59, 59, 0.06);
+}
+
+.demo-page--signature .demo-signature-dress-section {
+  padding: clamp(3.5rem, 9vw, 5.25rem) 1.25rem;
+  background-color: #1d3b3b;
+}
+
+.demo-page--signature .demo-signature-dress-section .demo-signature-dress {
+  margin: 0;
+  max-width: 36rem;
+  margin-inline: auto;
   text-align: center;
 }
 
-.demo-page--signature .demo-signature-dress__label {
+.demo-page--signature .demo-signature-dress__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1.1rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.demo-page--signature .demo-signature-dress__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.demo-page--signature .demo-signature-dress-section .demo-signature-dress__label {
   font-family: var(--font);
   font-size: clamp(1.02rem, 1.85vw, 1.15rem);
   margin: 0 0 0.35rem;
-  color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.95);
 }
 
-.demo-page--signature .demo-signature-dress__label strong {
+.demo-page--signature .demo-signature-dress-section .demo-signature-dress__label strong {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.demo-page--signature .demo-signature-dress__value {
+.demo-page--signature .demo-signature-dress-section .demo-signature-dress__value {
   font-family: var(--font);
   font-size: clamp(1.02rem, 1.85vw, 1.15rem);
   margin: 0;
-  color: #2c2c2c;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.55;
 }
 
 .demo-page--signature .demo-gift--signature .demo-gift__icon {
@@ -2263,6 +2503,32 @@ body.page-historia {
   pointer-events: none;
 }
 
+.demo-page--signature .demo-section--floral-cap::before {
+  opacity: 0.4;
+  filter: saturate(0.65) hue-rotate(125deg) brightness(1.08);
+}
+
+.demo-page--signature .demo-section--floral-cap {
+  background-color: var(--sig-surface-a);
+  background-image: radial-gradient(ellipse 88% 75% at 14% 55%, rgba(158, 208, 192, 0.24) 0%, transparent 58%),
+    var(--sig-noise);
+  background-size: 100% 100%, 200px 200px;
+}
+
+.demo-page--signature .demo-section--floral-cap.alt {
+  background-color: var(--sig-surface-b);
+  background-image: radial-gradient(ellipse 85% 72% at 86% 45%, rgba(172, 218, 204, 0.26) 0%, transparent 55%),
+    var(--sig-noise);
+  background-size: 100% 100%, 200px 200px;
+}
+
+.demo-page--signature .demo-section:not(.demo-section--floral-cap) {
+  background-color: var(--sig-surface-a);
+  background-image: radial-gradient(ellipse 80% 65% at 50% 8%, rgba(168, 212, 198, 0.2) 0%, transparent 48%),
+    var(--sig-noise);
+  background-size: 100% 100%, 200px 200px;
+}
+
 .demo-page--classic .demo-text-date strong,
 .demo-page--signature .demo-text-date strong,
 .demo-page--premium .demo-text-date strong {
@@ -2271,6 +2537,20 @@ body.page-historia {
   text-decoration-color: #c1785c;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 5px;
+}
+
+.demo-page--signature .demo-text-date strong {
+  color: var(--sig-ink);
+  text-decoration-color: var(--sig-accent);
+}
+
+.demo-page--signature .demo-link-venue {
+  color: var(--sig-link);
+  font-weight: 600;
+}
+
+.demo-page--signature .demo-link-venue:hover {
+  color: #134038;
 }
 
 .demo-page--classic .demo-cols__text,
@@ -2287,6 +2567,31 @@ body.page-historia {
   margin-bottom: 1.35rem;
 }
 
+.demo-page--signature .demo-cols__text h2 {
+  color: var(--sig-ink);
+}
+
+.demo-page--signature .demo-signature-section-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 0.65rem;
+  color: var(--sig-ink);
+}
+
+.demo-page--signature .demo-signature-section-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.demo-page--signature .demo-signature-story-heading {
+  text-align: center;
+}
+
+.demo-page--signature .demo-signature-story-heading .demo-heading-story {
+  margin-top: 0;
+}
+
 .demo-page--classic .demo-section,
 .demo-page--signature .demo-section,
 .demo-page--premium .demo-section {
@@ -2300,6 +2605,22 @@ body.page-historia {
   line-height: 1.72;
 }
 
+.demo-page--signature .demo-section p.large {
+  color: var(--sig-body);
+}
+
+.demo-page--signature .site-header .btn-primary {
+  background: #1d3b3b;
+  border-color: #1d3b3b;
+  color: #fff;
+}
+
+.demo-page--signature .site-header .btn-primary:hover {
+  background: var(--sig-ink-hover);
+  border-color: var(--sig-ink-hover);
+  color: #fff;
+}
+
 .demo-page--classic .demo-btn-map,
 .demo-page--signature .demo-btn-map,
 .demo-page--premium .demo-btn-map {
@@ -2307,6 +2628,19 @@ body.page-historia {
   padding: 0.82rem 2.15rem;
   font-size: 0.78rem;
   letter-spacing: 0.12em;
+}
+
+.demo-page--signature .demo-btn-map {
+  background: #1d3b3b;
+  border-color: #1d3b3b;
+  color: #fff;
+  font-weight: 600;
+}
+
+.demo-page--signature .demo-btn-map:hover {
+  background: var(--sig-ink-hover);
+  border-color: var(--sig-ink-hover);
+  color: #fff;
 }
 
 .demo-page--classic .demo-heading-story,
@@ -2335,6 +2669,32 @@ body.page-historia {
   border-radius: 4px;
 }
 
+.demo-page--signature .demo-heading-story {
+  color: var(--sig-ink);
+}
+
+.demo-page--signature .demo-heading-story::after {
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(29, 59, 59, 0.35) 15%,
+    rgba(29, 59, 59, 0.45) 50%,
+    rgba(29, 59, 59, 0.35) 85%,
+    transparent
+  );
+}
+
+.demo-page--signature .demo-triptych img {
+  border-radius: 4px;
+  box-shadow: 0 12px 36px rgba(29, 59, 59, 0.1);
+}
+
+.demo-page--signature .demo-cols__media img {
+  border-radius: 4px;
+  box-shadow: 0 12px 36px rgba(29, 59, 59, 0.1);
+}
+
 .demo-page--classic .demo-triptych,
 .demo-page--signature .demo-triptych,
 .demo-page--premium .demo-triptych {
@@ -2349,11 +2709,57 @@ body.page-historia {
   min-height: clamp(260px, 36vw, 440px);
 }
 
+/* Classic — confirmación de asistencia (referencia: gris claro plano, sans, botón negro píldora) */
 .demo-page--classic .demo-rsvp {
-  padding: clamp(4rem, 9vw, 5.85rem) 0;
+  padding: clamp(4.75rem, 11vw, 6.75rem) 0;
+  background: #e8e8e8;
 }
 
-.demo-page--classic .demo-rsvp__box h2,
+.demo-page--classic .demo-rsvp__box {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 2rem);
+  background: transparent;
+}
+
+.demo-page--classic .demo-rsvp__box h2 {
+  font-family: var(--font);
+  font-size: clamp(1.02rem, 2vw, 1.28rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  margin: 0 0 1.25rem;
+}
+
+.demo-page--classic .demo-rsvp__box p {
+  font-family: var(--font);
+  font-size: clamp(0.94rem, 1.6vw, 1.04rem);
+  font-weight: 400;
+  line-height: 1.65;
+  color: #0a0a0a;
+  margin: 0 0 1.85rem;
+  max-width: 38ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.demo-page--classic .demo-btn-rsvp {
+  padding: 0.82rem 2.1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: #fff;
+  background: #000;
+  border-color: #000;
+}
+
+.demo-page--classic .demo-btn-rsvp:hover {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #fff;
+}
+
 .demo-page--signature .demo-rsvp__box h2,
 .demo-page--premium .demo-rsvp__box h2 {
   font-size: clamp(1.32rem, 2.75vw, 1.78rem);
@@ -2361,17 +2767,37 @@ body.page-historia {
   text-transform: uppercase;
 }
 
-.demo-page--classic .demo-rsvp__box p,
+.demo-page--signature .demo-rsvp__box h2 {
+  color: var(--sig-ink);
+}
+
 .demo-page--signature .demo-rsvp__box p,
 .demo-page--premium .demo-rsvp__box p {
   font-size: clamp(1rem, 1.55vw, 1.1rem);
 }
 
-.demo-page--classic .demo-btn-rsvp,
+.demo-page--signature .demo-rsvp__box p {
+  color: var(--sig-body);
+}
+
 .demo-page--signature .demo-btn-rsvp,
 .demo-page--premium .demo-btn-rsvp {
   padding: 0.88rem 2.35rem;
   font-size: 0.82rem;
+}
+
+.demo-page--signature .demo-btn-rsvp {
+  background: #1d3b3b;
+  border-color: #1d3b3b;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.demo-page--signature .demo-btn-rsvp:hover {
+  background: var(--sig-ink-hover);
+  border-color: var(--sig-ink-hover);
+  color: #fff;
 }
 
 .demo-page--classic .demo-gift__icon,
@@ -2379,6 +2805,10 @@ body.page-historia {
 .demo-page--premium .demo-gift__icon {
   width: 56px;
   height: 56px;
+}
+
+.demo-page--signature .demo-gift__icon {
+  color: var(--sig-ink);
 }
 
 .demo-page--classic .demo-btn-gift,
@@ -2389,17 +2819,60 @@ body.page-historia {
   font-size: 1rem;
 }
 
+.demo-page--signature .demo-btn-gift {
+  background: #1d3b3b;
+  border-color: #1d3b3b;
+  color: #fff;
+  font-weight: 600;
+}
+
+.demo-page--signature .demo-btn-gift:hover {
+  background: var(--sig-ink-hover);
+  border-color: var(--sig-ink-hover);
+  color: #fff;
+}
+
 .demo-page--classic .demo-banner,
 .demo-page--signature .demo-banner,
 .demo-page--premium .demo-banner {
   padding: clamp(3.75rem, 10vw, 5.75rem) 1.25rem;
+}
+
+.demo-page--premium .demo-banner {
   background: var(--demo-cream);
 }
 
+.demo-page--signature .demo-banner {
+  background-color: var(--sig-surface-a);
+  background-image: radial-gradient(ellipse 92% 72% at 16% 28%, rgba(158, 208, 192, 0.3) 0%, transparent 58%),
+    radial-gradient(ellipse 78% 62% at 88% 38%, rgba(176, 224, 210, 0.24) 0%, transparent 52%),
+    var(--sig-noise);
+  background-size: 100% 100%, 100% 100%, 200px 200px;
+}
+
+/* Classic — cierre con mismo arte floreado que el hero (sin tiras 114_floral) */
+.demo-page--classic .demo-banner {
+  background-color: var(--classic-bg);
+  background-image: url("../img/classic-hero-floral-banner.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .demo-page--classic .demo-banner::before,
-.demo-page--classic .demo-banner::after,
+.demo-page--classic .demo-banner::after {
+  display: none;
+}
+
 .demo-page--signature .demo-banner::before,
-.demo-page--signature .demo-banner::after,
+.demo-page--signature .demo-banner::after {
+  width: min(34%, 320px);
+  opacity: 0.28;
+  top: -2%;
+  bottom: -2%;
+  filter: saturate(0.55) hue-rotate(130deg);
+}
+
 .demo-page--premium .demo-banner:not(.demo-banner--premium)::before,
 .demo-page--premium .demo-banner:not(.demo-banner--premium)::after {
   width: min(38%, 360px);
@@ -2408,14 +2881,12 @@ body.page-historia {
   bottom: -4%;
 }
 
-.demo-page--classic .demo-banner::before,
 .demo-page--signature .demo-banner::before,
 .demo-page--premium .demo-banner:not(.demo-banner--premium)::before {
   -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 55%, transparent);
   mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 55%, transparent);
 }
 
-.demo-page--classic .demo-banner::after,
 .demo-page--signature .demo-banner::after,
 .demo-page--premium .demo-banner:not(.demo-banner--premium)::after {
   -webkit-mask-image: linear-gradient(270deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 55%, transparent);
@@ -2429,6 +2900,16 @@ body.page-historia {
   font-size: clamp(1.7rem, 4.2vw, 2.55rem);
   font-weight: 700;
   line-height: 1.28;
+}
+
+.demo-page--classic .demo-banner h2 {
+  color: var(--classic-text);
+  text-shadow: 0 0 1.25rem rgba(249, 249, 247, 0.95), 0 1px 2px rgba(255, 255, 255, 0.85);
+}
+
+.demo-page--signature .demo-banner h2 {
+  color: var(--sig-ink);
+  text-shadow: none;
 }
 
 /* Demo Premium — hero con foto, cuenta regresiva #3d3b3b, historia + audio, RSVP oscuro, cierre con foto */
@@ -2724,6 +3205,8 @@ body.page-historia {
   margin-bottom: 0.5rem;
 }
 
+/* Demo Nuevo 04: estilos en assets/css/demo-nuevo04.css */
+
 /* Contact */
 .contact-box {
   max-width: 480px;
@@ -2757,9 +3240,9 @@ body.page-historia {
   margin-top: 1rem;
 }
 
-/* —— Scroll reveal (Squarespace 7.1: fade + scale) —— */
+/* —— Scroll reveal: cada .reveal-item al entrar en viewport (fade + scale) —— */
 @media (prefers-reduced-motion: reduce) {
-  .reveal-section .reveal-item,
+  .reveal-item,
   .sqs-animate {
     opacity: 1 !important;
     transform: none !important;
@@ -2767,18 +3250,16 @@ body.page-historia {
   }
 }
 
-.reveal-section .reveal-item {
+.reveal-item {
   opacity: 0;
   transform: scale(0.97) translate3d(0, 22px, 0);
   transition:
-    opacity var(--sqs-reveal-duration) var(--sqs-reveal-ease)
-      calc(var(--reveal-i, 0) * var(--sqs-reveal-stagger)),
-    transform var(--sqs-reveal-duration) var(--sqs-reveal-ease)
-      calc(var(--reveal-i, 0) * var(--sqs-reveal-stagger));
+    opacity var(--sqs-reveal-duration) var(--sqs-reveal-ease),
+    transform var(--sqs-reveal-duration) var(--sqs-reveal-ease);
   will-change: opacity, transform;
 }
 
-.reveal-section.is-revealed .reveal-item {
+.reveal-item.is-revealed {
   opacity: 1;
   transform: scale(1) translate3d(0, 0, 0);
   will-change: auto;
@@ -2802,4 +3283,12 @@ body.page-historia {
 /* Hero demo: sombra solo en variante oscura */
 .demo-hero.reveal-section:not(.demo-hero--light) .reveal-item {
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* Index hero: debe quedar por encima de .reveal-item { opacity: 0 } (misma hoja, más abajo) */
+.hero-fullbleed.reveal-section .reveal-item {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  will-change: auto;
 }
