@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es-EC" class="n04-html">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo Nuevo 04 — Invitanding</title>
+    <meta
+      name="description"
+      content="Demostración de invitación digital estilo editorial (referencia visual tipo Digta VIP)."
+    />
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/demo-nuevo04.css" />
+  </head>
+  <body class="demo-page demo-page--nuevo04">
+    <header class="site-header site-header--over-hero">
+      <div class="header-inner">
+        <a class="logo" href="index.html">
+          <img src="assets/img/logo-blanco.png" alt="Invitanding" width="180" height="48" />
+        </a>
+        <nav class="nav-desktop" aria-label="Principal">
+          <a href="historia.html">Historia</a>
+          <div class="nav-item">
+            <span class="nav-label">Invitaciones Interactivas</span>
+            <div class="nav-submenu">
+              <a href="demo-classic.html">Invitación Classic</a>
+              <a href="demo-signature.html">Invitación Signature</a>
+              <a href="demo-premium.html">Invitación Premium</a>
+              <a href="demo-nuevo04.html" aria-current="page">Demo Nuevo 04</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <span class="nav-label">Invitaciones digitales</span>
+            <div class="nav-submenu">
+              <a href="snapcard-basica.html">Invitación Digital Clásica</a>
+              <a href="snapcard-interactiva.html">Invitación Digital Clásica + RSVP</a>
+            </div>
+          </div>
+        </nav>
+        <a class="btn btn-primary header-cta" href="contact.html">Contáctanos</a>
+        <div class="nav-toggle">
+          <input type="checkbox" id="nav-check" />
+          <label class="burger" for="nav-check" aria-label="Menú"
+            ><span></span><span></span><span></span
+          ></label>
+          <div class="nav-mobile-panel">
+            <a href="historia.html">Historia</a>
+            <span class="nav-mobile-heading">Invitaciones Interactivas</span>
+            <a class="sub" href="demo-classic.html">Invitación Classic</a>
+            <a class="sub" href="demo-signature.html">Invitación Signature</a>
+            <a class="sub" href="demo-premium.html">Invitación Premium</a>
+            <a class="sub" href="demo-nuevo04.html">Demo Nuevo 04</a>
+            <span class="nav-mobile-heading">Invitaciones digitales</span>
+            <a class="sub" href="snapcard-basica.html">Invitación Digital Clásica</a>
+            <a class="sub" href="snapcard-interactiva.html">Invitación Digital Clásica + RSVP</a>
+            <a href="contact.html">Contáctanos</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="n04-main">
+      <!-- Hero: fecha vertical + doble arco (imagen única partida) -->
+      <section class="n04-hero reveal-section">
+        <div class="container n04-hero__wrap">
+          <p class="n04-hero__intro reveal-item">Invitamos a nuestro matrimonio</p>
+          <p class="n04-hero__intro n04-hero__intro--soft reveal-item">Junto con nuestras familias</p>
+
+          <div class="n04-hero-date reveal-item" aria-label="19 de septiembre de 2026">
+            <span class="n04-hero-date__dow">Sábado</span>
+            <span class="n04-hero-date__big">19</span>
+            <span class="n04-hero-date__rule" aria-hidden="true"></span>
+            <span class="n04-hero-date__big">09</span>
+            <span class="n04-hero-date__year">2026</span>
+          </div>
+
+          <div class="n04-hero-arches reveal-item">
+            <div class="n04-hero-arches__leaves" aria-hidden="true">
+              <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M60 28c-8-12-22-18-34-20 12-2 26 2 34 12 8-10 22-14 34-12-12 2-26 8-34 20z"
+                  fill="rgba(90,122,98,0.35)"
+                />
+                <path
+                  d="M52 26c-4-8-12-12-20-14 8 0 16 4 20 12 4-8 12-12 20-12-8 2-16 6-20 14z"
+                  fill="rgba(120,150,120,0.4)"
+                />
+              </svg>
+            </div>
+            <div class="n04-hero-arches__pair">
+              <div
+                class="n04-hero-arch n04-hero-arch--left"
+                style="background-image: url('assets/img/gallery-proposal.jpg')"
+                role="img"
+                aria-label=""
+              ></div>
+              <div
+                class="n04-hero-arch n04-hero-arch--right"
+                style="background-image: url('assets/img/gallery-proposal.jpg')"
+                role="img"
+                aria-label=""
+              ></div>
+            </div>
+          </div>
+
+          <p class="n04-hero__soul reveal-item">Unimos nuestras almas</p>
+          <div class="n04-hero-names reveal-item">
+            <span class="n04-hero-names__script">Ivonne</span>
+            <span class="n04-hero-names__amp">&amp;</span>
+            <span class="n04-hero-names__script">Arturo</span>
+          </div>
+          <p class="n04-hero__cordial reveal-item">Invitan cordialmente…</p>
+        </div>
+      </section>
+
+      <section class="n04-guest reveal-section" aria-label="Pases de invitación">
+        <div class="container n04-guest__wrap">
+          <div class="n04-guest__card reveal-item">
+            <span class="n04-guest__kicker">Personas</span>
+            <span class="n04-guest__count">02</span>
+            <p class="n04-guest__name">Sr. Artysel</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Monograma + cuenta regresiva (demo estática) -->
+      <section class="n04-countdown reveal-section" aria-label="Cuenta regresiva de demostración">
+        <div class="container n04-countdown__grid">
+          <div class="n04-countdown__mono reveal-item" aria-hidden="true">
+            <span class="n04-countdown__mono-a">A</span>
+            <span class="n04-countdown__mono-i">I</span>
+          </div>
+          <div class="n04-countdown__rings reveal-item">
+            <div class="n04-count-ring" style="--n04-progress: 0.88">
+              <div class="n04-count-ring__inner">
+                <span class="n04-count-ring__num">42</span>
+                <span class="n04-count-ring__lbl">Días</span>
+              </div>
+            </div>
+            <div class="n04-count-ring" style="--n04-progress: 0.35">
+              <div class="n04-count-ring__inner">
+                <span class="n04-count-ring__num">08</span>
+                <span class="n04-count-ring__lbl">Hr</span>
+              </div>
+            </div>
+            <div class="n04-count-ring" style="--n04-progress: 0.62">
+              <div class="n04-count-ring__inner">
+                <span class="n04-count-ring__num">15</span>
+                <span class="n04-count-ring__lbl">Min</span>
+              </div>
+            </div>
+            <div class="n04-count-ring" style="--n04-progress: 0.75">
+              <div class="n04-count-ring__inner">
+                <span class="n04-count-ring__num">33</span>
+                <span class="n04-count-ring__lbl">Seg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="n04-countdown__note container reveal-item">Números de ejemplo; en tu invitación real pueden enlazarse a la fecha del evento.</p>
+      </section>
+
+      <!-- Ceremonia: bloque centrado blanco -->
+      <section class="n04-liturgy reveal-section" aria-labelledby="n04-ceremony-title">
+        <div class="container n04-liturgy__inner">
+          <div class="n04-liturgy__icon reveal-item" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M32 10v8M26 12a6.5 6.5 0 0 1 12 0"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M15 40h34l-8.5-15a11 11 0 0 0-17 0L15 40Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+              <path d="M15 40v12h34V40" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <p class="n04-liturgy__time reveal-item">a la una y media de la tarde</p>
+          <h2 id="n04-ceremony-title" class="visually-hidden">Ceremonia</h2>
+          <div class="n04-liturgy__body reveal-item">
+            <p>nos daremos el «Sí quiero»</p>
+            <p>y festejaremos juntos</p>
+            <p class="n04-liturgy__paren">(Fiesta Americana)</p>
+          </div>
+          <p class="n04-liturgy__venue reveal-item">Hacienda San Antonio</p>
+          <p class="n04-liturgy__sub reveal-item"><em>«El Puente Cuernavaca»</em></p>
+          <a
+            class="n04-link-gold reveal-item"
+            href="https://maps.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Ver ubicación</a
+          >
+        </div>
+      </section>
+
+      <!-- Recepción -->
+      <section class="n04-liturgy n04-liturgy--party reveal-section" aria-labelledby="n04-party-title">
+        <div class="container n04-liturgy__inner">
+          <div class="n04-liturgy__icon reveal-item" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M14 46 20 26h9l-4 20H14Z M50 46 44 26H35l4 20h11Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+              <path d="M18 26h12M34 26h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M22 50h20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <p class="n04-liturgy__time reveal-item">ocho de la noche</p>
+          <h2 id="n04-party-title" class="visually-hidden">Recepción</h2>
+          <div class="n04-liturgy__body reveal-item">
+            <p>la gran fiesta de nuestra boda</p>
+            <p>llena de brindis, carcajadas y</p>
+            <p>bailes hasta el amanecer</p>
+          </div>
+          <p class="n04-liturgy__venue reveal-item">Av. de San Sebastián 4</p>
+          <p class="n04-liturgy__sub reveal-item"><em>«La Finca de las Cuevas del Príncipe»</em></p>
+          <a
+            class="n04-link-gold reveal-item"
+            href="https://maps.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Ver ubicación</a
+          >
+        </div>
+      </section>
+
+      <section class="n04-story reveal-section">
+        <div class="container n04-story__inner">
+          <blockquote class="n04-story__quote reveal-item">
+            <p>
+              «I will always find you… porque el amor verdadero no se pierde, se elige cada día. Esta es nuestra
+              historia.»
+            </p>
+            <footer class="n04-story__sig">A · I</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- Save the date + dress code intro (fondo blanco) -->
+      <section class="n04-std reveal-section" aria-label="Save the date">
+        <div class="container n04-std__inner">
+          <div class="n04-branch-divider reveal-item" aria-hidden="true">
+            <span class="n04-branch-divider__line"></span>
+            <svg class="n04-branch-divider__svg" viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M40 20c-6-8-14-12-22-14 10 0 18 4 22 12 4-8 12-12 22-12-8 2-16 6-22 14z"
+                fill="rgba(90,122,98,0.45)"
+              />
+            </svg>
+            <span class="n04-branch-divider__line"></span>
+          </div>
+          <p class="n04-std__kicker reveal-item">Save the date</p>
+          <div class="n04-std__headline reveal-item">
+            <div class="n04-std__couple">
+              <div class="n04-std__pair">
+                <span class="n04-std__caps">Arturo</span>
+                <span class="n04-std__script">Wilson</span>
+              </div>
+              <span class="n04-std__amp">&amp;</span>
+              <div class="n04-std__pair">
+                <span class="n04-std__caps">Ivonne</span>
+                <span class="n04-std__script">Gonzáles</span>
+              </div>
+            </div>
+          </div>
+          <p class="n04-std__date reveal-item">
+            <span>Sept.</span><span class="n04-std__dot">·</span><span class="n04-std__daymid">19</span><span class="n04-std__dot">·</span><span>2026</span>
+          </p>
+          <a class="n04-link-gold n04-link-gold--std reveal-item" href="contact.html">Reservar</a>
+
+          <div class="n04-std__dress-mini reveal-item">
+            <div class="n04-std__wand" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 40L34 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M34 14l4-4 2 2-4 4" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="M36 10l2 2" stroke="currentColor" stroke-width="1.5" />
+                <circle cx="14" cy="12" r="1.2" fill="currentColor" opacity="0.5" />
+                <circle cx="18" cy="8" r="0.9" fill="currentColor" opacity="0.4" />
+              </svg>
+            </div>
+            <h2 class="n04-std__dress-title">Dress code</h2>
+            <p class="n04-std__dress-text">
+              Queremos que se sientan cómodos y elegantes para acompañarnos en este día tan especial.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="n04-hotels reveal-section" aria-label="Alojamiento sugerido">
+        <div class="container">
+          <ul class="n04-hotels__list">
+            <li class="n04-hotel-card reveal-item">
+              <h3 class="n04-hotel-card__type">Posada</h3>
+              <p class="n04-hotel-card__name">«Posada del Tío Juanón»</p>
+              <a class="n04-link-gold" href="#">Más detalles</a>
+            </li>
+            <li class="n04-hotel-card reveal-item">
+              <h3 class="n04-hotel-card__type">Hotel boutique</h3>
+              <p class="n04-hotel-card__name">«Casa del Comendador»</p>
+              <a class="n04-link-gold" href="#">Más detalles</a>
+            </li>
+            <li class="n04-hotel-card reveal-item">
+              <h3 class="n04-hotel-card__type">Hotel</h3>
+              <p class="n04-hotel-card__name">«Tu Mansión»</p>
+              <a class="n04-link-gold" href="#">Más detalles</a>
+            </li>
+            <li class="n04-hotel-card reveal-item">
+              <h3 class="n04-hotel-card__type">Hostal</h3>
+              <p class="n04-hotel-card__name">«Corper Navalcarnero»</p>
+              <a class="n04-link-gold" href="#">Más detalles</a>
+            </li>
+          </ul>
+          <p class="n04-hotels__note reveal-item">
+            Queremos que se sientan como en casa, por eso les compartimos con cariño algunos lugares cercanos para
+            descansar y soñar.
+          </p>
+        </div>
+      </section>
+
+      <section class="n04-party reveal-section" aria-labelledby="n04-party-honor-heading">
+        <div class="container">
+          <h2 id="n04-party-honor-heading" class="n04-party__title reveal-item">Corte de honor</h2>
+          <dl class="n04-party__grid">
+            <div class="n04-party__row reveal-item">
+              <dt>Padrinos</dt>
+              <dd>Segundo Bermeo y Digna Orellana.</dd>
+            </div>
+            <div class="n04-party__row reveal-item">
+              <dt>Damas de honor</dt>
+              <dd>Katty Monaco y Mónica Berezueta.</dd>
+            </div>
+            <div class="n04-party__row reveal-item">
+              <dt>Best men</dt>
+              <dd>Kevin, Andrés y Carlos.</dd>
+            </div>
+            <div class="n04-party__row reveal-item">
+              <dt>Pajes y damitas</dt>
+              <dd>Jostin, Aylin y Sheila.</dd>
+            </div>
+            <div class="n04-party__row reveal-item">
+              <dt>Padres de la novia</dt>
+              <dd>José Quinde y María Tama.</dd>
+            </div>
+            <div class="n04-party__row reveal-item">
+              <dt>Padres del novio</dt>
+              <dd><span class="n04-party__aside">Y desde el cielo…</span> Manuel Wilson y Rosa Blanco.</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Dress code detalle: fondo verde -->
+      <section class="n04-dress n04-dress--green reveal-section" aria-labelledby="n04-dress-detail-heading">
+        <div class="container">
+          <h2 id="n04-dress-detail-heading" class="visually-hidden">Dress code</h2>
+          <div class="n04-dress__cols">
+            <div class="n04-dress__col reveal-item">
+              <div class="n04-dress__face n04-dress__face--man" aria-hidden="true">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="28" cy="38" rx="14" ry="10" stroke="currentColor" stroke-width="1.6" />
+                  <path
+                    d="M28 18c-6 0-11 5-11 11 0 4 2 7 5 9 2-3 6-5 10-5h2c4 0 8 2 10 5 3-2 5-5 5-9 0-6-5-11-11-11Z"
+                    fill="var(--n04-dress-hair)"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <ellipse cx="28" cy="26" rx="9" ry="10" stroke="currentColor" stroke-width="1.4" />
+                </svg>
+              </div>
+              <h3 class="n04-dress__gender-script">Hombres</h3>
+              <p class="n04-dress__rule"><em>«Atuendo formal de clima cálido.»</em></p>
+            </div>
+            <div class="n04-dress__col reveal-item">
+              <div class="n04-dress__face n04-dress__face--woman" aria-hidden="true">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="28" cy="38" rx="14" ry="10" stroke="currentColor" stroke-width="1.6" />
+                  <path
+                    d="M28 14c-7 0-12 6-12 13 0 5 3 9 7 11 1-4 5-7 10-7h2c5 0 9 3 10 7 4-2 7-6 7-11 0-7-5-13-12-13Z"
+                    fill="var(--n04-dress-hair)"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <ellipse cx="28" cy="27" rx="9" ry="10" stroke="currentColor" stroke-width="1.4" />
+                </svg>
+              </div>
+              <h3 class="n04-dress__gender-script">Mujeres</h3>
+              <p class="n04-dress__rule"><em>«Vestido de cóctel, largo o midi.»</em></p>
+            </div>
+          </div>
+          <p class="n04-dress__thanks reveal-item">
+            ¡Gracias por vestir con cariño y estilo para celebrar con nosotros!
+          </p>
+          <div class="n04-branch-divider n04-branch-divider--light reveal-item" aria-hidden="true">
+            <span class="n04-branch-divider__line"></span>
+            <svg class="n04-branch-divider__svg" viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M40 20c-6-8-14-12-22-14 10 0 18 4 22 12 4-8 12-12 22-12-8 2-16 6-22 14z"
+                fill="rgba(200, 180, 140, 0.55)"
+              />
+            </svg>
+            <span class="n04-branch-divider__line"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- RSVP + regalos -->
+      <section class="n04-rsvp-gifts reveal-section" aria-labelledby="n04-rsvp-heading">
+        <div class="container n04-rsvp-gifts__inner">
+          <h2 id="n04-rsvp-heading" class="n04-rsvp-gifts__title reveal-item">RSVP</h2>
+          <p class="n04-rsvp-gifts__deadline reveal-item">Antes del 15 de julio</p>
+          <p class="n04-rsvp-gifts__text reveal-item">
+            Puntualidad al evento religioso, quedamos atentos a su gentil confirmación
+          </p>
+          <a class="n04-link-gold reveal-item" href="#">Confirmar</a>
+
+          <div class="n04-branch-divider n04-branch-divider--spaced reveal-item" aria-hidden="true">
+            <span class="n04-branch-divider__line"></span>
+            <svg class="n04-branch-divider__svg" viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M40 20c-6-8-14-12-22-14 10 0 18 4 22 12 4-8 12-12 22-12-8 2-16 6-22 14z"
+                fill="rgba(90,122,98,0.45)"
+              />
+            </svg>
+            <span class="n04-branch-divider__line"></span>
+          </div>
+
+          <p class="n04-rsvp-gifts__gifts-title reveal-item" id="n04-gifts-heading">
+            Si deseas hacernos un obsequio, agradecemos tu gentileza<br />
+            les compartimos estas opciones
+          </p>
+          <div class="n04-rsvp-gifts__links reveal-item">
+            <a class="n04-link-gold" href="#">Ver op. 01</a>
+            <a class="n04-link-gold" href="#">Ver op. 02</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cierre: tríptico arcos + gracias -->
+      <section class="n04-thanks reveal-section">
+        <div class="container n04-thanks__wrap">
+          <div class="n04-thanks-triptych reveal-item">
+            <div
+              class="n04-thanks-arch n04-thanks-arch--side"
+              style="background-image: url('assets/img/historia-1.jpg')"
+            ></div>
+            <div
+              class="n04-thanks-arch n04-thanks-arch--center"
+              style="background-image: url('assets/img/gallery-proposal.jpg')"
+            ></div>
+            <div
+              class="n04-thanks-arch n04-thanks-arch--side"
+              style="background-image: url('assets/img/historia-1.jpg')"
+            ></div>
+          </div>
+          <p class="n04-thanks__gracias reveal-item">Gracias</p>
+          <p class="n04-thanks__line reveal-item">Por el honor de contar con su presencia</p>
+          <p class="n04-thanks__couple reveal-item">Arturo e Ivonne</p>
+          <p class="n04-thanks__brand reveal-item">
+            Plantilla de demostración · <a href="index.html">Invitanding</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer sqs-animate">
+      <p class="site-footer--brand">
+        <a href="historia.html">
+          <span class="footer-acerca">Acerca de</span> <span class="footer-invita">Invitanding</span>
+        </a>
+      </p>
+      <p class="footer-copy">Invitanding 2026 · Todos los derechos reservados</p>
+    </footer>
+    <script src="assets/js/scroll-reveal.js"></script>
+  </body>
+</html>

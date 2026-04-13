@@ -1,0 +1,993 @@
+/**
+ * Demo Nuevo 04 — referencia visual tipo Digta VIP (blanco, oro #c5a059, serif + script).
+ */
+
+/* Escala tipográfica global (~8 %): todo lo en `rem` hereda del `html` */
+html.n04-html {
+  font-size: 108%;
+}
+
+.demo-page--nuevo04 {
+  --hero-header-gap: clamp(0.65rem, 1.85vw, 1.2rem);
+  --n04-gold: #c5a059;
+  --n04-gold-soft: #d4b87a;
+  --n04-ink: #1a1a1a;
+  --n04-ink-soft: #333;
+  --n04-muted: #666;
+  --n04-line: #e8e4df;
+  --n04-mono: #e8d9c1;
+  --n04-green-dress: #1d3b3b;
+  --n04-dress-hair: #c5a059;
+  --n04-serif-caps: "Playfair Display", Georgia, "Times New Roman", serif;
+  --n04-serif: "Cormorant Garamond", Georgia, serif;
+  --n04-sans: var(--font);
+  background: #fff;
+  color: var(--n04-ink);
+}
+
+/* —— Header —— */
+.demo-page--nuevo04 .site-header--over-hero:not(.site-header--solid) .nav-desktop a,
+.demo-page--nuevo04 .site-header--over-hero:not(.site-header--solid) .nav-label {
+  color: var(--n04-ink);
+  text-shadow: none;
+}
+
+.demo-page--nuevo04 .site-header--over-hero:not(.site-header--solid) .nav-desktop a:hover {
+  background: rgba(197, 160, 89, 0.12);
+}
+
+.demo-page--nuevo04 .site-header--over-hero:not(.site-header--solid) .burger span {
+  background: var(--n04-ink);
+}
+
+.demo-page--nuevo04 .site-header--over-hero:not(.site-header--solid) .logo img {
+  filter: brightness(0) saturate(100%);
+  opacity: 0.9;
+}
+
+.demo-page--nuevo04 .site-header--over-hero.site-header--solid .logo img {
+  filter: none;
+  opacity: 1;
+}
+
+.demo-page--nuevo04 .site-header--over-hero.site-header--solid .nav-desktop a,
+.demo-page--nuevo04 .site-header--over-hero.site-header--solid .nav-label {
+  color: #eee;
+}
+
+.demo-page--nuevo04 .site-header .btn-primary {
+  background: var(--n04-gold);
+  border-color: var(--n04-gold);
+  color: #fff;
+}
+
+.demo-page--nuevo04 .site-header .btn-primary:hover {
+  background: #a88842;
+  border-color: #a88842;
+}
+
+.demo-page--nuevo04 .n04-main {
+  overflow-x: hidden;
+}
+
+/* Enlace dorado subrayado (Ver ubicación, etc.) */
+.n04-link-gold {
+  font-family: var(--n04-serif-caps);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--n04-gold);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+.n04-link-gold:hover {
+  color: #a88842;
+}
+
+.n04-link-gold--std {
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+}
+
+/* —— Hero —— */
+.n04-hero {
+  padding: calc(clamp(4.5rem, 12vw, 6.5rem) + var(--hero-header-gap)) 1.25rem clamp(3.5rem, 10vw, 5rem);
+  background: #fff;
+  text-align: center;
+}
+
+.n04-hero__wrap {
+  max-width: 32rem;
+  margin-inline: auto;
+}
+
+.n04-hero__intro {
+  font-family: var(--n04-serif-caps);
+  font-size: clamp(0.58rem, 1.2vw, 0.68rem);
+  font-weight: 600;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  margin: 0 0 0.65rem;
+  color: var(--n04-ink);
+}
+
+.n04-hero__intro--soft {
+  font-weight: 500;
+  opacity: 0.85;
+  margin-bottom: 2rem;
+}
+
+.n04-hero-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  margin-bottom: 2rem;
+}
+
+.n04-hero-date__dow {
+  font-family: var(--n04-serif-caps);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--n04-ink);
+  margin-bottom: 0.35rem;
+}
+
+.n04-hero-date__big {
+  font-family: var(--n04-serif-caps);
+  font-size: clamp(3.25rem, 14vw, 4.75rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 0.95;
+  color: var(--n04-ink);
+}
+
+.n04-hero-date__rule {
+  display: block;
+  width: min(12rem, 55vw);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--n04-gold), transparent);
+  margin: 0.35rem 0;
+}
+
+.n04-hero-date__year {
+  font-family: var(--n04-serif-caps);
+  font-size: clamp(1.35rem, 5vw, 1.85rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--n04-ink);
+  margin-top: 0.15rem;
+}
+
+.n04-hero-arches {
+  position: relative;
+  margin: 0 auto 1.75rem;
+  max-width: 28rem;
+}
+
+.n04-hero-arches__leaves {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -0.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.n04-hero-arches__leaves svg {
+  width: min(100px, 28vw);
+  height: auto;
+}
+
+.n04-hero-arches__pair {
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.n04-hero-arch {
+  flex: 1;
+  min-width: 0;
+  max-width: 13.5rem;
+  height: clamp(240px, 52vw, 380px);
+  border: 2px solid var(--n04-gold);
+  border-radius: 50% 50% 0 0 / 38% 38% 0 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+}
+
+.n04-hero-arch--left {
+  background-position: 28% center;
+}
+
+.n04-hero-arch--right {
+  background-position: 72% center;
+}
+
+.n04-hero__soul {
+  font-family: var(--n04-serif);
+  font-size: clamp(1.1rem, 2.6vw, 1.4rem);
+  font-style: italic;
+  font-weight: 500;
+  margin: 0 0 1rem;
+  color: var(--n04-muted);
+}
+
+.n04-hero-names {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.2rem 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.n04-hero-names__script {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(3.25rem, 14vw, 5.35rem);
+  line-height: 1;
+  color: var(--n04-ink);
+}
+
+.n04-hero-names__amp {
+  font-family: var(--n04-serif);
+  font-size: clamp(1.55rem, 4.8vw, 2.15rem);
+  font-style: italic;
+  color: var(--n04-gold);
+}
+
+.n04-hero__cordial {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+  margin: 0;
+  color: var(--n04-muted);
+}
+
+/* —— Pases —— */
+.n04-guest {
+  padding: clamp(2.25rem, 6vw, 3.25rem) 1.25rem;
+  background: #fff;
+}
+
+.n04-guest__wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.n04-guest__card {
+  text-align: center;
+  padding: 1.5rem 2rem;
+  border: 1px solid var(--n04-line);
+  max-width: 18rem;
+}
+
+.n04-guest__kicker {
+  font-family: var(--n04-serif-caps);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--n04-gold);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.n04-guest__count {
+  font-family: var(--n04-serif);
+  font-size: clamp(2.75rem, 8vw, 3.5rem);
+  font-weight: 600;
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.n04-guest__name {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+/* —— Cuenta regresiva —— */
+.n04-countdown {
+  padding: clamp(2.5rem, 8vw, 4rem) 1.25rem;
+  background: #fff;
+}
+
+.n04-countdown__grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+@media (min-width: 720px) {
+  .n04-countdown__grid {
+    grid-template-columns: minmax(200px, 1fr) minmax(280px, 1.2fr);
+    gap: 2.5rem;
+  }
+}
+
+.n04-countdown__mono {
+  position: relative;
+  height: clamp(200px, 42vw, 280px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.n04-countdown__mono-a,
+.n04-countdown__mono-i {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(5rem, 22vw, 9rem);
+  line-height: 1;
+  color: var(--n04-mono);
+  position: absolute;
+}
+
+.n04-countdown__mono-a {
+  transform: translate(-18%, -8%) rotate(-8deg);
+}
+
+.n04-countdown__mono-i {
+  transform: translate(18%, 12%) rotate(6deg);
+}
+
+.n04-countdown__rings {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 1.25rem;
+  justify-items: center;
+}
+
+.n04-count-ring {
+  --n04-progress: 0.5;
+  width: clamp(104px, 24vw, 128px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 3px;
+  background: conic-gradient(from -90deg, var(--n04-gold) calc(var(--n04-progress) * 360deg), var(--n04-line) 0);
+}
+
+.n04-count-ring__inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+}
+
+.n04-count-ring__num {
+  font-family: var(--n04-serif-caps);
+  font-size: clamp(1.35rem, 3.5vw, 1.65rem);
+  font-weight: 700;
+  color: var(--n04-ink);
+  line-height: 1;
+}
+
+.n04-count-ring__lbl {
+  font-family: var(--n04-serif-caps);
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--n04-ink);
+}
+
+.n04-countdown__note {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--n04-muted);
+  margin: 1.5rem auto 0;
+  max-width: 36rem;
+}
+
+/* —— Ceremonia / recepción —— */
+.n04-liturgy {
+  padding: clamp(3rem, 9vw, 4.5rem) 1.25rem;
+  background: #fff;
+}
+
+.n04-liturgy--party {
+  border-top: 1px solid var(--n04-line);
+}
+
+.n04-liturgy__inner {
+  max-width: 26rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.n04-liturgy__icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  color: var(--n04-gold);
+}
+
+.n04-liturgy__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.n04-liturgy__time {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.65rem, 4.5vw, 2.15rem);
+  margin: 0 0 1.25rem;
+  color: var(--n04-ink);
+}
+
+.n04-liturgy__body {
+  font-family: var(--n04-serif);
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--n04-ink-soft);
+  margin-bottom: 1.25rem;
+}
+
+.n04-liturgy__body p {
+  margin: 0;
+}
+
+.n04-liturgy__paren {
+  font-style: italic;
+  margin-top: 0.35rem !important;
+}
+
+.n04-liturgy__venue {
+  font-family: var(--n04-serif-caps);
+  font-size: clamp(0.78rem, 1.5vw, 0.88rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 0 0 0.35rem;
+  color: var(--n04-ink);
+}
+
+.n04-liturgy__sub {
+  font-family: var(--n04-serif);
+  font-size: clamp(1rem, 2vw, 1.12rem);
+  margin: 0 0 1.35rem;
+  color: var(--n04-muted);
+}
+
+.n04-liturgy__sub em {
+  font-style: italic;
+}
+
+/* —— Historia —— */
+.n04-story {
+  padding: clamp(2.75rem, 8vw, 4rem) 1.25rem;
+  background: #fff;
+  border-top: 1px solid var(--n04-line);
+}
+
+.n04-story__inner {
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.n04-story__quote {
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-align: center;
+}
+
+.n04-story__quote p {
+  font-family: var(--n04-serif);
+  font-size: clamp(1.15rem, 2.3vw, 1.35rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--n04-ink-soft);
+  margin: 0 0 1rem;
+}
+
+.n04-story__sig {
+  font-family: var(--n04-serif-caps);
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--n04-gold);
+}
+
+/* divisor con ramita */
+.n04-branch-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin: 0 auto 1.75rem;
+  max-width: 20rem;
+}
+
+.n04-branch-divider--spaced {
+  margin: 2.5rem auto;
+}
+
+.n04-branch-divider__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--n04-gold-soft), transparent);
+  opacity: 0.7;
+}
+
+.n04-branch-divider__svg {
+  width: 48px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.n04-branch-divider--light .n04-branch-divider__line {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+}
+
+/* —— Save the date —— */
+.n04-std {
+  padding: clamp(3rem, 9vw, 4.5rem) 1.25rem;
+  background: #fff;
+}
+
+.n04-std__inner {
+  max-width: 28rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.n04-std__kicker {
+  font-family: var(--n04-serif-caps);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--n04-ink-soft);
+  margin: 0 0 1.5rem;
+}
+
+.n04-std__couple {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(0.5rem, 2vw, 1rem);
+  margin-bottom: 1.5rem;
+}
+
+.n04-std__pair {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.n04-std__caps {
+  font-family: var(--n04-serif-caps);
+  font-size: clamp(1.38rem, 3.5vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--n04-gold);
+}
+
+.n04-std__script {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.55rem, 3.8vw, 2.05rem);
+  color: #8a8a8a;
+  line-height: 1;
+}
+
+.n04-std__amp {
+  font-family: var(--n04-serif);
+  font-size: 1.45rem;
+  font-style: italic;
+  color: var(--n04-gold);
+  margin-top: 0.35rem;
+}
+
+.n04-std__date {
+  font-family: var(--n04-serif-caps);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--n04-ink);
+  margin: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.n04-std__date .n04-std__dot {
+  opacity: 0.45;
+  font-weight: 400;
+}
+
+.n04-std__daymid {
+  font-size: clamp(1.35rem, 3.5vw, 1.75rem) !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.n04-std__dress-mini {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--n04-line);
+}
+
+.n04-std__wand {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 0.75rem;
+  color: var(--n04-gold);
+}
+
+.n04-std__wand svg {
+  width: 100%;
+  height: 100%;
+}
+
+.n04-std__dress-title {
+  font-family: var(--n04-serif-caps);
+  font-size: clamp(0.85rem, 1.8vw, 0.98rem);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--n04-gold);
+  margin: 0 0 0.75rem;
+}
+
+.n04-std__dress-text {
+  font-family: var(--n04-serif);
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  line-height: 1.65;
+  color: var(--n04-muted);
+  margin: 0;
+}
+
+/* —— Hoteles —— */
+.n04-hotels {
+  padding: clamp(2.75rem, 8vw, 4rem) 1.25rem;
+  background: #fafafa;
+  border-top: 1px solid var(--n04-line);
+}
+
+.n04-hotels__list {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  max-width: 1040px;
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .n04-hotels__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .n04-hotels__list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.n04-hotel-card {
+  background: #fff;
+  border: 1px solid var(--n04-line);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.n04-hotel-card__type {
+  font-family: var(--n04-serif-caps);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--n04-gold);
+  margin: 0;
+}
+
+.n04-hotel-card__name {
+  font-family: var(--n04-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+}
+
+.n04-hotels__note {
+  font-family: var(--n04-serif);
+  font-size: clamp(0.98rem, 1.6vw, 1.08rem);
+  font-style: italic;
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto;
+  color: var(--n04-muted);
+}
+
+/* —— Corte de honor —— */
+.n04-party {
+  padding: clamp(2.75rem, 8vw, 4rem) 1.25rem;
+  background: #fff;
+}
+
+.n04-party__title {
+  font-family: var(--n04-serif-caps);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--n04-gold);
+  margin: 0 0 1.75rem;
+}
+
+.n04-party__grid {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.n04-party__row {
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--n04-line);
+}
+
+.n04-party__row:first-of-type {
+  border-top: 1px solid var(--n04-line);
+}
+
+.n04-party__row dt {
+  font-family: var(--n04-serif-caps);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  margin: 0 0 0.35rem;
+  color: var(--n04-ink);
+}
+
+.n04-party__row dd {
+  font-family: var(--n04-serif);
+  font-size: 0.98rem;
+  margin: 0;
+  color: var(--n04-muted);
+}
+
+.n04-party__aside {
+  display: block;
+  font-style: italic;
+  color: var(--n04-gold);
+  margin-bottom: 0.25rem;
+}
+
+/* —— Dress code verde —— */
+.n04-dress--green {
+  --n04-dress-hair: #c5a059;
+  background: var(--n04-green-dress);
+  color: rgba(255, 255, 255, 0.92);
+  padding: clamp(3rem, 9vw, 4.5rem) 1.25rem;
+}
+
+.n04-dress--green .n04-dress__cols {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 640px;
+  margin: 0 auto 2rem;
+}
+
+@media (min-width: 560px) {
+  .n04-dress--green .n04-dress__cols {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+.n04-dress--green .n04-dress__col {
+  text-align: center;
+}
+
+.n04-dress__face {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 0.85rem;
+  color: #fff;
+}
+
+.n04-dress__face svg {
+  width: 100%;
+  height: 100%;
+}
+
+.n04-dress__gender-script {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.85rem, 4vw, 2.35rem);
+  font-weight: 400;
+  margin: 0 0 0.5rem;
+  color: #fff;
+}
+
+.n04-dress__rule {
+  font-family: var(--n04-serif);
+  font-size: clamp(1rem, 1.8vw, 1.1rem);
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.n04-dress__rule em {
+  font-style: italic;
+}
+
+.n04-dress__thanks {
+  font-family: var(--n04-serif);
+  font-size: clamp(1rem, 1.8vw, 1.12rem);
+  text-align: center;
+  max-width: 34rem;
+  margin: 0 auto;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* —— RSVP + regalos —— */
+.n04-rsvp-gifts {
+  padding: clamp(3.25rem, 9vw, 4.75rem) 1.25rem;
+  background: #fff;
+  border-top: 1px solid var(--n04-line);
+}
+
+.n04-rsvp-gifts__inner {
+  max-width: 32rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.n04-rsvp-gifts__title {
+  font-family: var(--n04-serif-caps);
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--n04-gold);
+  margin: 0 0 0.65rem;
+}
+
+.n04-rsvp-gifts__deadline {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.45rem, 3.5vw, 1.85rem);
+  margin: 0 0 1rem;
+  color: var(--n04-ink);
+}
+
+.n04-rsvp-gifts__text {
+  font-family: var(--n04-serif);
+  font-size: clamp(0.92rem, 1.5vw, 1.02rem);
+  line-height: 1.65;
+  color: var(--n04-muted);
+  margin: 0 0 1.25rem;
+}
+
+.n04-rsvp-gifts__gifts-title {
+  font-family: var(--n04-serif-caps);
+  font-size: clamp(0.55rem, 1.1vw, 0.62rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  line-height: 1.85;
+  text-transform: uppercase;
+  color: var(--n04-ink);
+  margin: 0 0 1.25rem;
+}
+
+.n04-rsvp-gifts__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* —— Gracias tríptico —— */
+.n04-thanks {
+  padding: clamp(3.5rem, 10vw, 5rem) 1.25rem 4rem;
+  background: #fff;
+}
+
+.n04-thanks__wrap {
+  max-width: 900px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.n04-thanks-triptych {
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+  align-items: stretch;
+  margin-bottom: 2rem;
+}
+
+.n04-thanks-arch {
+  flex: 1;
+  min-width: 0;
+  max-width: 280px;
+  height: clamp(200px, 38vw, 320px);
+  border: 2px solid var(--n04-gold);
+  border-radius: 50% 50% 0 0 / 36% 36% 0 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.n04-thanks-arch--center {
+  flex: 1.15;
+  max-width: 300px;
+  z-index: 1;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+.n04-thanks-arch--side {
+  background-position: center;
+  filter: blur(2.5px);
+  opacity: 0.88;
+  transform: scale(0.98);
+}
+
+.n04-thanks__gracias {
+  font-family: var(--n04-serif-caps);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--n04-gold);
+  margin: 0 0 0.65rem;
+}
+
+.n04-thanks__line {
+  font-family: var(--n04-serif-caps);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--n04-muted);
+  margin: 0 0 1rem;
+}
+
+.n04-thanks__couple {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(2.7rem, 7.5vw, 3.95rem);
+  margin: 0 0 1.25rem;
+  color: var(--n04-ink);
+}
+
+.n04-thanks__brand {
+  font-size: 0.75rem;
+  color: var(--n04-muted);
+  margin: 0;
+}
+
+.n04-thanks__brand a {
+  color: var(--n04-gold);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.n04-thanks__brand a:hover {
+  text-decoration: underline;
+}
