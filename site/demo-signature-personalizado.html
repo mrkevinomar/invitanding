@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<!-- Prueba (no en menú). ?t=… cifrado. Sobre estilo floral/blanco. Texto solapa: window.INVITANDING_ENVELOPE_TAGLINE. Sin sobre: prefers-reduced-motion o INVITANDING_SKIP_ENVELOPE. Legacy: INVITANDING_ALLOW_LEGACY_INVITE_PARAMS -->
+<html lang="es-EC">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo Signature (personalización URL) — prueba — Invitanding</title>
+    <meta
+      name="description"
+      content="Prueba de invitación Signature con nombre y pases en un parámetro de URL cifrado (?t=). No enlazada en el sitio público."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="demo-page demo-page--signature demo-page--signature-personalizado">
+    <div
+      id="js-invite-envelope-gate"
+      class="invite-envelope-gate"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="invite-envelope-a11y-title"
+      aria-hidden="true"
+    >
+      <p id="invite-envelope-a11y-title" class="visually-hidden">
+        Invitación personalizada. Toca el sello del sobre para abrirla.
+      </p>
+      <div class="invite-envelope-gate__layout">
+        <p class="invite-envelope-gate__hero-name" id="js-invite-envelope-name"></p>
+        <p class="invite-envelope-gate__pax-soft" id="js-invite-envelope-pax-soft" hidden></p>
+        <button
+          type="button"
+          class="invite-envelope-gate__trigger"
+          id="js-invite-envelope-trigger"
+          aria-label="Abrir invitación"
+        >
+          <span class="invite-envelope-soft-wrap">
+            <span class="invite-envelope-soft__florals" aria-hidden="true">
+              <span class="invite-floral invite-floral--1"></span>
+              <span class="invite-floral invite-floral--2"></span>
+              <span class="invite-floral invite-floral--3"></span>
+              <span class="invite-floral invite-floral--4"></span>
+              <span class="invite-floral invite-floral--5"></span>
+              <span class="invite-floral invite-floral--6"></span>
+            </span>
+            <span class="invite-envelope-soft" aria-hidden="true">
+              <span class="invite-envelope-soft__body"></span>
+              <span class="invite-envelope-soft__pocket"></span>
+              <span class="invite-envelope-soft__flap-layer">
+                <span class="invite-envelope-soft__flap"></span>
+                <span class="invite-envelope-soft__ribbon" id="js-invite-envelope-tagline"></span>
+              </span>
+              <span class="invite-envelope-soft__seal">
+                <span class="invite-envelope-soft__seal-letter" id="js-invite-seal-letter"></span>
+              </span>
+            </span>
+          </span>
+          <span class="invite-envelope-gate__cta">Toca el sello para abrirla</span>
+        </button>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="index.html">
+          <img src="assets/img/logo-blanco.png" alt="Invitanding" width="180" height="48" />
+        </a>
+        <nav class="nav-desktop" aria-label="Principal">
+          <a href="historia.html">Historia</a>
+          <div class="nav-item">
+            <span class="nav-label">Invitaciones Interactivas</span>
+            <div class="nav-submenu">
+              <a href="demo-classic.html">Invitación Classic</a>
+              <a href="demo-signature.html">Invitación Signature</a>
+              <a href="demo-premium.html">Invitación Premium</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <span class="nav-label">Invitaciones digitales</span>
+            <div class="nav-submenu">
+              <a href="snapcard-basica.html">Invitación Digital Clásica</a>
+              <a href="snapcard-interactiva.html">Invitación Digital Clásica + RSVP</a>
+            </div>
+          </div>
+        </nav>
+        <a class="btn btn-primary header-cta" href="contact.html">Contáctanos</a>
+        <div class="nav-toggle">
+          <input type="checkbox" id="nav-check" />
+          <label class="burger" for="nav-check" aria-label="Menú"
+            ><span></span><span></span><span></span
+          ></label>
+          <div class="nav-mobile-panel">
+            <a href="historia.html">Historia</a>
+            <span class="nav-mobile-heading">Invitaciones Interactivas</span>
+            <a class="sub" href="demo-classic.html">Invitación Classic</a>
+            <a class="sub" href="demo-signature.html">Invitación Signature</a>
+            <a class="sub" href="demo-premium.html">Invitación Premium</a>
+            <span class="nav-mobile-heading">Invitaciones digitales</span>
+            <a class="sub" href="snapcard-basica.html">Invitación Digital Clásica</a>
+            <a class="sub" href="snapcard-interactiva.html">Invitación Digital Clásica + RSVP</a>
+            <a href="contact.html">Contáctanos</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <header class="demo-hero demo-hero--light demo-hero--signature reveal-section">
+        <div class="inner container demo-signature-hero-inner">
+          <p class="visually-hidden">
+            ¡NOS CASAMOS! Valentina y Carlos. Fecha: 10 de septiembre de 2023.
+          </p>
+          <div class="demo-signature-arch reveal-item" aria-hidden="true">
+            <svg
+              class="demo-signature-arch__svg"
+              viewBox="0 0 420 88"
+              width="420"
+              height="88"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <defs>
+                <path
+                  id="signature-arch-path"
+                  d="M 24 72 Q 210 -2 396 72"
+                  fill="none"
+                />
+              </defs>
+              <text class="demo-signature-arch__text" fill="currentColor">
+                <textPath xlink:href="#signature-arch-path" href="#signature-arch-path" startOffset="50%" text-anchor="middle">
+                  ¡NOS CASAMOS!
+                </textPath>
+              </text>
+            </svg>
+          </div>
+          <div class="demo-signature-names reveal-item" role="presentation">
+            <span class="demo-signature-name">Valentina</span>
+            <span class="demo-signature-name-join">y</span>
+            <span class="demo-signature-name">Carlos</span>
+          </div>
+          <p class="demo-signature-date reveal-item">— 10.09.2023 —</p>
+          <p class="demo-signature-tagline reveal-item">
+            Y queremos celebrar junto a ti este momento tan especial para nosotros...
+          </p>
+          <p
+            class="demo-signature-personalizado-url reveal-item"
+            id="js-demo-guest-line"
+            aria-live="polite"
+          ></p>
+        </div>
+      </header>
+
+      <section>
+        <div class="container demo-cols">
+          <div class="reveal-item demo-cols__media">
+            <img src="assets/img/ceremonia.jpg" alt="" width="640" height="360" loading="lazy" />
+          </div>
+          <div class="reveal-item demo-cols__text">
+            <div class="demo-signature-section-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M32 12 18 24v28h28V24L32 12Z"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linejoin="round"
+                />
+                <path d="M24 52V34h16v18" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" />
+                <path
+                  d="M32 12V8M28 8h8"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <h2>Ceremonia</h2>
+            <p class="large">
+              La ceremonia se realizará el día
+              <span class="demo-text-date"><strong>10 de septiembre de 2023, a las 17:00, </strong></span>en la Iglesia
+              <a class="demo-link-venue" href="http://www.samconline.org/"><strong>San Antonio María Claret</strong></a
+              >.
+            </p>
+            <a class="demo-btn-map" href="https://maps.google.com" target="_blank" rel="noopener noreferrer"
+              >Cómo llegar</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container demo-cols">
+          <div class="reveal-item demo-cols__text">
+            <div class="demo-signature-section-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M15 46 22 24h8l-5 22H15Z"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M49 46 42 24h-8l5 22h10Z"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linejoin="round"
+                />
+                <path d="M20 24h10M34 24h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                <path d="M22 50h20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h2>Recepción</h2>
+            <p class="large">Luego la recepción se ofrecerá en el Bankers Club</p>
+            <a class="demo-btn-map" href="https://maps.google.com" target="_blank" rel="noopener noreferrer"
+              >Cómo llegar</a
+            >
+          </div>
+          <div class="reveal-item demo-cols__media">
+            <img src="assets/img/recepcion.jpg" alt="" width="640" height="427" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-section reveal-section">
+        <div class="container">
+          <div class="demo-signature-story-heading reveal-item">
+            <div class="demo-signature-section-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M32 52S10 35.5 10 24a9.5 9.5 0 0 1 17.2-5.5L32 22l4.8-3.5A9.5 9.5 0 0 1 54 24c0 11.5-22 28-22 28Z"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h2 class="demo-heading-story">Nuestra historia</h2>
+          </div>
+          <p class="large demo-story-lead reveal-item">
+            Nos conocimos en una fiesta de amigos en común y desde ese momento supimos que había algo especial entre
+            nosotros. A medida que pasábamos tiempo juntos, nuestra conexión se hizo más fuerte y nos enamoramos
+            profundamente.
+          </p>
+          <div class="demo-triptych reveal-item">
+            <div class="demo-triptych__side">
+              <img src="assets/img/historia-1.jpg" alt="" width="640" height="427" loading="lazy" />
+            </div>
+            <div class="demo-triptych__center">
+              <img src="assets/img/historia-2.jpg" alt="" width="640" height="960" loading="lazy" />
+            </div>
+            <div class="demo-triptych__side">
+              <img src="assets/img/historia-1.jpg" alt="" width="640" height="427" loading="lazy" />
+            </div>
+          </div>
+          <p class="large demo-story-continued reveal-item">
+            Hoy, estamos emocionados de compartir nuestra historia de amor mientras nos preparamos para dar el gran paso
+            hacia el matrimonio. Estamos agradecidos por ese encuentro fortuito que cambió nuestras vidas y estamos
+            listos para crear recuerdos inolvidables mientras caminamos juntos en esta hermosa aventura llamada vida.
+          </p>
+        </div>
+      </section>
+
+      <section class="demo-signature-rsvp-dress reveal-section">
+        <div class="container">
+          <div class="demo-rsvp__box reveal-item">
+            <h2>Confirmación de asistencia</h2>
+            <p>Esperamos que seas parte de esta gran celebración. ¡Confírmanos tu asistencia!</p>
+            <p class="demo-personalizado-rsvp-note" id="js-demo-rsvp-guest"></p>
+            <a class="demo-btn-rsvp" href="#">Confirmar asistencia</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-signature-dress-section reveal-section">
+        <div class="container">
+          <h2 class="visually-hidden">Dress code</h2>
+          <div class="demo-signature-dress reveal-item">
+            <div class="demo-signature-dress__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M32 10v8M26 12a6.5 6.5 0 0 1 12 0"
+                  stroke="currentColor"
+                  stroke-width="2.25"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M15 40h34l-8.5-15a11 11 0 0 0-17 0L15 40Z"
+                  stroke="currentColor"
+                  stroke-width="2.25"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15 40v12h34V40"
+                  stroke="currentColor"
+                  stroke-width="2.25"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <p class="demo-signature-dress__label"><strong>Dress code:</strong></p>
+            <p class="demo-signature-dress__value">Traje de etiqueta</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-section reveal-section">
+        <div class="container demo-gift demo-gift--signature">
+          <p class="large reveal-item">
+            ¡Nuestro mejor regalo es celebrar junto a ti! Si deseas realizarnos un regalo…
+          </p>
+          <div class="demo-gift__icon reveal-item" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 24h40v8H12V24zm4-8h8l4-6 4 6h8v8H16v-8z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+              <path d="M20 32v16h24V32" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <path d="M32 24v24" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </div>
+          <a class="demo-btn-gift reveal-item" href="#">Más información</a>
+        </div>
+      </section>
+
+      <section class="demo-banner reveal-section">
+        <div class="container">
+          <h2 class="reveal-item">¡Esperamos que puedas celebrar con nosotros!</h2>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer sqs-animate">
+      <p class="site-footer--brand">
+        <a href="historia.html">
+          <span class="footer-acerca">Acerca de</span> <span class="footer-invita">Invitanding</span>
+        </a>
+      </p>
+      <p class="footer-copy">Invitanding 2026 · Todos los derechos reservados</p>
+    </footer>
+    <script src="assets/js/scroll-reveal.js"></script>
+    <script src="assets/js/invite-token.js"></script>
+    <script>
+      (function () {
+        var line = document.getElementById("js-demo-guest-line");
+        var rsvpDetail = document.getElementById("js-demo-rsvp-guest");
+        var params = new URLSearchParams(window.location.search);
+        var token = params.get("t") || params.get("token") || "";
+
+        function decodeNombre(raw) {
+          if (!raw) return "";
+          var s = String(raw).replace(/\+/g, " ");
+          try {
+            return decodeURIComponent(s).trim();
+          } catch (e) {
+            return s.trim();
+          }
+        }
+
+        function formatMesa(mesa) {
+          if (mesa == null || mesa === "") return "";
+          if (typeof mesa === "number") return "Mesa " + mesa;
+          return String(mesa);
+        }
+
+        function applyOk(nombreMostrado, pases, mesa) {
+          var pasesTexto = pases === 1 ? "1 pase" : pases + " pases";
+          var mesaTxt = formatMesa(mesa);
+          if (line) {
+            line.classList.remove("demo-signature-personalizado-url--error");
+            line.textContent =
+              "Invitación personalizada para " +
+              nombreMostrado +
+              " · " +
+              pasesTexto +
+              (mesaTxt ? " · " + mesaTxt : "");
+          }
+          if (rsvpDetail) {
+            rsvpDetail.textContent =
+              "Nombre en la invitación: " +
+              nombreMostrado +
+              ". Cupo: " +
+              pasesTexto +
+              "." +
+              (mesaTxt ? " " + mesaTxt + "." : "");
+          }
+        }
+
+        function applyError() {
+          var msg =
+            "Este enlace de invitación no es válido o ha caducado. Solicita un nuevo enlace a los novios.";
+          if (line) {
+            line.classList.add("demo-signature-personalizado-url--error");
+            line.textContent = msg;
+          }
+          if (rsvpDetail) {
+            rsvpDetail.textContent =
+              "No pudimos leer los datos de tu invitación. Usa el enlace que te enviaron o escribe a los novios.";
+          }
+        }
+
+        /** Clave corta (hash): el token completo como key a veces falla en localStorage y el sobre reaparece. */
+        function envelopeStorageId(tokenStr, legacyNombre, legacyPases) {
+          var raw =
+            tokenStr && String(tokenStr).length
+              ? "t|" + String(tokenStr)
+              : "l|" + String(legacyNombre || "") + "|" + String(legacyPases != null ? legacyPases : "");
+          var h = 5381;
+          for (var i = 0; i < raw.length; i++) {
+            h = ((h << 5) + h) ^ raw.charCodeAt(i);
+          }
+          return "invitanding-env-" + (h >>> 0).toString(36);
+        }
+
+        function sealLetterFromName(nombre) {
+          var s = String(nombre || "").trim();
+          if (!s) return "♥";
+          var ch = s.charAt(0);
+          if (/[a-zA-ZÀ-ÿ]/.test(ch)) return ch.toUpperCase();
+          try {
+            var m = s.match(/\p{L}/u);
+            if (m) return m[0].toUpperCase();
+          } catch (e) {}
+          return ch.toUpperCase();
+        }
+
+        function envelopeAlreadyOpened(storageKey) {
+          try {
+            if (document.documentElement.getAttribute("data-invitanding-envelope-done") === storageKey) {
+              return true;
+            }
+            if (window.localStorage.getItem(storageKey) === "1") return true;
+            if (window.sessionStorage.getItem(storageKey) === "1") return true;
+          } catch (e) {}
+          return false;
+        }
+
+        function markEnvelopeOpened(storageKey) {
+          try {
+            window.localStorage.setItem(storageKey, "1");
+          } catch (e) {}
+          try {
+            window.sessionStorage.setItem(storageKey, "1");
+          } catch (e2) {}
+          try {
+            document.documentElement.setAttribute("data-invitanding-envelope-done", storageKey);
+          } catch (e3) {}
+        }
+
+        function kickScrollReveal() {
+          requestAnimationFrame(function () {
+            window.dispatchEvent(new Event("resize"));
+          });
+          window.setTimeout(function () {
+            window.dispatchEvent(new Event("resize"));
+          }, 120);
+          window.setTimeout(function () {
+            window.dispatchEvent(new Event("resize"));
+          }, 400);
+        }
+
+        function maybeShowEnvelopeGate(nombreMostrado, numPases, storageKey) {
+          if (window.INVITANDING_SKIP_ENVELOPE === true) return;
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          if (envelopeAlreadyOpened(storageKey)) return;
+
+          var gate = document.getElementById("js-invite-envelope-gate");
+          var nameEl = document.getElementById("js-invite-envelope-name");
+          var paxSoft = document.getElementById("js-invite-envelope-pax-soft");
+          var sealLetterEl = document.getElementById("js-invite-seal-letter");
+          var taglineEl = document.getElementById("js-invite-envelope-tagline");
+          var trigger = document.getElementById("js-invite-envelope-trigger");
+          if (!gate || !nameEl || !trigger) return;
+
+          if (gate.getAttribute("data-invite-prepared") === "1") return;
+          gate.setAttribute("data-invite-prepared", "1");
+
+          var p = Math.min(99, Math.max(1, parseInt(numPases, 10) || 1));
+          nameEl.textContent = nombreMostrado;
+          if (paxSoft) {
+            paxSoft.textContent =
+              p === 1 ? "1 persona" : ("0" + p).slice(-2) + " personas";
+            paxSoft.removeAttribute("hidden");
+          }
+          if (sealLetterEl) {
+            sealLetterEl.textContent = sealLetterFromName(nombreMostrado);
+          }
+          if (taglineEl) {
+            taglineEl.textContent =
+              typeof window.INVITANDING_ENVELOPE_TAGLINE === "string" && window.INVITANDING_ENVELOPE_TAGLINE.trim()
+                ? window.INVITANDING_ENVELOPE_TAGLINE.trim()
+                : "Nuestra boda";
+          }
+          trigger.setAttribute(
+            "aria-label",
+            "Abrir invitación para " + nombreMostrado + ". Toca el sello para abrirla."
+          );
+
+          gate.hidden = false;
+          gate.setAttribute("aria-hidden", "false");
+          document.body.classList.add("invite-envelope-active");
+          window.setTimeout(function () {
+            try {
+              trigger.focus();
+            } catch (e) {}
+          }, 100);
+
+          var opening = false;
+          var tFade = 0;
+          var tClose = 0;
+
+          function closeGate() {
+            window.clearTimeout(tFade);
+            window.clearTimeout(tClose);
+            gate.hidden = true;
+            gate.setAttribute("aria-hidden", "true");
+            gate.style.setProperty("display", "none", "important");
+            gate.style.setProperty("visibility", "hidden", "important");
+            gate.style.setProperty("pointer-events", "none", "important");
+            document.body.classList.remove("invite-envelope-active");
+            gate.classList.remove("invite-envelope-gate--opening", "invite-envelope-gate--bye");
+            try {
+              if (gate.parentNode) {
+                gate.parentNode.removeChild(gate);
+              }
+            } catch (remErr) {}
+            kickScrollReveal();
+          }
+
+          function onActivate(e) {
+            if (opening) return;
+            if (e.type === "keydown" && e.key !== "Enter" && e.key !== " ") return;
+            if (e.type === "keydown") e.preventDefault();
+            opening = true;
+            markEnvelopeOpened(storageKey);
+            trigger.removeEventListener("click", onActivate);
+            trigger.removeEventListener("keydown", onActivate);
+            gate.classList.add("invite-envelope-gate--opening");
+            tFade = window.setTimeout(function () {
+              gate.classList.add("invite-envelope-gate--bye");
+            }, 780);
+            tClose = window.setTimeout(closeGate, 1320);
+          }
+
+          trigger.addEventListener("click", onActivate);
+          trigger.addEventListener("keydown", onActivate);
+        }
+
+        if (token && window.InviteToken) {
+          InviteToken.decryptPayload(InviteToken.getSecret(), token)
+            .then(function (data) {
+              var nombreMostrado = (data.n && String(data.n).trim()) || "Invitado/a";
+              applyOk(nombreMostrado, data.p, data.m);
+              maybeShowEnvelopeGate(nombreMostrado, data.p, envelopeStorageId(token, "", ""));
+            })
+            .catch(applyError);
+          return;
+        }
+
+        if (window.INVITANDING_ALLOW_LEGACY_INVITE_PARAMS === true) {
+          var nombre = decodeNombre(params.get("nombre") || params.get("invitado") || "");
+          var pasesRaw = params.get("pases") || params.get("pax") || "";
+          var pases = parseInt(pasesRaw, 10);
+          if (isNaN(pases) || pases < 1) pases = 1;
+          if (pases > 99) pases = 99;
+          var nombreMostrado = nombre || "Invitado/a";
+          applyOk(nombreMostrado, pases, null);
+          maybeShowEnvelopeGate(nombreMostrado, pases, envelopeStorageId("", nombreMostrado, pases));
+          return;
+        }
+
+        applyError();
+      })();
+    </script>
+  </body>
+</html>
