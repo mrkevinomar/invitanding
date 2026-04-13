@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Generador de enlaces de invitación</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+      .gen-wrap {
+        max-width: 44rem;
+        margin: 0 auto;
+        padding: clamp(4rem, 10vw, 5rem) 1.25rem 3rem;
+      }
+      .gen-wrap h1 {
+        font-size: 1.35rem;
+        margin: 0 0 0.5rem;
+      }
+      .gen-wrap p.note {
+        font-size: 0.9rem;
+        color: var(--color-muted);
+        margin: 0 0 1.5rem;
+        line-height: 1.5;
+      }
+      .gen-field {
+        margin-bottom: 1rem;
+      }
+      .gen-field label {
+        display: block;
+        font-size: 0.88rem;
+        font-weight: 500;
+        margin-bottom: 0.35rem;
+      }
+      .gen-field input[type="text"],
+      .gen-field input[type="url"],
+      .gen-field input[type="password"],
+      .gen-field input[type="number"] {
+        width: 100%;
+        padding: 0.6rem 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-family: var(--font);
+        box-sizing: border-box;
+      }
+      .gen-field-hint {
+        font-size: 0.78rem;
+        color: #666;
+        margin: 0.35rem 0 0;
+      }
+      .gen-guests-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin: 1.5rem 0 0.65rem;
+      }
+      .gen-guests-head h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0;
+      }
+      .gen-guest-row {
+        display: grid;
+        grid-template-columns: 1fr 5.5rem auto;
+        gap: 0.5rem 0.65rem;
+        align-items: end;
+        margin-bottom: 0.65rem;
+        padding: 0.75rem;
+        background: rgba(255, 255, 255, 0.55);
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+      @media (max-width: 520px) {
+        .gen-guest-row {
+          grid-template-columns: 1fr 5rem;
+        }
+        .gen-guest-row .gen-guest-remove {
+          grid-column: 1 / -1;
+          justify-self: start;
+        }
+      }
+      .gen-guest-row label {
+        font-size: 0.78rem;
+        font-weight: 500;
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+      .gen-guest-remove {
+        padding: 0.45rem 0.65rem;
+        font-size: 0.82rem;
+        border: 1px solid #bbb;
+        border-radius: 6px;
+        background: #fff;
+        cursor: pointer;
+        font-family: var(--font);
+        color: #555;
+      }
+      .gen-guest-remove:hover {
+        background: #f3f3ee;
+      }
+      .gen-actions {
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        align-items: center;
+      }
+      .gen-out {
+        margin-top: 1.75rem;
+      }
+      .gen-out h2 {
+        font-size: 1rem;
+        margin: 0 0 0.75rem;
+      }
+      .gen-result-card {
+        background: #f5f5f0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 0.85rem 1rem;
+        margin-bottom: 0.75rem;
+      }
+      .gen-result-card strong {
+        display: block;
+        font-size: 0.9rem;
+        margin-bottom: 0.45rem;
+        color: #1d3b3b;
+      }
+      .gen-result-url {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.55rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: ui-monospace, monospace;
+        word-break: break-all;
+        margin-bottom: 0.5rem;
+      }
+      .gen-copy {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.82rem;
+        border-radius: 6px;
+        border: 1px solid var(--color-copper, #8b6914);
+        background: #fff;
+        color: var(--color-copper, #6b4f0a);
+        cursor: pointer;
+        font-family: var(--font);
+      }
+      .gen-copy:hover {
+        background: rgba(139, 105, 20, 0.08);
+      }
+      .gen-copy.gen-copy--done {
+        border-color: #2d6a4f;
+        color: #2d6a4f;
+      }
+    </style>
+  </head>
+  <body style="background: var(--color-cream)">
+    <div class="gen-wrap">
+      <h1>Generador de enlaces de invitación</h1>
+      <p class="note">
+        Indica la URL base de la invitación (la página que lee <code>?t=</code>), la misma clave que en
+        <code>assets/js/invite-token.js</code>, y añade tantos invitados como necesites. Cada fila genera un enlace con
+        nombre y pases cifrados, listo para copiar y enviar.
+      </p>
+      <form id="gen-form">
+        <div class="gen-field">
+          <label for="gen-base-url">URL base de la invitación</label>
+          <input
+            id="gen-base-url"
+            name="baseUrl"
+            type="url"
+            required
+            placeholder="https://tudominio.com/demo-signature-personalizado"
+          />
+          <p class="gen-field-hint">Sin <code>?t=</code> al final; puede ser la ruta limpia o el <code>.html</code>.</p>
+        </div>
+        <div class="gen-field">
+          <label for="gen-secret">Clave de cifrado</label>
+          <input id="gen-secret" name="secret" type="password" autocomplete="off" required />
+        </div>
+        <div class="gen-guests-head">
+          <h2>Invitados</h2>
+          <button type="button" class="btn btn-primary" id="gen-add-row" style="padding: 0.4rem 0.85rem; font-size: 0.88rem">
+            + Añadir invitado
+          </button>
+        </div>
+        <div id="gen-guest-rows" aria-live="polite"></div>
+        <div class="gen-actions">
+          <button class="btn btn-primary" type="submit">Generar enlaces</button>
+        </div>
+      </form>
+      <div class="gen-out" id="gen-result" hidden>
+        <h2>Enlaces listos para enviar</h2>
+        <div id="gen-result-list"></div>
+      </div>
+      <p id="gen-error" class="note" style="color: #a33; margin-top: 1rem" hidden></p>
+    </div>
+    <script src="assets/js/invite-token.js"></script>
+    <script>
+      (function () {
+        var rowsEl = document.getElementById("gen-guest-rows");
+        var secretEl = document.getElementById("gen-secret");
+        var baseUrlEl = document.getElementById("gen-base-url");
+        var form = document.getElementById("gen-form");
+
+        function defaultBaseUrl() {
+          try {
+            var p = window.location.pathname.replace(/[^/]*$/, "demo-signature-personalizado.html");
+            return window.location.origin + p;
+          } catch (e) {
+            return "";
+          }
+        }
+
+        if (baseUrlEl && /^https?:/i.test(window.location.protocol)) {
+          baseUrlEl.value = defaultBaseUrl();
+        }
+        if (secretEl && window.InviteToken) {
+          secretEl.value = InviteToken.getDefaultSecret();
+        }
+
+        function appendTokenToBase(base, token) {
+          var b = String(base || "").trim().replace(/[?&]$/, "");
+          if (!b) return "";
+          var sep = b.indexOf("?") >= 0 ? "&" : "?";
+          return b + sep + "t=" + encodeURIComponent(token);
+        }
+
+        function addRow(nombre, pases) {
+          var wrap = document.createElement("div");
+          wrap.className = "gen-guest-row";
+          var colName = document.createElement("div");
+          var labN = document.createElement("label");
+          labN.textContent = "Nombre";
+          var inN = document.createElement("input");
+          inN.type = "text";
+          inN.className = "gen-in-nombre";
+          inN.required = true;
+          inN.placeholder = "Nombre del invitado";
+          if (nombre) inN.value = nombre;
+          colName.appendChild(labN);
+          colName.appendChild(inN);
+          var colP = document.createElement("div");
+          var labP = document.createElement("label");
+          labP.textContent = "Pases";
+          var inP = document.createElement("input");
+          inP.type = "number";
+          inP.className = "gen-in-pases";
+          inP.min = "1";
+          inP.max = "99";
+          inP.required = true;
+          inP.value = pases != null ? String(pases) : "2";
+          colP.appendChild(labP);
+          colP.appendChild(inP);
+          var rm = document.createElement("button");
+          rm.type = "button";
+          rm.className = "gen-guest-remove";
+          rm.setAttribute("aria-label", "Quitar invitado");
+          rm.textContent = "Quitar";
+          rm.addEventListener("click", function () {
+            if (rowsEl.querySelectorAll(".gen-guest-row").length <= 1) return;
+            wrap.remove();
+          });
+          wrap.appendChild(colName);
+          wrap.appendChild(colP);
+          wrap.appendChild(rm);
+          rowsEl.appendChild(wrap);
+        }
+
+        addRow("", 2);
+
+        document.getElementById("gen-add-row").addEventListener("click", function () {
+          addRow("", 2);
+        });
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var err = document.getElementById("gen-error");
+          var res = document.getElementById("gen-result");
+          var list = document.getElementById("gen-result-list");
+          err.hidden = true;
+          res.hidden = true;
+          list.innerHTML = "";
+
+          var secret = (secretEl && secretEl.value) || "";
+          var baseUrl = (baseUrlEl && baseUrlEl.value.trim()) || "";
+
+          if (!baseUrl) {
+            err.textContent = "Indica la URL base de la invitación.";
+            err.hidden = false;
+            return;
+          }
+
+          var rowEls = rowsEl.querySelectorAll(".gen-guest-row");
+          var tasks = [];
+          var metas = [];
+
+          for (var i = 0; i < rowEls.length; i++) {
+            var nombre = rowEls[i].querySelector(".gen-in-nombre").value.trim();
+            var pases = parseInt(rowEls[i].querySelector(".gen-in-pases").value, 10);
+            if (!nombre) continue;
+            if (isNaN(pases) || pases < 1) pases = 1;
+            if (pases > 99) pases = 99;
+            metas.push({ nombre: nombre, pases: pases });
+            tasks.push(InviteToken.encryptPayload(secret, { n: nombre, p: pases }));
+          }
+
+          if (tasks.length === 0) {
+            err.textContent = "Añade al menos un invitado con nombre.";
+            err.hidden = false;
+            return;
+          }
+
+          Promise.all(tasks)
+            .then(function (tokens) {
+              for (var j = 0; j < tokens.length; j++) {
+                var url = appendTokenToBase(baseUrl, tokens[j]);
+                var card = document.createElement("div");
+                card.className = "gen-result-card";
+                var inpId = "gen-url-" + j;
+                var title = document.createElement("strong");
+                title.textContent =
+                  metas[j].nombre +
+                  " · " +
+                  (metas[j].pases === 1 ? "1 pase" : metas[j].pases + " pases");
+                var inp = document.createElement("input");
+                inp.type = "text";
+                inp.readOnly = true;
+                inp.className = "gen-result-url";
+                inp.id = inpId;
+                inp.value = url;
+                var btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "gen-copy";
+                btn.setAttribute("data-copy", inpId);
+                btn.textContent = "Copiar enlace";
+                card.appendChild(title);
+                card.appendChild(inp);
+                card.appendChild(btn);
+                list.appendChild(card);
+              }
+
+              list.querySelectorAll(".gen-copy").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                  var id = btn.getAttribute("data-copy");
+                  var input = document.getElementById(id);
+                  if (!input) return;
+                  input.select();
+                  input.setSelectionRange(0, 99999);
+                  var done = function () {
+                    btn.classList.add("gen-copy--done");
+                    var t = btn.textContent;
+                    btn.textContent = "Copiado";
+                    setTimeout(function () {
+                      btn.classList.remove("gen-copy--done");
+                      btn.textContent = t;
+                    }, 1600);
+                  };
+                  if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(input.value).then(done).catch(function () {
+                      try {
+                        document.execCommand("copy");
+                        done();
+                      } catch (e2) {}
+                    });
+                  } else {
+                    try {
+                      document.execCommand("copy");
+                      done();
+                    } catch (e3) {}
+                  }
+                });
+              });
+
+              res.hidden = false;
+              res.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            })
+            .catch(function () {
+              err.textContent = "No se pudieron generar los tokens. Revisa la clave y los datos.";
+              err.hidden = false;
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

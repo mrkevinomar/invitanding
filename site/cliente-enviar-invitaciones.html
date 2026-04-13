@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Preparar y enviar invitaciones — Invitanding</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+      .cliente-portal-intro {
+        max-width: 36rem;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .cliente-portal-intro h2 {
+        font-family: var(--font);
+        font-size: clamp(1.15rem, 3vw, 1.35rem);
+        font-weight: 600;
+        color: var(--sig-ink, #1d3b3b);
+        margin: 0 0 0.65rem;
+        line-height: 1.35;
+      }
+      .cliente-portal-intro .lead {
+        font-family: var(--font);
+        font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+        color: var(--sig-body, #2a413c);
+        line-height: 1.65;
+        margin: 0 0 1rem;
+      }
+      .cliente-portal-steps {
+        text-align: left;
+        max-width: 28rem;
+        margin: 0 auto 1.5rem;
+        padding: 0;
+        list-style: none;
+        counter-reset: step;
+      }
+      .cliente-portal-steps li {
+        position: relative;
+        padding-left: 2.35rem;
+        margin-bottom: 0.85rem;
+        font-family: var(--font);
+        font-size: 0.92rem;
+        color: var(--sig-body, #2a413c);
+        line-height: 1.5;
+      }
+      .cliente-portal-steps li::before {
+        counter-increment: step;
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.65rem;
+        height: 1.65rem;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #8cc6b4, #5a9a88);
+        color: #fff;
+        font-size: 0.82rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cliente-portal-preview-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-family: var(--font);
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: var(--sig-link, #1a5c52);
+        text-decoration: none;
+        margin-top: 0.25rem;
+      }
+      .cliente-portal-preview-link:hover {
+        text-decoration: underline;
+      }
+      .cliente-portal-card {
+        max-width: 38rem;
+        margin: 0 auto;
+        padding: clamp(1.5rem, 4vw, 2.25rem);
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 40px rgba(29, 59, 59, 0.08), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+        border: 1px solid rgba(140, 198, 180, 0.25);
+      }
+      .cliente-portal-card h3 {
+        font-family: var(--font);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--sig-ink, #1d3b3b);
+        margin: 0 0 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .cliente-portal-card h3 svg {
+        flex-shrink: 0;
+        opacity: 0.85;
+      }
+      .cliente-guests-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin: 0 0 0.85rem;
+      }
+      .cliente-guests-head span {
+        font-family: var(--font);
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--sig-ink, #1d3b3b);
+      }
+      .cliente-guest-row {
+        display: grid;
+        grid-template-columns: 1fr 5.5rem auto;
+        gap: 0.5rem 0.65rem;
+        align-items: end;
+        margin-bottom: 0.75rem;
+        padding: 1rem;
+        background: var(--sig-surface-a, #f2f8f6);
+        border: 1px solid rgba(140, 198, 180, 0.35);
+        border-radius: 10px;
+      }
+      @media (max-width: 520px) {
+        .cliente-guest-row {
+          grid-template-columns: 1fr 5rem;
+        }
+        .cliente-guest-row .cliente-guest-remove {
+          grid-column: 1 / -1;
+          justify-self: start;
+        }
+      }
+      .cliente-guest-row label {
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--sig-muted, #4d6862);
+        display: block;
+        margin-bottom: 0.3rem;
+      }
+      .cliente-guest-row input {
+        width: 100%;
+        padding: 0.6rem 0.7rem;
+        border: 1px solid #c5ddd4;
+        border-radius: 8px;
+        font-family: var(--font);
+        font-size: 0.95rem;
+        box-sizing: border-box;
+        background: #fff;
+      }
+      .cliente-guest-row input:focus {
+        outline: 2px solid rgba(140, 198, 180, 0.65);
+        outline-offset: 1px;
+      }
+      .cliente-guest-remove {
+        padding: 0.45rem 0.75rem;
+        font-size: 0.82rem;
+        border: 1px solid #b8cfc6;
+        border-radius: 8px;
+        background: #fff;
+        cursor: pointer;
+        font-family: var(--font);
+        color: var(--sig-muted, #4d6862);
+      }
+      .cliente-guest-remove:hover {
+        background: #f6faf8;
+      }
+      .cliente-result-block {
+        max-width: 38rem;
+        margin: clamp(2rem, 5vw, 2.75rem) auto 0;
+      }
+      .cliente-result-block h3 {
+        font-family: var(--font);
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--sig-ink, #1d3b3b);
+        margin: 0 0 1rem;
+        text-align: center;
+      }
+      .cliente-link-row {
+        margin-bottom: 1rem;
+        padding: 1.1rem 1.15rem;
+        border-radius: 10px;
+        background: #fff;
+        border: 1px solid rgba(140, 198, 180, 0.4);
+        box-shadow: 0 4px 20px rgba(29, 59, 59, 0.06);
+      }
+      .cliente-link-row .name-line {
+        font-family: var(--font);
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--sig-ink, #1d3b3b);
+        margin: 0 0 0.65rem;
+      }
+      .cliente-link-row input {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 0.72rem;
+        padding: 0.55rem 0.6rem;
+        margin-bottom: 0.55rem;
+        border: 1px solid #d4e8e0;
+        border-radius: 6px;
+        font-family: ui-monospace, monospace;
+        word-break: break-all;
+        background: #fafcfb;
+        color: #333;
+      }
+      .cliente-copy {
+        padding: 0.5rem 1rem;
+        font-size: 0.88rem;
+        border-radius: 8px;
+        border: none;
+        background: var(--sig-link, #1a5c52);
+        color: #fff;
+        cursor: pointer;
+        font-family: var(--font);
+        font-weight: 500;
+      }
+      .cliente-copy:hover {
+        filter: brightness(1.06);
+      }
+      .cliente-copy.cliente-copy--done {
+        background: #2d6a4f;
+      }
+      .cliente-msg-err {
+        max-width: 38rem;
+        margin: 1.25rem auto 0;
+        padding: 0.85rem 1rem;
+        border-radius: 10px;
+        background: #fdf2f2;
+        border: 1px solid #e8c4c4;
+        color: #7a2f2f;
+        font-family: var(--font);
+        font-size: 0.9rem;
+        line-height: 1.45;
+      }
+    </style>
+  </head>
+  <body class="demo-page demo-page--signature cliente-portal-page">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="index.html">
+          <img src="assets/img/logo-blanco.png" alt="Invitanding" width="180" height="48" />
+        </a>
+        <nav class="nav-desktop" aria-label="Principal">
+          <a href="historia.html">Historia</a>
+          <div class="nav-item">
+            <span class="nav-label">Invitaciones Interactivas</span>
+            <div class="nav-submenu">
+              <a href="demo-classic.html">Invitación Classic</a>
+              <a href="demo-signature.html">Invitación Signature</a>
+              <a href="demo-premium.html">Invitación Premium</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <span class="nav-label">Invitaciones digitales</span>
+            <div class="nav-submenu">
+              <a href="snapcard-basica.html">Invitación Digital Clásica</a>
+              <a href="snapcard-interactiva.html">Invitación Digital Clásica + RSVP</a>
+            </div>
+          </div>
+        </nav>
+        <a class="btn btn-primary header-cta" href="contact.html">Contáctanos</a>
+        <div class="nav-toggle">
+          <input type="checkbox" id="nav-check" />
+          <label class="burger" for="nav-check" aria-label="Menú"
+            ><span></span><span></span><span></span
+          ></label>
+          <div class="nav-mobile-panel">
+            <a href="historia.html">Historia</a>
+            <span class="nav-mobile-heading">Invitaciones Interactivas</span>
+            <a class="sub" href="demo-classic.html">Invitación Classic</a>
+            <a class="sub" href="demo-signature.html">Invitación Signature</a>
+            <a class="sub" href="demo-premium.html">Invitación Premium</a>
+            <span class="nav-mobile-heading">Invitaciones digitales</span>
+            <a class="sub" href="snapcard-basica.html">Invitación Digital Clásica</a>
+            <a class="sub" href="snapcard-interactiva.html">Invitación Digital Clásica + RSVP</a>
+            <a href="contact.html">Contáctanos</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <header class="demo-hero demo-hero--light demo-hero--signature reveal-section">
+        <div class="inner container demo-signature-hero-inner">
+          <div class="demo-signature-arch reveal-item" aria-hidden="true">
+            <svg
+              class="demo-signature-arch__svg"
+              viewBox="0 0 420 88"
+              width="420"
+              height="88"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <defs>
+                <path id="cliente-arch-path" d="M 24 72 Q 210 -2 396 72" fill="none" />
+              </defs>
+              <text class="demo-signature-arch__text" fill="currentColor">
+                <textPath xlink:href="#cliente-arch-path" href="#cliente-arch-path" startOffset="50%" text-anchor="middle">
+                  TU INVITACIÓN SIGNATURE
+                </textPath>
+              </text>
+            </svg>
+          </div>
+          <div class="cliente-portal-intro reveal-item">
+            <h2>Prepara los enlaces para tus invitados</h2>
+            <p class="lead">
+              Aquí preparas cada acceso personalizado a la misma invitación que elegiste: misma historia, mismos detalles, con el nombre y los pases correctos para cada persona o familia. Solo completa la lista y crea los enlaces para enviarlos por WhatsApp o el medio que prefieras.
+            </p>
+            <ol class="cliente-portal-steps">
+              <li>Escribe quién recibe la invitación (nombre o familia).</li>
+              <li>Indica cuántas personas entran con ese enlace.</li>
+              <li>Crea y copia el enlace de cada fila para enviarlo.</li>
+            </ol>
+            <a class="cliente-portal-preview-link" href="demo-signature-personalizado.html" target="_blank" rel="noopener noreferrer">
+              Ver cómo se ve la invitación
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <section class="demo-section reveal-section" style="padding-top: 0">
+        <div class="container">
+          <div class="cliente-portal-card">
+            <h3>
+              <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path
+                  d="M32 52S10 35.5 10 24a9.5 9.5 0 0 1 17.2-5.5L32 22l4.8-3.5A9.5 9.5 0 0 1 54 24c0 11.5-22 28-22 28Z"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Quién recibe tu invitación
+            </h3>
+
+            <form id="gen-form">
+              <div class="cliente-guests-head">
+                <span>Lista de invitados</span>
+                <button type="button" class="btn btn-primary" id="gen-add-row" style="padding: 0.45rem 0.95rem; font-size: 0.88rem">
+                  + Agregar otra persona o familia
+                </button>
+              </div>
+              <div id="gen-guest-rows"></div>
+              <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem; padding: 0.65rem 1rem">
+                Crear enlaces listos para compartir
+              </button>
+            </form>
+          </div>
+
+          <div id="gen-result" class="cliente-result-block" hidden>
+            <h3>✓ Tus enlaces ya están listos</h3>
+            <p style="text-align: center; font-family: var(--font); font-size: 0.88rem; color: var(--sig-muted); margin: -0.35rem 0 1.25rem; max-width: 32rem; margin-left: auto; margin-right: auto">
+              Toca «Copiar enlace» y pégalo en WhatsApp, correo o mensaje. Cada enlace es único y lleva el nombre y los pases que pusiste arriba.
+            </p>
+            <div id="gen-result-list"></div>
+          </div>
+          <p id="gen-error" class="cliente-msg-err" hidden></p>
+        </div>
+      </section>
+
+      <section class="demo-banner reveal-section">
+        <div class="container">
+          <h2 class="reveal-item" style="font-size: clamp(1.1rem, 3vw, 1.35rem)">Gracias por confiar en Invitanding</h2>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer sqs-animate">
+      <p class="site-footer--brand">
+        <a href="historia.html">
+          <span class="footer-acerca">Acerca de</span> <span class="footer-invita">Invitanding</span>
+        </a>
+      </p>
+      <p class="footer-copy">Invitanding 2026 · Todos los derechos reservados</p>
+    </footer>
+
+    <script src="assets/js/invite-token.js"></script>
+    <script src="assets/js/scroll-reveal.js"></script>
+    <script>
+      (function () {
+        var INVITE_FILE = "demo-signature-personalizado.html";
+
+        function inviteBaseUrl() {
+          try {
+            return new URL(INVITE_FILE, window.location.href).href;
+          } catch (e) {
+            return "";
+          }
+        }
+
+        function appendTokenToBase(base, token) {
+          var b = String(base || "").trim().replace(/[?&]$/, "");
+          if (!b) return "";
+          var sep = b.indexOf("?") >= 0 ? "&" : "?";
+          return b + sep + "t=" + encodeURIComponent(token);
+        }
+
+        var rowsEl = document.getElementById("gen-guest-rows");
+
+        function addRow() {
+          var wrap = document.createElement("div");
+          wrap.className = "cliente-guest-row";
+          var colName = document.createElement("div");
+          var labN = document.createElement("label");
+          labN.textContent = "Nombre o familia";
+          var inN = document.createElement("input");
+          inN.type = "text";
+          inN.className = "gen-in-nombre";
+          inN.required = true;
+          inN.placeholder = "Ej. Familia Pérez, María José…";
+          colName.appendChild(labN);
+          colName.appendChild(inN);
+          var colP = document.createElement("div");
+          var labP = document.createElement("label");
+          labP.textContent = "Personas (pases)";
+          var inP = document.createElement("input");
+          inP.type = "number";
+          inP.className = "gen-in-pases";
+          inP.min = "1";
+          inP.max = "99";
+          inP.required = true;
+          inP.value = "2";
+          colP.appendChild(labP);
+          colP.appendChild(inP);
+          var rm = document.createElement("button");
+          rm.type = "button";
+          rm.className = "cliente-guest-remove";
+          rm.textContent = "Quitar";
+          rm.addEventListener("click", function () {
+            if (rowsEl.querySelectorAll(".cliente-guest-row").length <= 1) return;
+            wrap.remove();
+          });
+          wrap.appendChild(colName);
+          wrap.appendChild(colP);
+          wrap.appendChild(rm);
+          rowsEl.appendChild(wrap);
+        }
+
+        addRow();
+        document.getElementById("gen-add-row").addEventListener("click", function () {
+          addRow();
+        });
+
+        document.getElementById("gen-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          var err = document.getElementById("gen-error");
+          var res = document.getElementById("gen-result");
+          var list = document.getElementById("gen-result-list");
+          err.hidden = true;
+          res.hidden = true;
+          list.innerHTML = "";
+
+          var base = inviteBaseUrl();
+          if (!base) {
+            err.textContent =
+              "No pudimos armar el enlace. Abre esta página desde tu sitio publicado (no desde un archivo suelto en la computadora).";
+            err.hidden = false;
+            return;
+          }
+
+          var secret = window.InviteToken ? InviteToken.getSecret() : "";
+          if (!secret) {
+            err.textContent = "Algo salió mal al preparar los enlaces. Recarga la página e intenta de nuevo.";
+            err.hidden = false;
+            return;
+          }
+
+          var rowEls = rowsEl.querySelectorAll(".cliente-guest-row");
+          var tasks = [];
+          var metas = [];
+
+          for (var i = 0; i < rowEls.length; i++) {
+            var nombre = rowEls[i].querySelector(".gen-in-nombre").value.trim();
+            var pases = parseInt(rowEls[i].querySelector(".gen-in-pases").value, 10);
+            if (!nombre) continue;
+            if (isNaN(pases) || pases < 1) pases = 1;
+            if (pases > 99) pases = 99;
+            metas.push({ nombre: nombre, pases: pases });
+            tasks.push(InviteToken.encryptPayload(secret, { n: nombre, p: pases }));
+          }
+
+          if (tasks.length === 0) {
+            err.textContent = "Agrega al menos un nombre en la lista para crear el enlace.";
+            err.hidden = false;
+            return;
+          }
+
+          Promise.all(tasks)
+            .then(function (tokens) {
+              for (var j = 0; j < tokens.length; j++) {
+                var url = appendTokenToBase(base, tokens[j]);
+                var card = document.createElement("div");
+                card.className = "cliente-link-row";
+                var title = document.createElement("p");
+                title.className = "name-line";
+                title.textContent = metas[j].nombre + " · " + metas[j].pases + (metas[j].pases === 1 ? " persona" : " personas");
+                var inp = document.createElement("input");
+                inp.type = "text";
+                inp.readOnly = true;
+                inp.value = url;
+                inp.setAttribute("aria-label", "Enlace para " + metas[j].nombre);
+                var btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "cliente-copy";
+                btn.textContent = "Copiar enlace";
+                (function (inputEl, btnEl) {
+                  btnEl.addEventListener("click", function () {
+                    var u = inputEl.value;
+                    function done() {
+                      btnEl.classList.add("cliente-copy--done");
+                      var t = btnEl.textContent;
+                      btnEl.textContent = "¡Copiado!";
+                      setTimeout(function () {
+                        btnEl.classList.remove("cliente-copy--done");
+                        btnEl.textContent = t;
+                      }, 1600);
+                    }
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                      navigator.clipboard.writeText(u).then(done).catch(function () {
+                        inputEl.select();
+                        try {
+                          document.execCommand("copy");
+                          done();
+                        } catch (e2) {}
+                      });
+                    } else {
+                      inputEl.select();
+                      try {
+                        document.execCommand("copy");
+                        done();
+                      } catch (e3) {}
+                    }
+                  });
+                })(inp, btn);
+                card.appendChild(title);
+                card.appendChild(inp);
+                card.appendChild(btn);
+                list.appendChild(card);
+              }
+              res.hidden = false;
+              res.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            })
+            .catch(function () {
+              err.textContent = "No pudimos crear los enlaces en este momento. Recarga la página e intenta de nuevo.";
+              err.hidden = false;
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

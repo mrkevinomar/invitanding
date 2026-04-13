@@ -63,3 +63,14 @@
   from = "/contact/"
   to = "/contact.html"
   status = 200
+
+# Demo interna: personalización por URL (no enlazada en el menú).
+[[redirects]]
+  from = "/demo-signature-personalizado"
+  to = "/demo-signature-personalizado.html"
+  status = 200
+
+[[redirects]]
+  from = "/demo-signature-personalizado/"
+  to = "/demo-signature-personalizado.html"
+  status = 200
