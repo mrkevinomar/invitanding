@@ -230,6 +230,71 @@
       .cliente-copy.cliente-copy--done {
         background: #2d6a4f;
       }
+      .cliente-btn-ver.cliente-copy--done,
+      .cliente-btn-qr.cliente-copy--done {
+        background: #2d6a4f !important;
+        color: #fff !important;
+        border-color: #237a5a !important;
+      }
+      .cliente-link-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        align-items: center;
+        margin-top: 0.5rem;
+      }
+      .cliente-btn-ver,
+      .cliente-btn-qr {
+        padding: 0.45rem 0.85rem;
+        font-size: 0.82rem;
+        border-radius: 8px;
+        border: 1px solid #b8cfc6;
+        background: #fff;
+        color: var(--sig-ink, #1d3b3b);
+        cursor: pointer;
+        font-family: var(--font);
+        font-weight: 500;
+        line-height: 1.2;
+      }
+      .cliente-btn-ver:hover,
+      .cliente-btn-qr:hover {
+        background: #f6faf8;
+      }
+      .cliente-btn-qr {
+        border-color: #b8d4e8;
+        color: #1a4a6e;
+        background: #f7fbfd;
+      }
+      .cliente-btn-ver:focus-visible,
+      .cliente-btn-qr:focus-visible,
+      .cliente-copy:focus-visible {
+        outline: 2px solid rgba(140, 198, 180, 0.85);
+        outline-offset: 2px;
+      }
+      .cliente-link-qr {
+        margin-top: 0.75rem;
+        padding: 0.85rem;
+        border-radius: 8px;
+        background: var(--sig-surface-a, #f2f8f6);
+        border: 1px dashed rgba(140, 198, 180, 0.55);
+        text-align: center;
+      }
+      .cliente-link-qr[hidden] {
+        display: none !important;
+      }
+      .cliente-link-qr img {
+        display: block;
+        margin: 0 auto;
+        border-radius: 6px;
+        background: #fff;
+        padding: 6px;
+      }
+      .cliente-link-qr p {
+        margin: 0.5rem 0 0;
+        font-family: var(--font);
+        font-size: 0.78rem;
+        color: var(--sig-muted, #4d6862);
+      }
       .cliente-msg-err {
         max-width: 38rem;
         margin: 1.25rem auto 0;
@@ -319,7 +384,7 @@
             <ol class="cliente-portal-steps">
               <li>Escribe quién recibe la invitación (nombre o familia).</li>
               <li>Indica cuántas personas entran con ese enlace.</li>
-              <li>Crea y copia el enlace de cada fila para enviarlo.</li>
+              <li>Revisa cada enlace con Ver, cópialo o muestra el QR si lo necesitas.</li>
             </ol>
             <a class="cliente-portal-preview-link" href="demo-signature-personalizado.html" target="_blank" rel="noopener noreferrer">
               Ver cómo se ve la invitación
@@ -360,8 +425,8 @@
 
           <div id="gen-result" class="cliente-result-block" hidden>
             <h3>✓ Tus enlaces ya están listos</h3>
-            <p style="text-align: center; font-family: var(--font); font-size: 0.88rem; color: var(--sig-muted); margin: -0.35rem 0 1.25rem; max-width: 32rem; margin-left: auto; margin-right: auto">
-              Toca «Copiar enlace» y pégalo en WhatsApp, correo o mensaje. Cada enlace es único y lleva el nombre y los pases que pusiste arriba.
+            <p style="text-align: center; font-family: var(--font); font-size: 0.88rem; color: var(--sig-muted); margin: -0.35rem 0 1.25rem; max-width: 34rem; margin-left: auto; margin-right: auto">
+              Usa <strong>Ver</strong> para abrir la invitación en otra pestaña, <strong>Copiar enlace</strong> para compartirla y <strong>QR</strong> para mostrar un código escaneable del mismo enlace.
             </p>
             <div id="gen-result-list"></div>
           </div>
@@ -404,6 +469,47 @@
           if (!b) return "";
           var sep = b.indexOf("?") >= 0 ? "&" : "?";
           return b + sep + "t=" + encodeURIComponent(token);
+        }
+
+        function openUrlInNewTab(url) {
+          var a = document.createElement("a");
+          a.href = url;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        }
+
+        function copyTextWithFeedback(text, btnEl, doneLabel) {
+          var prev = btnEl.textContent;
+          function finishOk() {
+            btnEl.classList.add("cliente-copy--done");
+            btnEl.textContent = doneLabel || "¡Copiado!";
+            setTimeout(function () {
+              btnEl.classList.remove("cliente-copy--done");
+              btnEl.textContent = prev;
+            }, 1600);
+          }
+          function fallback() {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            ta.setAttribute("readonly", "");
+            ta.style.position = "fixed";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+              document.execCommand("copy");
+              finishOk();
+            } catch (e) {}
+            document.body.removeChild(ta);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(finishOk).catch(fallback);
+          } else {
+            fallback();
+          }
         }
 
         var rowsEl = document.getElementById("gen-guest-rows");
@@ -510,42 +616,61 @@
                 inp.readOnly = true;
                 inp.value = url;
                 inp.setAttribute("aria-label", "Enlace para " + metas[j].nombre);
-                var btn = document.createElement("button");
-                btn.type = "button";
-                btn.className = "cliente-copy";
-                btn.textContent = "Copiar enlace";
-                (function (inputEl, btnEl) {
-                  btnEl.addEventListener("click", function () {
-                    var u = inputEl.value;
-                    function done() {
-                      btnEl.classList.add("cliente-copy--done");
-                      var t = btnEl.textContent;
-                      btnEl.textContent = "¡Copiado!";
-                      setTimeout(function () {
-                        btnEl.classList.remove("cliente-copy--done");
-                        btnEl.textContent = t;
-                      }, 1600);
-                    }
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                      navigator.clipboard.writeText(u).then(done).catch(function () {
-                        inputEl.select();
-                        try {
-                          document.execCommand("copy");
-                          done();
-                        } catch (e2) {}
-                      });
-                    } else {
-                      inputEl.select();
-                      try {
-                        document.execCommand("copy");
-                        done();
-                      } catch (e3) {}
-                    }
-                  });
-                })(inp, btn);
+                var actions = document.createElement("div");
+                actions.className = "cliente-link-actions";
+                var btnVer = document.createElement("button");
+                btnVer.type = "button";
+                btnVer.className = "cliente-btn-ver";
+                btnVer.textContent = "Ver";
+                btnVer.setAttribute("aria-label", "Ver invitación de " + metas[j].nombre + " en otra pestaña");
+                btnVer.addEventListener("click", function () {
+                  openUrlInNewTab(url);
+                });
+                var btnCopy = document.createElement("button");
+                btnCopy.type = "button";
+                btnCopy.className = "cliente-copy";
+                btnCopy.textContent = "Copiar enlace";
+                btnCopy.addEventListener("click", function () {
+                  copyTextWithFeedback(url, btnCopy, "¡Copiado!");
+                });
+                var qrBox = document.createElement("div");
+                qrBox.className = "cliente-link-qr";
+                qrBox.hidden = true;
+                var qrImg = document.createElement("img");
+                qrImg.width = 160;
+                qrImg.height = 160;
+                qrImg.alt = "Código QR del enlace para " + metas[j].nombre;
+                var qrHint = document.createElement("p");
+                qrHint.textContent =
+                  "Escanea con la cámara para abrir el enlace. El QR se genera con un servicio externo (solo al mostrarlo).";
+                qrBox.appendChild(qrImg);
+                qrBox.appendChild(qrHint);
+                var btnQr = document.createElement("button");
+                btnQr.type = "button";
+                btnQr.className = "cliente-btn-qr";
+                btnQr.textContent = "QR";
+                btnQr.setAttribute("aria-expanded", "false");
+                btnQr.setAttribute("aria-controls", "qr-" + j);
+                qrBox.id = "qr-" + j;
+                btnQr.addEventListener("click", function () {
+                  var show = qrBox.hidden;
+                  qrBox.hidden = !show;
+                  btnQr.setAttribute("aria-expanded", show ? "true" : "false");
+                  btnQr.textContent = show ? "Ocultar QR" : "QR";
+                  if (show && !qrImg.getAttribute("data-loaded")) {
+                    qrImg.src =
+                      "https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=8&data=" +
+                      encodeURIComponent(url);
+                    qrImg.setAttribute("data-loaded", "1");
+                  }
+                });
+                actions.appendChild(btnVer);
+                actions.appendChild(btnCopy);
+                actions.appendChild(btnQr);
                 card.appendChild(title);
                 card.appendChild(inp);
-                card.appendChild(btn);
+                card.appendChild(actions);
+                card.appendChild(qrBox);
                 list.appendChild(card);
               }
               res.hidden = false;
