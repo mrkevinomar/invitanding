@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="es-EC" class="n04-html">
+<html lang="es-EC" class="n04-html digta-m-html">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Demo Nuevo 04 — Invitanding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#c9c4bc" />
+    <title>Arturo &amp; Ivonne — Invitación móvil (referencia Digta VIP)</title>
     <meta
       name="description"
-      content="Demostración de invitación digital estilo editorial (referencia visual tipo Digta VIP)."
+      content="Invitación digital optimizada para móvil, inspirada en el estilo Digta VIP (Arturo e Ivonne)."
     />
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,8 +18,74 @@
     />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/demo-nuevo04.css" />
+    <link rel="stylesheet" href="assets/css/demo-digta-mobile.css" />
   </head>
-  <body class="demo-page demo-page--nuevo04">
+  <body class="demo-page demo-page--nuevo04 demo-page--digta-m">
+    <!-- Sobre inicial: nombre + pases + Abrir → revela la invitación -->
+    <div
+      class="digta-envelope"
+      id="digta-envelope"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="digta-envelope-title"
+      aria-describedby="digta-envelope-desc"
+    >
+      <div class="digta-envelope__screen">
+        <!-- Texto visible al inicio (como antes) -->
+        <div class="digta-envelope__intro" id="digta-envelope-desc">
+          <p id="digta-envelope-title" class="digta-envelope__names">
+            <span class="digta-envelope__name-a">Arturo</span>
+            <span class="digta-envelope__amp">&amp;</span>
+            <span class="digta-envelope__name-i">Ivonne</span>
+          </p>
+          <p class="digta-envelope__pretitle">Has recibido una invitación</p>
+          <p class="digta-envelope__for">Para</p>
+          <p class="digta-envelope__guest" id="digta-env-name">Invitado</p>
+          <p class="digta-envelope__passes digta-envelope__passes--hero">
+            <span class="digta-envelope__passes-num" id="digta-env-count">02</span>
+            <span class="digta-envelope__passes-sep" aria-hidden="true">·</span>
+            <span class="digta-envelope__passes-lbl" id="digta-env-passes-label">pases</span>
+          </p>
+        </div>
+
+        <div class="digta-envelope__real">
+        <div class="digta-envelope__pivot">
+          <!-- Interior del sobre (tarjeta al animar) -->
+          <div class="digta-envelope__back" aria-hidden="true"></div>
+          <div class="digta-envelope__paper" aria-hidden="true"></div>
+          <!-- Cuatro solapas triangulares -->
+          <div class="digta-envelope__flap digta-envelope__flap--bottom" aria-hidden="true"></div>
+          <div class="digta-envelope__flap digta-envelope__flap--left" aria-hidden="true"></div>
+          <div class="digta-envelope__flap digta-envelope__flap--right" aria-hidden="true"></div>
+          <div class="digta-envelope__flap digta-envelope__flap--top" aria-hidden="true">
+            <div class="digta-envelope__top-inner">
+              <svg
+                class="digta-envelope__abrir-svg"
+                viewBox="0 0 200 52"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <defs>
+                  <path id="digta-abrir-arc" d="M 32 44 A 68 68 0 0 1 168 44" />
+                </defs>
+                <text class="digta-envelope__abrir-text">
+                  <textPath href="#digta-abrir-arc" startOffset="50%" text-anchor="middle">ABRIR</textPath>
+                </text>
+              </svg>
+              <button type="button" class="digta-envelope__seal-btn" id="digta-open-btn" aria-label="Abrir la invitación">
+                <span class="digta-envelope__seal-ridge digta-envelope__seal-ridge--1" aria-hidden="true"></span>
+                <span class="digta-envelope__seal-ridge digta-envelope__seal-ridge--2" aria-hidden="true"></span>
+                <span class="digta-envelope__seal-ridge digta-envelope__seal-ridge--3" aria-hidden="true"></span>
+                <span class="digta-envelope__seal-ridge digta-envelope__seal-ridge--4" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
     <header class="site-header site-header--over-hero">
       <div class="header-inner">
         <a class="logo" href="index.html">
@@ -32,8 +99,8 @@
               <a href="demo-classic.html">Invitación Classic</a>
               <a href="demo-signature.html">Invitación Signature</a>
               <a href="demo-premium.html">Invitación Premium</a>
-              <a href="demo-nuevo04.html" aria-current="page">Demo Nuevo 04</a>
-              <a href="demo-digta-mobile.html">Digta VIP (móvil)</a>
+              <a href="demo-nuevo04.html">Demo Nuevo 04</a>
+              <a href="demo-digta-mobile.html" aria-current="page">Digta VIP (móvil)</a>
             </div>
           </div>
           <div class="nav-item">
@@ -68,6 +135,61 @@
     </header>
 
     <main class="n04-main">
+      <!-- Primera vista tras abrir el sobre: tarjeta con marco dorado y nombres -->
+      <section class="digta-cover reveal-section" aria-label="Portada de la invitación">
+        <div class="digta-cover__wrap">
+          <div class="digta-cover__card reveal-item">
+            <div class="digta-cover__branch digta-cover__branch--top" aria-hidden="true">
+              <svg viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="digta-cover__svg">
+                <path
+                  d="M110 58c-12-8-28-14-48-16 18-4 36 2 48 14 12-12 30-18 48-14-20 2-36 8-48 16z"
+                  fill="rgba(95,125,95,0.22)"
+                />
+                <path
+                  d="M108 52c-8-10-20-14-34-12 14-2 26 4 34 12 8-8 20-12 34-12-14-2-26 2-34 12z"
+                  fill="rgba(120,148,118,0.35)"
+                />
+                <ellipse cx="72" cy="38" rx="14" ry="7" transform="rotate(-35 72 38)" fill="rgba(88,118,88,0.45)" />
+                <ellipse cx="148" cy="36" rx="15" ry="7" transform="rotate(38 148 36)" fill="rgba(75,105,78,0.4)" />
+                <ellipse cx="98" cy="28" rx="11" ry="5" transform="rotate(-8 98 28)" fill="rgba(105,135,100,0.38)" />
+                <ellipse cx="128" cy="30" rx="12" ry="5" transform="rotate(12 128 30)" fill="rgba(90,120,92,0.42)" />
+                <circle cx="92" cy="22" r="2.2" fill="rgba(200,120,130,0.65)" />
+                <circle cx="118" cy="20" r="1.8" fill="rgba(210,140,145,0.55)" />
+                <circle cx="134" cy="26" r="2" fill="rgba(195,110,125,0.5)" />
+                <path d="M110 58V42" stroke="rgba(70,95,72,0.25)" stroke-width="1.2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="digta-cover__branch digta-cover__branch--bottom" aria-hidden="true">
+              <svg viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="digta-cover__svg">
+                <path
+                  d="M110 6c-12 8-28 14-48 16 18 4 36-2 48-14 12 12 30 18 48 14-20-2-36-8-48-16z"
+                  fill="rgba(95,125,95,0.2)"
+                />
+                <path
+                  d="M108 12c-8 10-20 14-34 12 14 2 26-4 34-12 8 8 20 12 34 12-14 2-26-2-34-12z"
+                  fill="rgba(120,148,118,0.32)"
+                />
+                <ellipse cx="78" cy="28" rx="14" ry="7" transform="rotate(42 78 28)" fill="rgba(88,118,88,0.42)" />
+                <ellipse cx="142" cy="30" rx="15" ry="7" transform="rotate(-40 142 30)" fill="rgba(75,105,78,0.38)" />
+                <ellipse cx="104" cy="38" rx="11" ry="5" transform="rotate(10 104 38)" fill="rgba(105,135,100,0.36)" />
+                <ellipse cx="132" cy="36" rx="12" ry="5" transform="rotate(-14 132 36)" fill="rgba(90,120,92,0.4)" />
+                <circle cx="96" cy="44" r="2" fill="rgba(200,120,130,0.6)" />
+                <circle cx="124" cy="46" r="1.8" fill="rgba(210,140,145,0.5)" />
+                <circle cx="138" cy="40" r="2.1" fill="rgba(195,110,125,0.48)" />
+                <path d="M110 6v14" stroke="rgba(70,95,72,0.22)" stroke-width="1.2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <header class="digta-cover__inner">
+              <h1 class="digta-cover__names">
+                <span class="digta-cover__name">Arturo</span>
+                <span class="digta-cover__amp">&amp;</span>
+                <span class="digta-cover__name">Ivonne</span>
+              </h1>
+            </header>
+          </div>
+        </div>
+      </section>
+
       <!-- Hero: fecha vertical + doble arco (imagen única partida) -->
       <section class="n04-hero reveal-section">
         <div class="container n04-hero__wrap">
@@ -112,6 +234,16 @@
             <span class="n04-hero-names__script">Arturo</span>
           </div>
           <p class="n04-hero__cordial reveal-item">Invitan cordialmente…</p>
+        </div>
+      </section>
+
+      <section class="n04-guest reveal-section" aria-label="Pases de invitación">
+        <div class="container n04-guest__wrap">
+          <div class="n04-guest__card reveal-item">
+            <span class="n04-guest__kicker">Personas</span>
+            <span class="n04-guest__count">02</span>
+            <p class="n04-guest__name">Sr. Artysel</p>
+          </div>
         </div>
       </section>
 
@@ -285,23 +417,10 @@
           </div>
           <div class="n04-dress n04-dress--green n04-dress-unified__panel">
             <div class="n04-dress-unified__panel-inner">
-              <div class="n04-dress__cols">
-                <div class="n04-dress__col reveal-item">
-                  <div class="n04-dress__face n04-dress__face--man" aria-hidden="true">
-                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <ellipse cx="28" cy="38" rx="14" ry="10" stroke="currentColor" stroke-width="1.6" />
-                      <path
-                        d="M28 18c-6 0-11 5-11 11 0 4 2 7 5 9 2-3 6-5 10-5h2c4 0 8 2 10 5 3-2 5-5 5-9 0-6-5-11-11-11Z"
-                        fill="var(--n04-dress-hair)"
-                        stroke="currentColor"
-                        stroke-width="1.4"
-                      />
-                      <ellipse cx="28" cy="26" rx="9" ry="10" stroke="currentColor" stroke-width="1.4" />
-                    </svg>
-                  </div>
-                  <h3 class="n04-dress__gender-script">Hombres</h3>
-                  <p class="n04-dress__rule"><em>«Atuendo formal de clima cálido.»</em></p>
-                </div>
+              <p class="n04-dress__thanks n04-dress__thanks--lead reveal-item">
+                ¡Gracias por vestir con cariño y estilo para celebrar con nosotros!
+              </p>
+              <div class="n04-dress__cols n04-dress__cols--digta-order">
                 <div class="n04-dress__col reveal-item">
                   <div class="n04-dress__face n04-dress__face--woman" aria-hidden="true">
                     <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -318,10 +437,23 @@
                   <h3 class="n04-dress__gender-script">Mujeres</h3>
                   <p class="n04-dress__rule"><em>«Vestido de cóctel, largo o midi.»</em></p>
                 </div>
+                <div class="n04-dress__col reveal-item">
+                  <div class="n04-dress__face n04-dress__face--man" aria-hidden="true">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="28" cy="38" rx="14" ry="10" stroke="currentColor" stroke-width="1.6" />
+                      <path
+                        d="M28 18c-6 0-11 5-11 11 0 4 2 7 5 9 2-3 6-5 10-5h2c4 0 8 2 10 5 3-2 5-5 5-9 0-6-5-11-11-11Z"
+                        fill="var(--n04-dress-hair)"
+                        stroke="currentColor"
+                        stroke-width="1.4"
+                      />
+                      <ellipse cx="28" cy="26" rx="9" ry="10" stroke="currentColor" stroke-width="1.4" />
+                    </svg>
+                  </div>
+                  <h3 class="n04-dress__gender-script">Hombres</h3>
+                  <p class="n04-dress__rule"><em>«Atuendo formal de clima cálido.»</em></p>
+                </div>
               </div>
-              <p class="n04-dress__thanks reveal-item">
-                ¡Gracias por vestir con cariño y estilo para celebrar con nosotros!
-              </p>
               <div class="n04-branch-divider n04-branch-divider--light reveal-item" aria-hidden="true">
                 <span class="n04-branch-divider__line"></span>
                 <svg class="n04-branch-divider__svg" viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -421,7 +553,8 @@
           <p class="n04-thanks__line reveal-item">Por el honor de contar con su presencia</p>
           <p class="n04-thanks__couple reveal-item">Arturo e Ivonne</p>
           <p class="n04-thanks__brand reveal-item">
-            Plantilla de demostración · <a href="index.html">Invitanding</a>
+            Demo móvil inspirada en <a href="https://www.digta.vip/copy-of-arturo-e-ivonne" rel="noopener noreferrer">Digta VIP</a>
+            · <a href="index.html">Invitanding</a>
           </p>
         </div>
       </section>
@@ -436,5 +569,71 @@
       <p class="footer-copy">Invitanding 2026 · Todos los derechos reservados</p>
     </footer>
     <script src="assets/js/scroll-reveal.js"></script>
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var invRaw = params.get("invitado");
+        var pasesRaw = params.get("pases");
+
+        var guestName = invRaw ? invRaw.replace(/\+/g, " ").trim() : "Invitado";
+        var pasesNum = pasesRaw !== null && pasesRaw !== "" ? parseInt(pasesRaw, 10) : 2;
+        if (isNaN(pasesNum) || pasesNum < 1) pasesNum = 1;
+
+        var countStr = pasesNum < 10 ? "0" + pasesNum : String(pasesNum);
+        var passesLabel = pasesNum === 1 ? "pase" : "pases";
+
+        function syncGuestFields() {
+          var nameEl = document.querySelector(".n04-guest__name");
+          var countEl = document.querySelector(".n04-guest__count");
+          var envName = document.getElementById("digta-env-name");
+          var envCount = document.getElementById("digta-env-count");
+          var envLbl = document.getElementById("digta-env-passes-label");
+          if (nameEl) nameEl.textContent = guestName;
+          if (countEl) countEl.textContent = countStr;
+          if (envName) envName.textContent = guestName;
+          if (envCount) envCount.textContent = countStr;
+          if (envLbl) envLbl.textContent = passesLabel;
+        }
+
+        syncGuestFields();
+
+        var OPEN_ANIM_MS = 1080;
+
+        function openInvitation() {
+          window.scrollTo(0, 0);
+          document.documentElement.classList.add("digta-invitation-open");
+          var env = document.getElementById("digta-envelope");
+          if (env) {
+            env.setAttribute("aria-hidden", "true");
+            env.classList.remove("digta-envelope--opening");
+          }
+          var first = document.querySelector("main");
+          if (first) first.setAttribute("tabindex", "-1");
+          if (first) first.focus({ preventScroll: true });
+        }
+
+        function handleOpenClick() {
+          var env = document.getElementById("digta-envelope");
+          var btn = document.getElementById("digta-open-btn");
+          if (!env || env.classList.contains("digta-envelope--opening")) return;
+
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            openInvitation();
+            return;
+          }
+
+          env.classList.add("digta-envelope--opening");
+          if (btn) btn.disabled = true;
+
+          window.setTimeout(function () {
+            openInvitation();
+            if (btn) btn.disabled = false;
+          }, OPEN_ANIM_MS);
+        }
+
+        var btn = document.getElementById("digta-open-btn");
+        if (btn) btn.addEventListener("click", handleOpenClick);
+      })();
+    </script>
   </body>
 </html>
