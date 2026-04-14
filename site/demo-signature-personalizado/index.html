@@ -350,6 +350,36 @@
     <script src="assets/js/invite-token.js"></script>
     <script>
       (function () {
+        /** Tras abrir el sobre, se guarda en storage; en refresh (F5) volver a mostrar la animación. */
+        function clearEnvelopeOpenedStateIfReload() {
+          try {
+            var isReload = false;
+            var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+            if (nav && nav.type === "reload") isReload = true;
+            else if (performance.navigation && performance.navigation.type === 1) isReload = true;
+            if (!isReload) return;
+            var toRemove = [];
+            var i;
+            for (i = localStorage.length - 1; i >= 0; i--) {
+              var k = localStorage.key(i);
+              if (k && k.indexOf("invitanding-env-") === 0) toRemove.push(k);
+            }
+            toRemove.forEach(function (k) {
+              localStorage.removeItem(k);
+            });
+            toRemove = [];
+            for (i = sessionStorage.length - 1; i >= 0; i--) {
+              var k2 = sessionStorage.key(i);
+              if (k2 && k2.indexOf("invitanding-env-") === 0) toRemove.push(k2);
+            }
+            toRemove.forEach(function (k) {
+              sessionStorage.removeItem(k);
+            });
+            document.documentElement.removeAttribute("data-invitanding-envelope-done");
+          } catch (e) {}
+        }
+        clearEnvelopeOpenedStateIfReload();
+
         var line = document.getElementById("js-demo-guest-line");
         var rsvpDetail = document.getElementById("js-demo-rsvp-guest");
         var params = new URLSearchParams(window.location.search);
