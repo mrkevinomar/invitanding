@@ -7,8 +7,14 @@ html.n04-html {
   font-size: 108%;
 }
 
+html.n04-html {
+  background: #fff;
+}
+
 .demo-page--nuevo04 {
   --hero-header-gap: clamp(0.65rem, 1.85vw, 1.2rem);
+  --n04-gutter: clamp(1rem, 5vw, 3.5rem);
+  --n04-liturgy-serif: "Playfair Display", Georgia, "Times New Roman", serif;
   --n04-gold: #c5a059;
   --n04-gold-soft: #d4b87a;
   --n04-ink: #1a1a1a;
@@ -23,6 +29,12 @@ html.n04-html {
   --n04-sans: var(--font);
   background: #fff;
   color: var(--n04-ink);
+}
+
+.demo-page.demo-page--nuevo04 .site-footer {
+  background: #fff;
+  padding-left: var(--n04-gutter);
+  padding-right: var(--n04-gutter);
 }
 
 /* —— Header —— */
@@ -68,6 +80,16 @@ html.n04-html {
 
 .demo-page--nuevo04 .n04-main {
   overflow-x: hidden;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  background: #fff;
+}
+
+/* Contenedores a ancho útil: pantalla completa menos márgenes laterales */
+.demo-page--nuevo04 main .container {
+  width: min(calc(100% - 2 * var(--n04-gutter)), 1200px);
+  max-width: min(calc(100% - 2 * var(--n04-gutter)), 1200px);
 }
 
 /* Enlace dorado subrayado (Ver ubicación, etc.) */
@@ -94,7 +116,7 @@ html.n04-html {
 
 /* —— Hero —— */
 .n04-hero {
-  padding: calc(clamp(4.5rem, 12vw, 6.5rem) + var(--hero-header-gap)) 1.25rem clamp(3.5rem, 10vw, 5rem);
+  padding: calc(clamp(4.5rem, 12vw, 6.5rem) + var(--hero-header-gap)) var(--n04-gutter) clamp(3.5rem, 10vw, 5rem);
   background: #fff;
   text-align: center;
 }
@@ -184,12 +206,14 @@ html.n04-html {
 }
 
 .n04-hero-arches__pair {
+  --n04-hero-img: url("../img/gallery-proposal.jpg");
   display: flex;
   gap: 0.35rem;
   justify-content: center;
   align-items: stretch;
 }
 
+/* Una sola foto: cada arco muestra el 50 % izquierdo o derecho del mismo asset */
 .n04-hero-arch {
   flex: 1;
   min-width: 0;
@@ -197,17 +221,18 @@ html.n04-html {
   height: clamp(240px, 52vw, 380px);
   border: 2px solid var(--n04-gold);
   border-radius: 50% 50% 0 0 / 38% 38% 0 0;
-  background-size: cover;
+  background-image: var(--n04-hero-img);
   background-repeat: no-repeat;
+  background-size: 200% auto;
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
 }
 
 .n04-hero-arch--left {
-  background-position: 28% center;
+  background-position: left center;
 }
 
 .n04-hero-arch--right {
-  background-position: 72% center;
+  background-position: right center;
 }
 
 .n04-hero__soul {
@@ -251,7 +276,7 @@ html.n04-html {
 
 /* —— Pases —— */
 .n04-guest {
-  padding: clamp(2.25rem, 6vw, 3.25rem) 1.25rem;
+  padding: clamp(2.25rem, 6vw, 3.25rem) var(--n04-gutter);
   background: #fff;
 }
 
@@ -295,7 +320,7 @@ html.n04-html {
 
 /* —— Cuenta regresiva —— */
 .n04-countdown {
-  padding: clamp(2.5rem, 8vw, 4rem) 1.25rem;
+  padding: clamp(2.5rem, 8vw, 4rem) var(--n04-gutter);
   background: #fff;
 }
 
@@ -395,7 +420,7 @@ html.n04-html {
 
 /* —— Ceremonia / recepción —— */
 .n04-liturgy {
-  padding: clamp(3rem, 9vw, 4.5rem) 1.25rem;
+  padding: clamp(3rem, 9vw, 4.5rem) var(--n04-gutter);
   background: #fff;
 }
 
@@ -466,9 +491,64 @@ html.n04-html {
   font-style: italic;
 }
 
+/* Ceremonia: réplica del bloque tipo referencia (script + serif + sans dorado) */
+.n04-liturgy--ceremony .n04-liturgy__time {
+  margin-bottom: clamp(1.35rem, 3.5vw, 1.85rem);
+  line-height: 1.35;
+}
+
+.n04-liturgy--ceremony .n04-liturgy__body {
+  font-family: var(--n04-liturgy-serif);
+  font-size: clamp(1.02rem, 2.15vw, 1.18rem);
+  font-weight: 400;
+  line-height: 1.85;
+  color: var(--n04-ink);
+  margin-bottom: clamp(1.35rem, 3.2vw, 1.75rem);
+}
+
+.n04-liturgy--ceremony .n04-liturgy__body p + p {
+  margin-top: 0.45rem;
+}
+
+.n04-liturgy--ceremony .n04-liturgy__paren {
+  margin-top: 0.5rem !important;
+}
+
+.n04-liturgy--ceremony .n04-liturgy__venue {
+  font-family: var(--n04-liturgy-serif);
+  font-size: clamp(0.92rem, 1.85vw, 1.06rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1.35;
+  margin-bottom: 0.45rem;
+}
+
+.n04-liturgy--ceremony .n04-liturgy__sub {
+  font-family: var(--n04-liturgy-serif);
+  font-size: clamp(1.02rem, 2vw, 1.14rem);
+  font-weight: 400;
+  color: var(--n04-ink);
+  margin-bottom: clamp(1.15rem, 2.8vw, 1.5rem);
+}
+
+.n04-liturgy--ceremony .n04-link-gold--location {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(0.62rem, 1.15vw, 0.72rem);
+  font-weight: 400;
+  letter-spacing: 0.26em;
+  color: #c5a059;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+.n04-liturgy--ceremony .n04-link-gold--location:hover {
+  color: #a88842;
+}
+
 /* —— Historia —— */
 .n04-story {
-  padding: clamp(2.75rem, 8vw, 4rem) 1.25rem;
+  padding: clamp(2.75rem, 8vw, 4rem) var(--n04-gutter);
   background: #fff;
   border-top: 1px solid var(--n04-line);
 }
@@ -501,6 +581,117 @@ html.n04-html {
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--n04-gold);
+}
+
+/* Historia: foto ovalada + monograma (fondo blanco a ancho completo) */
+.n04-story--split {
+  padding: clamp(2.75rem, 7vw, 4.5rem) var(--n04-gutter);
+  background: #fff;
+  border-top: 1px solid var(--n04-line);
+}
+
+.n04-story__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.75rem, 5vw, 3.5rem);
+  align-items: center;
+  width: 100%;
+  max-width: min(1200px, 100%);
+  margin-inline: auto;
+}
+
+@media (max-width: 720px) {
+  .n04-story__split {
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 6vw, 2.75rem);
+  }
+
+  .n04-story__visual {
+    order: -1;
+  }
+}
+
+.n04-story__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: min(52vh, 420px);
+}
+
+.n04-story__oval {
+  width: min(88%, 380px);
+  aspect-ratio: 3 / 4;
+  max-height: min(72vh, 460px);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-mask-image: radial-gradient(
+    ellipse 48% 52% at 50% 50%,
+    #000 38%,
+    rgba(0, 0, 0, 0.85) 52%,
+    rgba(0, 0, 0, 0.25) 68%,
+    transparent 76%
+  );
+  mask-image: radial-gradient(
+    ellipse 48% 52% at 50% 50%,
+    #000 38%,
+    rgba(0, 0, 0, 0.85) 52%,
+    rgba(0, 0, 0, 0.25) 68%,
+    transparent 76%
+  );
+}
+
+.n04-story__copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: min(42vh, 360px);
+  padding: clamp(0.5rem, 2vw, 1.25rem);
+}
+
+.n04-story__mono {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(7rem, 28vw, 14rem);
+  font-weight: 400;
+  line-height: 1;
+  color: rgba(197, 160, 89, 0.14);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.n04-story__quote--panel {
+  position: relative;
+  z-index: 1;
+  max-width: min(28rem, 92vw);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/* Especificidad alta: no heredar Cormorant del bloque .n04-story__quote genérico */
+.n04-story--split blockquote.n04-story__quote--panel p {
+  font-family: "Libre Baskerville", "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.12rem, 2.35vw, 1.42rem);
+  font-style: italic;
+  font-weight: 400;
+  font-synthesis: none;
+  line-height: 1.82;
+  letter-spacing: 0.02em;
+  font-kerning: normal;
+  font-feature-settings: "kern" 1, "liga" 1;
+  color: var(--n04-ink-soft);
+  text-shadow: none;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* divisor con ramita */
@@ -536,7 +727,7 @@ html.n04-html {
 
 /* —— Save the date —— */
 .n04-std {
-  padding: clamp(3rem, 9vw, 4.5rem) 1.25rem;
+  padding: clamp(3rem, 9vw, 4.5rem) var(--n04-gutter);
   background: #fff;
 }
 
@@ -656,10 +847,66 @@ html.n04-html {
   margin: 0;
 }
 
+/* Dress code: intro + detalle en un solo bloque (fondo blanco) */
+.n04-dress-unified {
+  padding: clamp(2.25rem, 6vw, 3.25rem) var(--n04-gutter);
+  background: #fff;
+}
+
+.n04-dress-unified__card {
+  width: 100%;
+  max-width: min(1200px, 100%);
+  margin-inline: auto;
+  border: 1px solid var(--n04-line);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 12px 44px rgba(0, 0, 0, 0.07);
+}
+
+.n04-dress-unified__intro {
+  padding: clamp(2rem, 5vw, 2.75rem) clamp(1.5rem, 4vw, 2.25rem);
+  text-align: center;
+  background: #fff;
+}
+
+.demo-page--nuevo04 .n04-dress-unified .n04-dress-unified__panel.n04-dress--green {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  background: #fff;
+  color: var(--n04-ink);
+  border-top: 1px solid var(--n04-line);
+}
+
+.n04-dress-unified__panel-inner {
+  padding: clamp(2.25rem, 6vw, 3.25rem) var(--n04-gutter) clamp(2.5rem, 8vw, 4rem);
+  max-width: 100%;
+}
+
+.n04-dress-unified .n04-dress--green .n04-dress__face {
+  color: var(--n04-gold);
+}
+
+.n04-dress-unified .n04-dress--green .n04-dress__gender-script {
+  color: var(--n04-ink);
+}
+
+.n04-dress-unified .n04-dress--green .n04-dress__rule {
+  color: var(--n04-muted);
+}
+
+.n04-dress-unified .n04-dress--green .n04-dress__thanks {
+  color: var(--n04-muted);
+}
+
+.n04-dress-unified .n04-branch-divider--light .n04-branch-divider__line {
+  background: linear-gradient(90deg, transparent, var(--n04-gold-soft), transparent);
+}
+
 /* —— Hoteles —— */
 .n04-hotels {
-  padding: clamp(2.75rem, 8vw, 4rem) 1.25rem;
-  background: #fafafa;
+  padding: clamp(2.75rem, 8vw, 4rem) var(--n04-gutter);
+  background: #fff;
   border-top: 1px solid var(--n04-line);
 }
 
@@ -669,7 +916,8 @@ html.n04-html {
   padding: 0;
   display: grid;
   gap: 1rem;
-  max-width: 1040px;
+  width: 100%;
+  max-width: min(1200px, 100%);
   margin-inline: auto;
 }
 
@@ -726,7 +974,7 @@ html.n04-html {
 
 /* —— Corte de honor —— */
 .n04-party {
-  padding: clamp(2.75rem, 8vw, 4rem) 1.25rem;
+  padding: clamp(2.75rem, 8vw, 4rem) var(--n04-gutter);
   background: #fff;
 }
 
@@ -785,7 +1033,7 @@ html.n04-html {
   --n04-dress-hair: #c5a059;
   background: var(--n04-green-dress);
   color: rgba(255, 255, 255, 0.92);
-  padding: clamp(3rem, 9vw, 4.5rem) 1.25rem;
+  padding: clamp(3rem, 9vw, 4.5rem) var(--n04-gutter);
 }
 
 .n04-dress--green .n04-dress__cols {
@@ -849,7 +1097,7 @@ html.n04-html {
 
 /* —— RSVP + regalos —— */
 .n04-rsvp-gifts {
-  padding: clamp(3.25rem, 9vw, 4.75rem) 1.25rem;
+  padding: clamp(3.25rem, 9vw, 4.75rem) var(--n04-gutter);
   background: #fff;
   border-top: 1px solid var(--n04-line);
 }
@@ -905,7 +1153,7 @@ html.n04-html {
 
 /* —— Gracias tríptico —— */
 .n04-thanks {
-  padding: clamp(3.5rem, 10vw, 5rem) 1.25rem 4rem;
+  padding: clamp(3.5rem, 10vw, 5rem) var(--n04-gutter) 4rem;
   background: #fff;
 }
 
