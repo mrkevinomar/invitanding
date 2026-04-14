@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#c9c4bc" />
-    <title>Arturo &amp; Ivonne — Invitación móvil (referencia Digta VIP)</title>
+    <title>Premium custom (móvil) — Invitanding</title>
     <meta
       name="description"
-      content="Invitación digital optimizada para móvil, inspirada en el estilo Digta VIP (Arturo e Ivonne)."
+      content="Invitación digital estilo editorial móvil (demo base Premium custom — Arturo e Ivonne)."
     />
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,12 +18,18 @@
     />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/demo-nuevo04.css" />
-    <link rel="stylesheet" href="assets/css/demo-digta-mobile.css" />
+    <link rel="stylesheet" href="assets/css/demo-premium-custom.css" />
+    <link
+      rel="preload"
+      as="image"
+      href="https://static.wixstatic.com/media/2509d1_0ad1c89617a443ef811bb7bb59e170a4~mv2.gif"
+    />
+    <link rel="preload" as="video" href="site.mp4" type="video/mp4" />
   </head>
   <body class="demo-page demo-page--nuevo04 demo-page--digta-m">
-    <!-- Sobre inicial: nombre + pases + Abrir → revela la invitación -->
+    <!-- GIF + texto; al tocar se reproduce site.mp4 y luego la invitación -->
     <div
-      class="digta-envelope"
+      class="digta-envelope digta-envelope--has-gif"
       id="digta-envelope"
       role="dialog"
       aria-modal="true"
@@ -31,60 +37,89 @@
       aria-describedby="digta-envelope-desc"
     >
       <div class="digta-envelope__screen">
-        <!-- Texto visible al inicio (como antes) -->
-        <div class="digta-envelope__intro" id="digta-envelope-desc">
-          <p id="digta-envelope-title" class="digta-envelope__names">
-            <span class="digta-envelope__name-a">Arturo</span>
-            <span class="digta-envelope__amp">&amp;</span>
-            <span class="digta-envelope__name-i">Ivonne</span>
-          </p>
-          <p class="digta-envelope__pretitle">Has recibido una invitación</p>
-          <p class="digta-envelope__for">Para</p>
-          <p class="digta-envelope__guest" id="digta-env-name">Invitado</p>
-          <p class="digta-envelope__passes digta-envelope__passes--hero">
-            <span class="digta-envelope__passes-num" id="digta-env-count">02</span>
-            <span class="digta-envelope__passes-sep" aria-hidden="true">·</span>
-            <span class="digta-envelope__passes-lbl" id="digta-env-passes-label">pases</span>
-          </p>
-        </div>
-
-        <div class="digta-envelope__real">
-        <div class="digta-envelope__pivot">
-          <!-- Interior del sobre (tarjeta al animar) -->
-          <div class="digta-envelope__back" aria-hidden="true"></div>
-          <div class="digta-envelope__paper" aria-hidden="true"></div>
-          <!-- Cuatro solapas triangulares -->
-          <div class="digta-envelope__flap digta-envelope__flap--bottom" aria-hidden="true"></div>
-          <div class="digta-envelope__flap digta-envelope__flap--left" aria-hidden="true"></div>
-          <div class="digta-envelope__flap digta-envelope__flap--right" aria-hidden="true"></div>
-          <div class="digta-envelope__flap digta-envelope__flap--top" aria-hidden="true">
-            <div class="digta-envelope__top-inner">
-              <svg
-                class="digta-envelope__abrir-svg"
-                viewBox="0 0 200 52"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <defs>
-                  <path id="digta-abrir-arc" d="M 32 44 A 68 68 0 0 1 168 44" />
-                </defs>
-                <text class="digta-envelope__abrir-text">
-                  <textPath href="#digta-abrir-arc" startOffset="50%" text-anchor="middle">ABRIR</textPath>
-                </text>
-              </svg>
-              <button type="button" class="digta-envelope__seal-btn" id="digta-open-btn" aria-label="Abrir la invitación">
-                <span class="digta-envelope__seal-ridge digta-envelope__seal-ridge--1" aria-hidden="true"></span>
-                <span class="digta-envelope__seal-ridge digta-envelope__seal-ridge--2" aria-hidden="true"></span>
-                <span class="digta-envelope__seal-ridge digta-envelope__seal-ridge--3" aria-hidden="true"></span>
-                <span class="digta-envelope__seal-ridge digta-envelope__seal-ridge--4" aria-hidden="true"></span>
-              </button>
-            </div>
+        <div
+          id="digta-envelope-hit"
+          class="digta-envelope__hit"
+          role="button"
+          tabindex="0"
+          aria-label="Abrir la invitación. Toca para ver el video de apertura y continuar."
+        >
+          <!-- Opcional: data-gif-loop-ms / data-gif-after-loop-ms (ver demo-premium-custom-2.html comentario) -->
+          <div class="digta-envelope__gif-fullbleed" aria-hidden="true">
+            <img
+              class="digta-envelope__gif-img"
+              src="https://static.wixstatic.com/media/2509d1_0ad1c89617a443ef811bb7bb59e170a4~mv2.gif"
+              alt=""
+              decoding="async"
+            />
           </div>
-        </div>
+          <div class="digta-envelope__hero digta-envelope__hero--splash-minimal" id="digta-envelope-desc">
+            <p id="digta-envelope-title" class="digta-envelope__splash-name">
+              <span id="digta-env-name">Invitado</span>
+            </p>
+            <div class="digta-envelope__splash-rule" aria-hidden="true">
+              <span class="digta-envelope__splash-rule-line"></span>
+              <span class="digta-envelope__splash-diamond">
+                <span class="digta-envelope__splash-diamond__cell"></span>
+                <span class="digta-envelope__splash-diamond__cell"></span>
+                <span class="digta-envelope__splash-diamond__cell"></span>
+                <span class="digta-envelope__splash-diamond__cell"></span>
+              </span>
+              <span class="digta-envelope__splash-rule-line"></span>
+            </div>
+            <p class="digta-envelope__splash-pax">
+              <span class="digta-envelope__splash-num" id="digta-env-count">02</span>
+              <span class="digta-envelope__splash-lbl" id="digta-env-passes-label">personas</span>
+            </p>
+          </div>
+          <div id="digta-envelope-open-video" class="digta-envelope-open-video" aria-hidden="true">
+            <video
+              id="digta-open-video-el"
+              class="digta-envelope-open-video__media"
+              playsinline
+              webkit-playsinline
+              preload="metadata"
+              src="site.mp4"
+            ></video>
+          </div>
         </div>
       </div>
     </div>
+    <script>
+      (function () {
+        var DEFAULT =
+          "https://static.wixstatic.com/media/2509d1_0ad1c89617a443ef811bb7bb59e170a4~mv2.gif";
+        var env = document.getElementById("digta-envelope");
+        var img = document.querySelector(".digta-envelope__gif-img");
+        if (!env || !img) return;
+        if (window.INVITANDING_SKIP_DIGTA_SPLASH === true) {
+          env.classList.add("digta-envelope--no-gif");
+          env.classList.remove("digta-envelope--has-gif");
+          img.removeAttribute("src");
+          return;
+        }
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          env.classList.add("digta-envelope--no-gif");
+          env.classList.remove("digta-envelope--has-gif");
+          img.removeAttribute("src");
+          return;
+        }
+        var url =
+          (typeof window.INVITANDING_DIGTA_SPLASH_GIF === "string" && window.INVITANDING_DIGTA_SPLASH_GIF) ||
+          DEFAULT;
+        img.src = url;
+        img.alt = "";
+        env.classList.add("digta-envelope--has-gif");
+        env.classList.remove("digta-envelope--no-gif");
+        function markDigtaGifAnchor() {
+          window.__INVITANDING_DIGTA_GIF_ANCHOR_MS = performance.now();
+        }
+        img.addEventListener("load", markDigtaGifAnchor);
+        if (img.complete) {
+          markDigtaGifAnchor();
+        }
+      })();
+    </script>
 
     <header class="site-header site-header--over-hero">
       <div class="header-inner">
@@ -100,7 +135,7 @@
               <a href="demo-signature.html">Invitación Signature</a>
               <a href="demo-premium.html">Invitación Premium</a>
               <a href="demo-nuevo04.html">Demo Nuevo 04</a>
-              <a href="demo-digta-mobile.html" aria-current="page">Digta VIP (móvil)</a>
+              <a href="demo-premium-custom.html" aria-current="page">Premium custom (móvil)</a>
             </div>
           </div>
           <div class="nav-item">
@@ -124,7 +159,7 @@
             <a class="sub" href="demo-signature.html">Invitación Signature</a>
             <a class="sub" href="demo-premium.html">Invitación Premium</a>
             <a class="sub" href="demo-nuevo04.html">Demo Nuevo 04</a>
-            <a class="sub" href="demo-digta-mobile.html">Digta VIP (móvil)</a>
+            <a class="sub" href="demo-premium-custom.html">Premium custom (móvil)</a>
             <span class="nav-mobile-heading">Invitaciones digitales</span>
             <a class="sub" href="snapcard-basica.html">Invitación Digital Clásica</a>
             <a class="sub" href="snapcard-interactiva.html">Invitación Digital Clásica + RSVP</a>
@@ -135,61 +170,6 @@
     </header>
 
     <main class="n04-main">
-      <!-- Primera vista tras abrir el sobre: tarjeta con marco dorado y nombres -->
-      <section class="digta-cover reveal-section" aria-label="Portada de la invitación">
-        <div class="digta-cover__wrap">
-          <div class="digta-cover__card reveal-item">
-            <div class="digta-cover__branch digta-cover__branch--top" aria-hidden="true">
-              <svg viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="digta-cover__svg">
-                <path
-                  d="M110 58c-12-8-28-14-48-16 18-4 36 2 48 14 12-12 30-18 48-14-20 2-36 8-48 16z"
-                  fill="rgba(95,125,95,0.22)"
-                />
-                <path
-                  d="M108 52c-8-10-20-14-34-12 14-2 26 4 34 12 8-8 20-12 34-12-14-2-26 2-34 12z"
-                  fill="rgba(120,148,118,0.35)"
-                />
-                <ellipse cx="72" cy="38" rx="14" ry="7" transform="rotate(-35 72 38)" fill="rgba(88,118,88,0.45)" />
-                <ellipse cx="148" cy="36" rx="15" ry="7" transform="rotate(38 148 36)" fill="rgba(75,105,78,0.4)" />
-                <ellipse cx="98" cy="28" rx="11" ry="5" transform="rotate(-8 98 28)" fill="rgba(105,135,100,0.38)" />
-                <ellipse cx="128" cy="30" rx="12" ry="5" transform="rotate(12 128 30)" fill="rgba(90,120,92,0.42)" />
-                <circle cx="92" cy="22" r="2.2" fill="rgba(200,120,130,0.65)" />
-                <circle cx="118" cy="20" r="1.8" fill="rgba(210,140,145,0.55)" />
-                <circle cx="134" cy="26" r="2" fill="rgba(195,110,125,0.5)" />
-                <path d="M110 58V42" stroke="rgba(70,95,72,0.25)" stroke-width="1.2" stroke-linecap="round" />
-              </svg>
-            </div>
-            <div class="digta-cover__branch digta-cover__branch--bottom" aria-hidden="true">
-              <svg viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="digta-cover__svg">
-                <path
-                  d="M110 6c-12 8-28 14-48 16 18 4 36-2 48-14 12 12 30 18 48 14-20-2-36-8-48-16z"
-                  fill="rgba(95,125,95,0.2)"
-                />
-                <path
-                  d="M108 12c-8 10-20 14-34 12 14 2 26-4 34-12 8 8 20 12 34 12-14 2-26-2-34-12z"
-                  fill="rgba(120,148,118,0.32)"
-                />
-                <ellipse cx="78" cy="28" rx="14" ry="7" transform="rotate(42 78 28)" fill="rgba(88,118,88,0.42)" />
-                <ellipse cx="142" cy="30" rx="15" ry="7" transform="rotate(-40 142 30)" fill="rgba(75,105,78,0.38)" />
-                <ellipse cx="104" cy="38" rx="11" ry="5" transform="rotate(10 104 38)" fill="rgba(105,135,100,0.36)" />
-                <ellipse cx="132" cy="36" rx="12" ry="5" transform="rotate(-14 132 36)" fill="rgba(90,120,92,0.4)" />
-                <circle cx="96" cy="44" r="2" fill="rgba(200,120,130,0.6)" />
-                <circle cx="124" cy="46" r="1.8" fill="rgba(210,140,145,0.5)" />
-                <circle cx="138" cy="40" r="2.1" fill="rgba(195,110,125,0.48)" />
-                <path d="M110 6v14" stroke="rgba(70,95,72,0.22)" stroke-width="1.2" stroke-linecap="round" />
-              </svg>
-            </div>
-            <header class="digta-cover__inner">
-              <h1 class="digta-cover__names">
-                <span class="digta-cover__name">Arturo</span>
-                <span class="digta-cover__amp">&amp;</span>
-                <span class="digta-cover__name">Ivonne</span>
-              </h1>
-            </header>
-          </div>
-        </div>
-      </section>
-
       <!-- Hero: fecha vertical + doble arco (imagen única partida) -->
       <section class="n04-hero reveal-section">
         <div class="container n04-hero__wrap">
@@ -240,9 +220,21 @@
       <section class="n04-guest reveal-section" aria-label="Pases de invitación">
         <div class="container n04-guest__wrap">
           <div class="n04-guest__card reveal-item">
-            <span class="n04-guest__kicker">Personas</span>
-            <span class="n04-guest__count">02</span>
             <p class="n04-guest__name">Sr. Artysel</p>
+            <div class="n04-guest__card-divider" aria-hidden="true">
+              <span class="n04-guest__card-divider-line"></span>
+              <span class="n04-guest__card-divider-mark">
+                <span class="n04-guest__card-divider-cell"></span>
+                <span class="n04-guest__card-divider-cell"></span>
+                <span class="n04-guest__card-divider-cell"></span>
+                <span class="n04-guest__card-divider-cell"></span>
+              </span>
+              <span class="n04-guest__card-divider-line"></span>
+            </div>
+            <p class="n04-guest__pax">
+              <span class="n04-guest__count">02</span>
+              <span class="n04-guest__pax-lbl" id="n04-guest-pax-lbl">personas</span>
+            </p>
           </div>
         </div>
       </section>
@@ -553,8 +545,7 @@
           <p class="n04-thanks__line reveal-item">Por el honor de contar con su presencia</p>
           <p class="n04-thanks__couple reveal-item">Arturo e Ivonne</p>
           <p class="n04-thanks__brand reveal-item">
-            Demo móvil inspirada en <a href="https://www.digta.vip/copy-of-arturo-e-ivonne" rel="noopener noreferrer">Digta VIP</a>
-            · <a href="index.html">Invitanding</a>
+            <a href="index.html">Invitanding</a>
           </p>
         </div>
       </section>
@@ -580,24 +571,24 @@
         if (isNaN(pasesNum) || pasesNum < 1) pasesNum = 1;
 
         var countStr = pasesNum < 10 ? "0" + pasesNum : String(pasesNum);
-        var passesLabel = pasesNum === 1 ? "pase" : "pases";
+        var passesLabel = pasesNum === 1 ? "persona" : "personas";
 
         function syncGuestFields() {
           var nameEl = document.querySelector(".n04-guest__name");
           var countEl = document.querySelector(".n04-guest__count");
+          var paxLbl = document.getElementById("n04-guest-pax-lbl");
           var envName = document.getElementById("digta-env-name");
           var envCount = document.getElementById("digta-env-count");
           var envLbl = document.getElementById("digta-env-passes-label");
           if (nameEl) nameEl.textContent = guestName;
           if (countEl) countEl.textContent = countStr;
+          if (paxLbl) paxLbl.textContent = passesLabel;
           if (envName) envName.textContent = guestName;
           if (envCount) envCount.textContent = countStr;
           if (envLbl) envLbl.textContent = passesLabel;
         }
 
         syncGuestFields();
-
-        var OPEN_ANIM_MS = 1080;
 
         function openInvitation() {
           window.scrollTo(0, 0);
@@ -606,33 +597,139 @@
           if (env) {
             env.setAttribute("aria-hidden", "true");
             env.classList.remove("digta-envelope--opening");
+            env.classList.remove("digta-envelope--video-playing");
           }
           var first = document.querySelector("main");
           if (first) first.setAttribute("tabindex", "-1");
           if (first) first.focus({ preventScroll: true });
         }
 
-        function handleOpenClick() {
+        function wireEnvelopeHit() {
+          var hit = document.getElementById("digta-envelope-hit");
           var env = document.getElementById("digta-envelope");
-          var btn = document.getElementById("digta-open-btn");
-          if (!env || env.classList.contains("digta-envelope--opening")) return;
+          var videoEl = document.getElementById("digta-open-video-el");
+          var videoWrap = document.getElementById("digta-envelope-open-video");
+          var gifImg = document.querySelector(".digta-envelope__gif-img");
+          if (!hit || !env) return;
 
-          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            openInvitation();
-            return;
+          var gifLoopMs = 0;
+          if (typeof window.INVITANDING_DIGTA_SPLASH_GIF_LOOP_MS === "number" && window.INVITANDING_DIGTA_SPLASH_GIF_LOOP_MS > 0) {
+            gifLoopMs = window.INVITANDING_DIGTA_SPLASH_GIF_LOOP_MS;
+          }
+          if (!gifLoopMs && gifImg) {
+            var rawLoop = gifImg.getAttribute("data-gif-loop-ms");
+            if (rawLoop != null && String(rawLoop).trim() !== "") {
+              var pl = parseInt(rawLoop, 10);
+              if (!isNaN(pl) && pl > 0) gifLoopMs = pl;
+            }
+          }
+          var gifAfterLoopMs = 0;
+          if (typeof window.INVITANDING_DIGTA_SPLASH_AFTER_LOOP_MS === "number" && window.INVITANDING_DIGTA_SPLASH_AFTER_LOOP_MS >= 0) {
+            gifAfterLoopMs = window.INVITANDING_DIGTA_SPLASH_AFTER_LOOP_MS;
+          } else if (gifImg) {
+            var rawAfter = gifImg.getAttribute("data-gif-after-loop-ms");
+            if (rawAfter != null && String(rawAfter).trim() !== "") {
+              var pa = parseInt(rawAfter, 10);
+              if (!isNaN(pa) && pa >= 0) gifAfterLoopMs = pa;
+            }
+          }
+          function msUntilNextGifLoopBoundary() {
+            if (!gifLoopMs) return 0;
+            var anchor =
+              typeof window.__INVITANDING_DIGTA_GIF_ANCHOR_MS === "number" && window.__INVITANDING_DIGTA_GIF_ANCHOR_MS > 0
+                ? window.__INVITANDING_DIGTA_GIF_ANCHOR_MS
+                : performance.now();
+            var elapsed = performance.now() - anchor;
+            var r = elapsed % gifLoopMs;
+            if (r < 1) return 0;
+            return gifLoopMs - r;
           }
 
-          env.classList.add("digta-envelope--opening");
-          if (btn) btn.disabled = true;
+          var openVideoSrc =
+            (typeof window.INVITANDING_OPEN_VIDEO_URL === "string" && window.INVITANDING_OPEN_VIDEO_URL) ||
+            "site.mp4";
+          if (videoEl && openVideoSrc) {
+            videoEl.src = openVideoSrc;
+          }
 
-          window.setTimeout(function () {
+          function afterVideoDone() {
             openInvitation();
-            if (btn) btn.disabled = false;
-          }, OPEN_ANIM_MS);
+            hit.removeAttribute("aria-disabled");
+            hit.removeAttribute("aria-busy");
+            env.classList.remove("digta-envelope--video-playing");
+            if (videoWrap) {
+              videoWrap.setAttribute("aria-hidden", "true");
+            }
+            if (videoEl) {
+              try {
+                videoEl.pause();
+                videoEl.currentTime = 0;
+              } catch (e) {}
+              videoEl.onended = null;
+              videoEl.onerror = null;
+            }
+          }
+
+          function startOpenVideo() {
+            env.classList.add("digta-envelope--video-playing");
+            hit.setAttribute("aria-disabled", "true");
+            if (videoWrap) {
+              videoWrap.setAttribute("aria-hidden", "false");
+            }
+
+            if (!videoEl) {
+              afterVideoDone();
+              return;
+            }
+
+            videoEl.currentTime = 0;
+            var playPromise = videoEl.play();
+            if (playPromise !== undefined && typeof playPromise.then === "function") {
+              playPromise.catch(function () {
+                afterVideoDone();
+              });
+            }
+            videoEl.onended = function () {
+              afterVideoDone();
+            };
+            videoEl.onerror = function () {
+              afterVideoDone();
+            };
+          }
+
+          function runOpen() {
+            if (env.classList.contains("digta-envelope--video-playing")) return;
+            if (hit.getAttribute("aria-disabled") === "true") return;
+
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+              openInvitation();
+              return;
+            }
+
+            if (gifLoopMs > 0) {
+              hit.setAttribute("aria-disabled", "true");
+              hit.setAttribute("aria-busy", "true");
+              var wait = msUntilNextGifLoopBoundary() + gifAfterLoopMs;
+              setTimeout(function () {
+                hit.removeAttribute("aria-busy");
+                startOpenVideo();
+              }, wait);
+              return;
+            }
+
+            startOpenVideo();
+          }
+
+          hit.addEventListener("click", runOpen);
+          hit.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              runOpen();
+            }
+          });
         }
 
-        var btn = document.getElementById("digta-open-btn");
-        if (btn) btn.addEventListener("click", handleOpenClick);
+        wireEnvelopeHit();
       })();
     </script>
   </body>

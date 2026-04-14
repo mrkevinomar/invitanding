@@ -1,5 +1,5 @@
 /**
- * Demo Nuevo 04 — referencia visual tipo Digta VIP (blanco, oro #c5a059, serif + script).
+ * Demo Nuevo 04 — invitación editorial (blanco, oro #c5a059, serif + script).
  */
 
 /* Escala tipográfica global (~8 %): todo lo en `rem` hereda del `html` */
@@ -287,11 +287,95 @@ html.n04-html {
 
 .n04-guest__card {
   text-align: center;
-  padding: 1.5rem 2rem;
+  padding: clamp(1.65rem, 4.5vw, 2.15rem) clamp(1.5rem, 4vw, 2.25rem);
   border: 1px solid var(--n04-line);
+  border-radius: 10px;
   max-width: 18rem;
+  background: #fffdfa;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 12px 36px rgba(41, 36, 32, 0.06);
 }
 
+/* Nombre del invitado primero — script como el hero (no heredar sans del body) */
+.n04-guest__name {
+  margin: 0 0 0.85rem;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(2.25rem, 8.5vw, 3.15rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  color: var(--n04-ink);
+  word-break: break-word;
+}
+
+.n04-guest__card-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  max-width: 14rem;
+  margin: 0 auto 0.85rem;
+  color: var(--n04-gold);
+}
+
+.n04-guest__card-divider-line {
+  flex: 1;
+  min-width: 1rem;
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--n04-gold), transparent);
+  opacity: 0.75;
+}
+
+.n04-guest__card-divider-mark {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  width: 0.45rem;
+  height: 0.45rem;
+  flex-shrink: 0;
+  transform: rotate(45deg);
+  color: var(--n04-gold);
+}
+
+.n04-guest__card-divider-cell {
+  display: block;
+  background: currentColor;
+  border-radius: 0.5px;
+  min-height: 2px;
+}
+
+.n04-guest__pax {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.65rem;
+}
+
+.n04-guest__count {
+  font-family: var(--n04-serif);
+  font-size: clamp(2.35rem, 7.5vw, 3.15rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--n04-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.n04-guest__pax-lbl {
+  font-family: var(--n04-serif-caps);
+  font-size: clamp(0.58rem, 1.85vw, 0.68rem);
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: lowercase;
+  color: var(--n04-gold);
+}
+
+/* Compatibilidad: demos antiguos con kicker arriba */
 .n04-guest__kicker {
   font-family: var(--n04-serif-caps);
   font-size: 0.58rem;
@@ -301,21 +385,6 @@ html.n04-html {
   color: var(--n04-gold);
   display: block;
   margin-bottom: 0.35rem;
-}
-
-.n04-guest__count {
-  font-family: var(--n04-serif);
-  font-size: clamp(2.75rem, 8vw, 3.5rem);
-  font-weight: 600;
-  display: block;
-  line-height: 1;
-  margin-bottom: 0.35rem;
-}
-
-.n04-guest__name {
-  margin: 0;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
 }
 
 /* —— Cuenta regresiva —— */

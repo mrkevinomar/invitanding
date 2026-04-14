@@ -74,3 +74,23 @@
   from = "/demo-signature-personalizado/"
   to = "/demo-signature-personalizado.html"
   status = 200
+
+[[redirects]]
+  from = "/demo-premium-custom"
+  to = "/demo-premium-custom.html"
+  status = 200
+
+[[redirects]]
+  from = "/demo-premium-custom/"
+  to = "/demo-premium-custom.html"
+  status = 200
+
+[[redirects]]
+  from = "/demo-premium-custom-2"
+  to = "/demo-premium-custom-2.html"
+  status = 200
+
+[[redirects]]
+  from = "/demo-premium-custom-2/"
+  to = "/demo-premium-custom-2.html"
+  status = 200
