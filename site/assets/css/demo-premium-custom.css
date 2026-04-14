@@ -304,17 +304,62 @@ html.digta-m-html:not(.digta-invitation-open) body {
   margin-left: 0.05em;
 }
 
+/* Invitación visible: overlay baja suave; el GIF no debe reaparecer al quitar --opening (un frame sin esto = flash). */
+html.digta-invitation-open .digta-envelope--has-gif .digta-envelope__gif-fullbleed {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: none !important;
+}
+
+html.digta-invitation-open .digta-envelope-open-video {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: none !important;
+}
+
 html.digta-invitation-open .digta-envelope {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  /* Sin fade: si no, al terminar el vídeo se quita el overlay antes que el fade y se ve el GIF un instante */
-  transition: none;
+  transition:
+    opacity 0.7s cubic-bezier(0.33, 1, 0.68, 1),
+    visibility 0s linear 0.7s;
+}
+
+/* Contenido detrás del overlay: leve entrada (cabecera, main, pie) */
+html.digta-invitation-open body.demo-page--digta-m > header.site-header,
+html.digta-invitation-open body.demo-page--digta-m > main.n04-main,
+html.digta-invitation-open body.demo-page--digta-m > footer.site-footer {
+  animation: digta-invite-main-in 0.85s cubic-bezier(0.33, 1, 0.68, 1) 0.12s both;
+}
+
+@keyframes digta-invite-main-in {
+  from {
+    opacity: 0.88;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .digta-envelope {
     transition: none;
+  }
+
+  html.digta-invitation-open .digta-envelope {
+    transition:
+      opacity 0.22s ease,
+      visibility 0s linear 0.22s;
+  }
+
+  html.digta-invitation-open body.demo-page--digta-m > header.site-header,
+  html.digta-invitation-open body.demo-page--digta-m > main.n04-main,
+  html.digta-invitation-open body.demo-page--digta-m > footer.site-footer {
+    animation: none;
   }
 }
 
