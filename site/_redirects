@@ -1,4 +1,7 @@
-# Misma lógica que netlify.toml: rutas limpias para invitaciones estáticas.
+# Cloudflare Pages — rutas limpias (200 = proxy: sirve el HTML sin cambiar la URL del navegador)
+# Documentación: https://developers.cloudflare.com/pages/configuration/redirects/
+# Orden: rutas más específicas antes que prefijos cortos (p. ej. …-2 antes de …-custom).
+
 /paolaykevin    /paolaykevin.html    200
 /paolaykevin/   /paolaykevin.html    200
 /ana-y-gonzalo  /ana-y-gonzalo.html  200
@@ -11,7 +14,8 @@
 /contact/   /contact.html    200
 /demo-signature-personalizado    /demo-signature-personalizado.html    200
 /demo-signature-personalizado/   /demo-signature-personalizado.html    200
-/demo-premium-custom    /demo-premium-custom.html    200
-/demo-premium-custom/   /demo-premium-custom.html    200
+# Invitación premium con token (?t=) — antes que /demo-premium-custom para evitar ambigüedad
 /demo-premium-custom-2    /demo-premium-custom-2.html    200
 /demo-premium-custom-2/   /demo-premium-custom-2.html    200
+/demo-premium-custom    /demo-premium-custom.html    200
+/demo-premium-custom/   /demo-premium-custom.html    200

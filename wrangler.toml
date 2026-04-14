@@ -1,0 +1,7 @@
+# Cloudflare Pages — proyecto estático desde /site
+# En el dashboard: Build command vacío (o "exit 0"), Root directory = repo, Output directory = site
+# Docs: https://developers.cloudflare.com/pages/configuration/build-configuration/
+
+name = "invitanding"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "./site"

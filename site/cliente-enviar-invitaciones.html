@@ -506,11 +506,15 @@
     <script src="assets/js/scroll-reveal.js"></script>
     <script>
       (function () {
-        var INVITE_FILE = "demo-premium-custom-2.html";
+        var INVITE_FILE = "demo-premium-custom-2";
 
         function inviteBaseUrl() {
           try {
-            return new URL(INVITE_FILE, window.location.href).href;
+            var path = INVITE_FILE;
+            if (window.location.protocol === "file:" && path.indexOf(".html") < 0) {
+              path = path + ".html";
+            }
+            return new URL(path, window.location.href).href;
           } catch (e) {
             return "";
           }
