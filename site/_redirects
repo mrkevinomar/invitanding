@@ -1,34 +1,32 @@
-# Cloudflare Pages — rutas limpias sin bucle con trailing slash
-# 1) /ruta/ → /ruta (301): una sola URL canónica sin slash final
-# 2) /ruta → archivo.html (200): proxy sin cambiar la barra de direcciones
-# Orden: rutas largas antes que prefijos (…-2 antes de …-custom).
+# Cloudflare Pages — rutas limpias sin bucle
+# NO usar 301 entre /ruta y /ruta/: choca con los 308 de normalización de Pages y provoca NS_ERROR_REDIRECT_LOOP.
+# Ambas variantes → mismo .html (200). Orden: rutas largas antes que prefijos (…-2 antes de …-custom).
 # Docs: https://developers.cloudflare.com/pages/configuration/redirects/
 
-# --- Paola y Kevin alojamiento (carpeta real; conviene slash final) ---
-/paola-y-kevin-alojamiento   /paola-y-kevin-alojamiento/   301
-/paola-y-kevin-alojamiento/  /paola-y-kevin-alojamiento/index.html   200
+# --- Paola y Kevin alojamiento (carpeta con index) ---
+/paola-y-kevin-alojamiento    /paola-y-kevin-alojamiento/index.html   200
+/paola-y-kevin-alojamiento/   /paola-y-kevin-alojamiento/index.html   200
 
-# --- Páginas sueltas: primero quitar slash, luego servir .html ---
-/paolaykevin/   /paolaykevin   301
 /paolaykevin    /paolaykevin.html   200
+/paolaykevin/   /paolaykevin.html   200
 
-/ana-y-gonzalo/   /ana-y-gonzalo   301
 /ana-y-gonzalo    /ana-y-gonzalo.html   200
+/ana-y-gonzalo/   /ana-y-gonzalo.html   200
 
-/historia/   /historia   301
 /historia    /historia.html   200
+/historia/   /historia.html   200
 
-/contact/   /contact   301
 /contact    /contact.html   200
+/contact/   /contact.html   200
 
-/demo-signature/   /demo-signature   301
 /demo-signature    /demo-signature.html   200
+/demo-signature/   /demo-signature.html   200
 
-/demo-signature-personalizado/   /demo-signature-personalizado   301
 /demo-signature-personalizado    /demo-signature-personalizado.html   200
+/demo-signature-personalizado/   /demo-signature-personalizado.html   200
 
-/demo-premium-custom-2/   /demo-premium-custom-2   301
 /demo-premium-custom-2    /demo-premium-custom-2.html   200
+/demo-premium-custom-2/   /demo-premium-custom-2.html   200
 
-/demo-premium-custom/   /demo-premium-custom   301
 /demo-premium-custom    /demo-premium-custom.html   200
+/demo-premium-custom/   /demo-premium-custom.html   200
