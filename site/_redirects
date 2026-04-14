@@ -2,20 +2,20 @@
 # Documentación: https://developers.cloudflare.com/pages/configuration/redirects/
 # Orden: rutas más específicas antes que prefijos cortos (p. ej. …-2 antes de …-custom).
 
-/paolaykevin    /paolaykevin.html    200
+/paolaykevin    /paolaykevin/    301
 /paolaykevin/   /paolaykevin.html    200
-/ana-y-gonzalo  /ana-y-gonzalo.html  200
+/ana-y-gonzalo  /ana-y-gonzalo/  301
 /ana-y-gonzalo/ /ana-y-gonzalo.html  200
-/historia       /historia.html       200
+/historia       /historia/       301
 /historia/      /historia.html       200
-/paola-y-kevin-alojamiento   /paola-y-kevin-alojamiento/index.html   200
+/paola-y-kevin-alojamiento   /paola-y-kevin-alojamiento/   301
 /paola-y-kevin-alojamiento/  /paola-y-kevin-alojamiento/index.html   200
-/contact    /contact.html    200
+/contact    /contact/    301
 /contact/   /contact.html    200
-/demo-signature-personalizado    /demo-signature-personalizado.html    200
+/demo-signature-personalizado    /demo-signature-personalizado/    301
 /demo-signature-personalizado/   /demo-signature-personalizado.html    200
 # Invitación premium con token (?t=) — antes que /demo-premium-custom para evitar ambigüedad
-/demo-premium-custom-2    /demo-premium-custom-2.html    200
+/demo-premium-custom-2    /demo-premium-custom-2/    301
 /demo-premium-custom-2/   /demo-premium-custom-2.html    200
-/demo-premium-custom    /demo-premium-custom.html    200
+/demo-premium-custom    /demo-premium-custom/    301
 /demo-premium-custom/   /demo-premium-custom.html    200
