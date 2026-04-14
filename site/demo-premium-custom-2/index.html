@@ -1,15 +1,33 @@
 <!DOCTYPE html>
-<html lang="es-EC" class="n04-html digta-m-html">
+<!--
+  Invitación Premium custom (móvil) con enlace cifrado ?t= o ?token=.
+  Cifrado: AES-256-GCM, payload JSON v1/v2 (n, p, m opcional) — implementación completa en assets/js/invite-token.js
+  (misma que demo-signature-personalizado, cliente-enviar-invitaciones e invite-token-generador).
+  Clave: InviteToken.getSecret() → window.INVITANDING_INVITE_SECRET si existe, si no la por defecto del JS.
+  Opciones: INVITANDING_SKIP_ENVELOPE, INVITANDING_ALLOW_LEGACY_INVITE_PARAMS (?invitado/&nombre, ?pases/&pax).
+  Apertura: video site.mp4 (o INVITANDING_OPEN_VIDEO_URL). Sin animación CSS 3D del sobre.
+  Opcional: INVITANDING_DIGTA_SPLASH_GIF_LOOP_MS = duración en ms de un ciclo completo del GIF; el vídeo
+  empieza al siguiente “cierre” de ciclo (desde la carga del GIF). INVITANDING_DIGTA_SPLASH_AFTER_LOOP_MS
+  suma una pausa extra tras ese punto.
+
+  Referencia Digta VIP (export Wix “DEMO Arturo & Ivonne”): el HTML guardado es una sola página; no existe otro
+  documento “solo abierto”. Tras quitar overlays/GIF, el cuerpo es scroll con secciones (hero, pases, fecha,
+  ceremonia, recepción, historia, vestimenta, hoteles, RSVP…). Ese flujo abierto corresponde aquí a
+  <main class="n04-main"> (demo-nuevo04.css + demo-premium-custom.css). No se puede pegar el bundle Wix en
+  este sitio: depende de Thunderbolt, fuentes wfont_* y scripts locales en *_files/.
+-->
+<html lang="es-EC" class="n04-html digta-m-html demo-premium-custom-2-html">
   <head>
     <meta charset="utf-8" />
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#c9c4bc" />
-    <title>Premium custom (móvil) — Invitanding</title>
+    <title>Premium custom — invitación personalizada (?t=) — Invitanding</title>
     <meta
       name="description"
-      content="Invitación digital estilo editorial móvil (demo base Premium custom — Arturo e Ivonne)."
+      content="Misma demo Premium custom (móvil) con nombre y pases desde enlace cifrado (?t=). No indexada."
     />
+    <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,7 +46,7 @@
     <link rel="preload" as="video" href="site.mp4" type="video/mp4" />
   </head>
   <body class="demo-page demo-page--nuevo04 demo-page--digta-m">
-    <!-- GIF + texto; al tocar se reproduce site.mp4 y luego la invitación -->
+    <!-- Una pantalla: GIF + texto; al tocar se reproduce site.mp4 (apertura) y luego la invitación -->
     <div
       class="digta-envelope digta-envelope--has-gif"
       id="digta-envelope"
@@ -45,7 +63,7 @@
           tabindex="0"
           aria-label="Abrir la invitación. Toca para ver el video de apertura y continuar."
         >
-          <!-- Opcional: data-gif-loop-ms / data-gif-after-loop-ms (ver demo-premium-custom-2.html comentario) -->
+          <!-- GIF a pantalla completa; opcional data-gif-loop-ms="XXXX" = duración en ms de un ciclo completo (el vídeo espera al siguiente cierre). data-gif-after-loop-ms pausa extra. -->
           <div class="digta-envelope__gif-fullbleed" aria-hidden="true">
             <img
               class="digta-envelope__gif-img"
@@ -73,6 +91,7 @@
               <span class="digta-envelope__splash-lbl" id="digta-env-passes-label">personas</span>
             </p>
           </div>
+          <!-- Misma caja contenedora que .digta-envelope__gif-fullbleed (inset:0 sobre .hit) → alineación 1:1 con el GIF -->
           <div id="digta-envelope-open-video" class="digta-envelope-open-video" aria-hidden="true">
             <video
               id="digta-open-video-el"
@@ -128,15 +147,15 @@
           <img src="assets/img/logo-blanco.png" alt="Invitanding" width="180" height="48" />
         </a>
         <nav class="nav-desktop" aria-label="Principal">
-          <a href="historia.html">Historia</a>
+          <a href="/historia/">Historia</a>
           <div class="nav-item">
             <span class="nav-label">Invitaciones Interactivas</span>
             <div class="nav-submenu">
               <a href="demo-classic.html">Invitación Classic</a>
-              <a href="demo-signature.html">Invitación Signature</a>
+              <a href="/demo-signature/">Invitación Signature</a>
               <a href="demo-premium.html">Invitación Premium</a>
               <a href="demo-nuevo04.html">Demo Nuevo 04</a>
-              <a href="demo-premium-custom.html" aria-current="page">Premium custom (móvil)</a>
+              <a href="/demo-premium-custom/">Premium custom (móvil)</a>
             </div>
           </div>
           <div class="nav-item">
@@ -147,24 +166,24 @@
             </div>
           </div>
         </nav>
-        <a class="btn btn-primary header-cta" href="contact.html">Contáctanos</a>
+        <a class="btn btn-primary header-cta" href="/contact/">Contáctanos</a>
         <div class="nav-toggle">
           <input type="checkbox" id="nav-check" />
           <label class="burger" for="nav-check" aria-label="Menú"
             ><span></span><span></span><span></span
           ></label>
           <div class="nav-mobile-panel">
-            <a href="historia.html">Historia</a>
+            <a href="/historia/">Historia</a>
             <span class="nav-mobile-heading">Invitaciones Interactivas</span>
             <a class="sub" href="demo-classic.html">Invitación Classic</a>
-            <a class="sub" href="demo-signature.html">Invitación Signature</a>
+            <a class="sub" href="/demo-signature/">Invitación Signature</a>
             <a class="sub" href="demo-premium.html">Invitación Premium</a>
             <a class="sub" href="demo-nuevo04.html">Demo Nuevo 04</a>
-            <a class="sub" href="demo-premium-custom.html">Premium custom (móvil)</a>
+            <a class="sub" href="/demo-premium-custom/">Premium custom (móvil)</a>
             <span class="nav-mobile-heading">Invitaciones digitales</span>
             <a class="sub" href="snapcard-basica.html">Invitación Digital Clásica</a>
             <a class="sub" href="snapcard-interactiva.html">Invitación Digital Clásica + RSVP</a>
-            <a href="contact.html">Contáctanos</a>
+            <a href="/contact/">Contáctanos</a>
           </div>
         </div>
       </div>
@@ -236,6 +255,7 @@
               <span class="n04-guest__count">02</span>
               <span class="n04-guest__pax-lbl" id="n04-guest-pax-lbl">personas</span>
             </p>
+            <p class="n04-guest__token-line reveal-item" id="js-demo-guest-line" aria-live="polite"></p>
           </div>
         </div>
       </section>
@@ -386,7 +406,7 @@
           <p class="n04-std__date reveal-item">
             <span>Sept.</span><span class="n04-std__dot">·</span><span class="n04-std__daymid">19</span><span class="n04-std__dot">·</span><span>2026</span>
           </p>
-          <a class="n04-link-gold n04-link-gold--std reveal-item" href="contact.html">Reservar</a>
+          <a class="n04-link-gold n04-link-gold--std reveal-item" href="/contact/">Reservar</a>
         </div>
       </section>
 
@@ -498,6 +518,7 @@
         <div class="container n04-rsvp-gifts__inner">
           <h2 id="n04-rsvp-heading" class="n04-rsvp-gifts__title reveal-item">RSVP</h2>
           <p class="n04-rsvp-gifts__deadline reveal-item">Antes del 15 de julio</p>
+          <p class="n04-rsvp-gifts__guest-note reveal-item" id="js-demo-rsvp-guest"></p>
           <p class="n04-rsvp-gifts__text reveal-item">
             Puntualidad al evento religioso, quedamos atentos a su gentil confirmación
           </p>
@@ -554,27 +575,125 @@
 
     <footer class="site-footer sqs-animate">
       <p class="site-footer--brand">
-        <a href="historia.html">
+        <a href="/historia/">
           <span class="footer-acerca">Acerca de</span> <span class="footer-invita">Invitanding</span>
         </a>
       </p>
       <p class="footer-copy">Invitanding 2026 · Todos los derechos reservados</p>
     </footer>
     <script src="assets/js/scroll-reveal.js"></script>
+    <!-- Cifrado/descifrado de tokens: invite-token.js (encryptPayload en generador; aquí solo decryptPayload + misma clave) -->
+    <script src="assets/js/invite-token.js"></script>
     <script>
       (function () {
+        var line = document.getElementById("js-demo-guest-line");
+        var rsvpDetail = document.getElementById("js-demo-rsvp-guest");
         var params = new URLSearchParams(window.location.search);
-        var invRaw = params.get("invitado");
-        var pasesRaw = params.get("pases");
+        var token = params.get("t") || params.get("token") || "";
 
-        var guestName = invRaw ? invRaw.replace(/\+/g, " ").trim() : "Invitado";
-        var pasesNum = pasesRaw !== null && pasesRaw !== "" ? parseInt(pasesRaw, 10) : 2;
-        if (isNaN(pasesNum) || pasesNum < 1) pasesNum = 1;
+        function decodeNombre(raw) {
+          if (!raw) return "";
+          var s = String(raw).replace(/\+/g, " ");
+          try {
+            return decodeURIComponent(s).trim();
+          } catch (e) {
+            return s.trim();
+          }
+        }
 
-        var countStr = pasesNum < 10 ? "0" + pasesNum : String(pasesNum);
-        var passesLabel = pasesNum === 1 ? "persona" : "personas";
+        function formatMesa(mesa) {
+          if (mesa == null || mesa === "") return "";
+          if (typeof mesa === "number") return "Mesa " + mesa;
+          return String(mesa);
+        }
 
-        function syncGuestFields() {
+        function applyOk(nombreMostrado, pases, mesa) {
+          var pasesTexto = pases === 1 ? "1 pase" : pases + " pases";
+          var mesaTxt = formatMesa(mesa);
+          if (line) {
+            line.classList.remove("n04-guest__token-line--error");
+            line.textContent =
+              "Invitación personalizada para " +
+              nombreMostrado +
+              " · " +
+              pasesTexto +
+              (mesaTxt ? " · " + mesaTxt : "");
+          }
+          if (rsvpDetail) {
+            rsvpDetail.textContent =
+              "Nombre en la invitación: " +
+              nombreMostrado +
+              ". Cupo: " +
+              pasesTexto +
+              "." +
+              (mesaTxt ? " " + mesaTxt + "." : "");
+          }
+        }
+
+        function applyError() {
+          var msg =
+            "Este enlace de invitación no es válido o ha caducado. Solicita un nuevo enlace a los novios.";
+          if (line) {
+            line.classList.add("n04-guest__token-line--error");
+            line.textContent = msg;
+          }
+          if (rsvpDetail) {
+            rsvpDetail.textContent =
+              "No pudimos leer los datos de tu invitación. Usa el enlace que te enviaron o escribe a los novios.";
+          }
+        }
+
+        function envelopeStorageId(tokenStr, legacyNombre, legacyPases) {
+          var raw =
+            tokenStr && String(tokenStr).length
+              ? "t|" + String(tokenStr)
+              : "l|" + String(legacyNombre || "") + "|" + String(legacyPases != null ? legacyPases : "");
+          var h = 5381;
+          for (var i = 0; i < raw.length; i++) {
+            h = ((h << 5) + h) ^ raw.charCodeAt(i);
+          }
+          return "invitanding-env-" + (h >>> 0).toString(36);
+        }
+
+        function envelopeAlreadyOpened(storageKey) {
+          try {
+            if (document.documentElement.getAttribute("data-invitanding-envelope-done") === storageKey) {
+              return true;
+            }
+            if (window.localStorage.getItem(storageKey) === "1") return true;
+            if (window.sessionStorage.getItem(storageKey) === "1") return true;
+          } catch (e) {}
+          return false;
+        }
+
+        function markEnvelopeOpened(storageKey) {
+          try {
+            window.localStorage.setItem(storageKey, "1");
+          } catch (e) {}
+          try {
+            window.sessionStorage.setItem(storageKey, "1");
+          } catch (e2) {}
+          try {
+            document.documentElement.setAttribute("data-invitanding-envelope-done", storageKey);
+          } catch (e3) {}
+        }
+
+        function kickScrollReveal() {
+          requestAnimationFrame(function () {
+            window.dispatchEvent(new Event("resize"));
+          });
+          window.setTimeout(function () {
+            window.dispatchEvent(new Event("resize"));
+          }, 120);
+          window.setTimeout(function () {
+            window.dispatchEvent(new Event("resize"));
+          }, 400);
+        }
+
+        function syncGuestFieldsFromMeta(nombreMostrado, pasesNum) {
+          var guestName = nombreMostrado || "Invitado/a";
+          var countStr = pasesNum < 10 ? "0" + pasesNum : String(pasesNum);
+          var passesLabel = pasesNum === 1 ? "persona" : "personas";
           var nameEl = document.querySelector(".n04-guest__name");
           var countEl = document.querySelector(".n04-guest__count");
           var paxLbl = document.getElementById("n04-guest-pax-lbl");
@@ -588,8 +707,6 @@
           if (envCount) envCount.textContent = countStr;
           if (envLbl) envLbl.textContent = passesLabel;
         }
-
-        syncGuestFields();
 
         function openInvitation() {
           window.scrollTo(0, 0);
@@ -605,7 +722,25 @@
           if (first) first.focus({ preventScroll: true });
         }
 
-        function wireEnvelopeHit() {
+        function trySkipEnvelope(storageKey) {
+          if (window.INVITANDING_SKIP_ENVELOPE === true) {
+            markEnvelopeOpened(storageKey);
+            openInvitation();
+            return true;
+          }
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            markEnvelopeOpened(storageKey);
+            openInvitation();
+            return true;
+          }
+          if (envelopeAlreadyOpened(storageKey)) {
+            openInvitation();
+            return true;
+          }
+          return false;
+        }
+
+        function wireOpenButton(storageKey) {
           var hit = document.getElementById("digta-envelope-hit");
           var env = document.getElementById("digta-envelope");
           var videoEl = document.getElementById("digta-open-video-el");
@@ -654,6 +789,7 @@
           }
 
           function afterVideoDone() {
+            markEnvelopeOpened(storageKey);
             openInvitation();
             hit.removeAttribute("aria-disabled");
             hit.removeAttribute("aria-busy");
@@ -669,6 +805,7 @@
               videoEl.onended = null;
               videoEl.onerror = null;
             }
+            kickScrollReveal();
           }
 
           function startOpenVideo() {
@@ -703,7 +840,9 @@
             if (hit.getAttribute("aria-disabled") === "true") return;
 
             if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+              markEnvelopeOpened(storageKey);
               openInvitation();
+              kickScrollReveal();
               return;
             }
 
@@ -730,7 +869,46 @@
           });
         }
 
-        wireEnvelopeHit();
+        function runPersonalizedFlow(nombreMostrado, pases, mesa, storageKey) {
+          applyOk(nombreMostrado, pases, mesa);
+          syncGuestFieldsFromMeta(nombreMostrado, pases);
+          if (trySkipEnvelope(storageKey)) {
+            kickScrollReveal();
+            return;
+          }
+          wireOpenButton(storageKey);
+          kickScrollReveal();
+        }
+
+        if (token && window.InviteToken) {
+          InviteToken.decryptPayload(InviteToken.getSecret(), token)
+            .then(function (data) {
+              var nombreMostrado = (data.n && String(data.n).trim()) || "Invitado/a";
+              /* data.p y m ya vienen normalizados desde decryptPayload (v1/v2) */
+              runPersonalizedFlow(nombreMostrado, data.p, data.m, envelopeStorageId(token, "", ""));
+            })
+            .catch(function () {
+              applyError();
+              openInvitation();
+              kickScrollReveal();
+            });
+          return;
+        }
+
+        if (window.INVITANDING_ALLOW_LEGACY_INVITE_PARAMS === true) {
+          var nombre = decodeNombre(params.get("nombre") || params.get("invitado") || "");
+          var pasesRaw = params.get("pases") || params.get("pax") || "";
+          var pases = parseInt(pasesRaw, 10);
+          if (isNaN(pases) || pases < 1) pases = 1;
+          if (pases > 99) pases = 99;
+          var nombreMostrado = nombre || "Invitado/a";
+          runPersonalizedFlow(nombreMostrado, pases, null, envelopeStorageId("", nombreMostrado, pases));
+          return;
+        }
+
+        applyError();
+        openInvitation();
+        kickScrollReveal();
       })();
     </script>
   </body>

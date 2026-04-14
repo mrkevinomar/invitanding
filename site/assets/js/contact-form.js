@@ -5,7 +5,7 @@
  *    → Notifications / Integraciones y añade tu email para recibir cada envío.
  *
  * 2) Web3Forms (https://web3forms.com): crea un formulario gratuito, copia la access key
- *    y pégala en contact.html en window.INVITANDING_WEB3FORMS_KEY. Los mensajes llegan al
+ *    y pégala en /contact/ (contact/index.html) en window.INVITANDING_WEB3FORMS_KEY. Los mensajes llegan al
  *    correo que indiques en Web3Forms. Funciona en cualquier hosting.
  */
 (function () {
@@ -28,7 +28,7 @@
       window.alert(
         "En local (localhost) un servidor de archivos estático no acepta envíos POST del formulario (por eso ves error 501).\n\n" +
           "Para probar el contacto en tu máquina:\n\n" +
-          "• Pega tu clave de Web3Forms en contact.html (INVITANDING_WEB3FORMS_KEY), o\n" +
+          "• Pega tu clave de Web3Forms en la página de contacto /contact/ (INVITANDING_WEB3FORMS_KEY), o\n" +
           "• Ejecuta en la carpeta del repo: netlify dev\n\n" +
           "En el sitio ya publicado en Netlify, el modo sin clave usa Netlify Forms y sí acepta POST."
       );
